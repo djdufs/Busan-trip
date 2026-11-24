@@ -849,7 +849,7 @@
 
     /* clock */
     if (v.sim) {
-      el.clock.textContent = '시뮬 ' + fmtHM(v.axis % 1440) + ' · ' + DAYS[v.day].sub;
+      el.clock.textContent = DAYS[v.day].label + ' ' + fmtHM(v.axis % 1440);
     } else {
       const t = v.t;
       el.clock.textContent = pad(t.m) + '.' + pad(t.d) + '(' + WD[new Date(Date.UTC(t.y, t.m - 1, t.d)).getUTCDay()] + ') ' +
