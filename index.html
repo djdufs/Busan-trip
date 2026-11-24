@@ -2305,7 +2305,10 @@
     const img = safeImg(r.receipt_url);
     const parts = Array.isArray(r.participants) ? r.participants : [];
     const spot = expSpotLabel(r);
-    const meta = (r.payer || '?') + ' 결제 · ' + (parts.length ? parts.length + '명' : '전원') + (spot ? ' · ' + spot : '');
+    const who = !parts.length
+      ? '전원'
+      : (parts.length >= MEMBERS.length ? parts.length + '명 전원' : parts.length + '명 · ' + parts.join('·'));
+    const meta = (r.payer || '?') + ' 결제 · ' + who + (spot ? ' · ' + spot : '');
     return '<div class="strow" data-id="' + esc(String(r.id)) + '">' +
       '<div class="info"><b>' + esc(r.title || '지출') + '</b><span>' + esc(meta) + '</span></div>' +
       '<span class="amt">' + won(r.amount) + '</span>' +
