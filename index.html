@@ -736,7 +736,7 @@
     <button class="wholine" id="whoLine" type="button">
       <span class="wl-k">작성자</span>
       <b id="whoState">미선택 (클릭해 선택)</b>
-      <em id="whoHint">고르기</em>
+      <em id="whoHint" aria-hidden="true">›</em>
     </button>
     <div class="achips" id="authorChips">
       <button class="achip" type="button" data-name="영진">영진</button>
@@ -1017,7 +1017,7 @@
 <div class="modal" id="ckEditor" hidden role="dialog" aria-modal="true" aria-label="체크리스트 항목 편집">
   <div class="mbox">
     <h3 id="ckEdTitle">항목 추가</h3>
-    <p class="msub">제목은 꼭 넣고, 설명엔 시간이나 메모를 적어 두면 혼자 덜 헷갈림.</p>
+    <p class="msub">제목은 꼭 넣고, 설명엔 시간·메모를 적어 두면 5명이 같이 보기 좋아요.</p>
     <label class="fl" for="ckEdMain">제목</label>
     <input id="ckEdMain" type="text" maxlength="60" autocomplete="off" placeholder="예: 스카이캡슐 14:30 타임 · 5인 2대">
     <label class="fl" for="ckEdSub">설명 (선택)</label>
@@ -2121,7 +2121,7 @@
     const st = el.whoState || $('#whoState');
     if (st) st.textContent = share.author ? share.author + ' (변경)' : '미선택 (클릭해 선택)';
     const hn = el.whoHint || $('#whoHint');
-    if (hn) hn.textContent = share.author ? '변경' : '고르기';
+    if (hn) hn.textContent = '›';
     if (el.whoLine) el.whoLine.classList.toggle('set', !!share.author);
     $$('#whoChips button').forEach(function (b) {
       b.classList.toggle('on', !!share.author && b.getAttribute('data-name') === share.author);
