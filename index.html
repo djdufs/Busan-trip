@@ -267,7 +267,7 @@
   .check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
   .check li{position:relative;display:flex;gap:9px;align-items:flex-start;background:#f8fafd;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
   .check li.on{background:var(--okb);border-color:#c7edd8}
-  .check label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;width:100%;padding-right:34px}
+  .check label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;flex:1 1 auto;min-width:0;padding-right:2px}
   .check input{appearance:none;-webkit-appearance:none;width:19px;height:19px;border-radius:6px;border:2px solid #c3cede;background:#fff;flex:0 0 auto;margin:1px 0 0;position:relative;cursor:pointer}
   .check input:checked{background:var(--ok);border-color:var(--ok)}
   .check input:checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
@@ -275,8 +275,18 @@
   .check .txt b{display:block;font-size:12.5px;font-weight:800;letter-spacing:-.2px;line-height:1.35}
   .check .txt span{display:block;font-size:11px;color:var(--ink3);margin-top:2px}
   .check li.on .txt b{color:#0b7a4d;text-decoration:line-through;text-decoration-color:rgba(11,122,77,.4)}
-  .check-req{position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:800;background:#ffe9e3;color:#c33f24;border-radius:5px;padding:1px 5px}
+  .check li.on .txt b .check-req{text-decoration:none}
+  .check-req{display:inline-block;margin-left:5px;font-style:normal;font-size:9.5px;font-weight:800;background:#ffe9e3;color:#c33f24;border-radius:5px;padding:1px 5px;vertical-align:1px}
   .check li.on .check-req{background:#d7f2e3;color:#0b7a4d}
+  .check .ck-act{display:flex;flex-direction:column;gap:4px;flex:0 0 auto;margin-left:auto}
+  .check .ck-act button{width:28px;height:24px;border-radius:7px;background:#eef2f8;color:#5b6b82;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center}
+  .check .ck-act button:active{background:#e0e7f1}
+  .check li.on .ck-act button{background:#d8f2e4;color:#0b7a4d}
+  .ck-empty{display:block;font-size:11.5px;color:var(--ink3);background:#f8fafd;border:1px dashed #e2e8f2;border-radius:10px;padding:13px 10px;text-align:center;line-height:1.5}
+  .ck-empty b{color:#2b4bb0}
+  .ckfoot{display:flex;align-items:center;gap:12px;margin-top:9px;flex-wrap:wrap}
+  .cadd{font-size:11.5px;font-weight:800;padding:7px 12px;border-radius:9px;background:#eaf0ff;color:#2b4bb0;border:1px solid #d7e1fb;display:inline-flex;align-items:center;gap:4px}
+  .cadd:active{background:#dde7ff}
 
   .tbl{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
   .tbl th,.tbl td{padding:7px 4px;text-align:right;border-bottom:1px solid var(--line2)}
@@ -319,6 +329,35 @@
   .achip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
   .achip.add{background:#fff;border-style:dashed;color:var(--ink3)}
   .achip.add.on{background:var(--navy);color:#fff;border-style:solid}
+  .wholine{display:flex;align-items:center;gap:7px;width:100%;padding:7px 10px;margin-bottom:8px;border-radius:10px;background:#fff7ed;border:1px solid #f6dfc4;font-size:11.5px;font-weight:800;color:#8a5a12;text-align:left}
+  .wholine .wl-k{font-size:10px;font-weight:800;color:#b4863f;letter-spacing:.2px}
+  .wholine b{font-weight:850;letter-spacing:-.1px}
+  .wholine em{margin-left:auto;font-style:normal;font-size:10.5px;font-weight:800;text-decoration:underline;color:inherit;opacity:.9}
+  .wholine.set{background:#eef4ff;border-color:#d7e1fb;color:#2b4bb0}
+  .wholine.set .wl-k{color:#5c74b4}
+
+  /* ---------- who / editor modals ---------- */
+  .modal{position:fixed;inset:0;z-index:140;background:rgba(8,15,26,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+  .mbox{width:100%;max-width:390px;background:#fff;border-radius:20px;padding:18px 16px 14px;box-shadow:0 18px 50px rgba(9,17,29,.35);max-height:88vh;overflow-y:auto}
+  .wbox{text-align:center}
+  .wemo{font-size:30px;line-height:1}
+  .mbox h3{margin:9px 0 4px;font-size:16px;font-weight:850;letter-spacing:-.3px}
+  .mbox .msub{margin:0 0 14px;font-size:11.5px;color:var(--ink3);line-height:1.5}
+  .wchips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+  .wchips button{font-size:13px;font-weight:800;padding:9px 15px;border-radius:999px;background:#f2f5fa;color:var(--ink2);border:1px solid var(--line)}
+  .wchips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .wcust{display:flex;gap:6px;margin-top:12px}
+  .wcust input{flex:1;min-width:0;font:inherit;font-size:12.5px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#f8fafd;color:var(--ink)}
+  .wcust button{flex:0 0 auto;padding:0 14px;border-radius:10px;background:#eaf0ff;color:#2b4bb0;font-size:12.5px;font-weight:800}
+  .wcancel{margin-top:12px;font-size:11.5px;color:var(--ink3);font-weight:700;text-decoration:underline}
+  .mbox label.fl{display:block;font-size:11px;font-weight:800;color:var(--ink2);margin:11px 0 5px;text-align:left}
+  .mbox input[type=text]{width:100%;font:inherit;font-size:13px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#f8fafd;color:var(--ink)}
+  .mbox .freq{display:flex;align-items:center;gap:7px;margin:13px 0 0;font-size:12px;font-weight:700;color:var(--ink2)}
+  .mbox .freq input{width:17px;height:17px;accent-color:#0f9d63}
+  .mbtns{display:flex;gap:8px;margin-top:16px}
+  .mbtns button{flex:1;padding:11px 0;border-radius:11px;font-size:13px;font-weight:800}
+  .mbtns .b-cancel{background:#f2f5fa;color:var(--ink2)}
+  .mbtns .b-ok{background:var(--navy);color:#fff}
   .acinput{display:flex;gap:6px;margin-top:7px}
   .acinput input{flex:1;min-width:0;font:inherit;font-size:12.5px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#f8fafd;color:var(--ink)}
   .acinput button{flex:0 0 auto;background:var(--info);color:#fff;font-weight:800;font-size:12px;padding:0 12px;border-radius:9px}
@@ -694,6 +733,11 @@
       </div>
       <button class="albtn" id="btnAlbum" type="button">📷 사진첩 <b id="albCount">0</b></button>
     </div>
+    <button class="wholine" id="whoLine" type="button">
+      <span class="wl-k">작성자</span>
+      <b id="whoState">미선택 (클릭해 선택)</b>
+      <em id="whoHint">고르기</em>
+    </button>
     <div class="achips" id="authorChips">
       <button class="achip" type="button" data-name="영진">영진</button>
       <button class="achip" type="button" data-name="지현">지현</button>
@@ -768,8 +812,11 @@
 
       <h3>✅ 필수 사전 예약 <span class="cnt" id="checkCnt">0 / 0</span></h3>
       <ul class="check" id="checklist"></ul>
+      <div class="ckfoot">
+        <button class="cadd" id="btnCheckAdd" type="button">＋ 항목 추가</button>
+        <button class="reset" id="btnReset" type="button">체크 초기화</button>
+      </div>
       <p class="fine" id="checkSync" style="margin-top:8px"></p>
-      <button class="reset" id="btnReset" type="button">체크 초기화</button>
 
       <h3>💰 5인 예상 경비</h3>
       <table class="tbl">
@@ -946,6 +993,42 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div class="modal wbox" id="whoModal" hidden role="dialog" aria-modal="true" aria-label="접속한 사람 선택">
+  <div class="mbox">
+    <div class="wemo">👋</div>
+    <h3>지금 접속한 사람이 누구야?</h3>
+    <p class="msub">한 번 고르면 이 탭을 닫을 때까지만 기억해요.<br>메모·톡방·정산·체크에 이 이름이 남아요.</p>
+    <div class="wchips" id="whoChips">
+      <button type="button" data-name="영진">영진</button>
+      <button type="button" data-name="지현">지현</button>
+      <button type="button" data-name="준섭">준섭</button>
+      <button type="button" data-name="명강">명강</button>
+      <button type="button" data-name="윤지">윤지</button>
+    </div>
+    <div class="wcust">
+      <input id="whoInput" type="text" maxlength="12" placeholder="직접 입력 (최대 12자)" autocomplete="off" enterkeyhint="done" aria-label="이름 직접 입력">
+      <button id="whoOk" type="button">확인</button>
+    </div>
+    <button class="wcancel" id="whoCancel" type="button">나중에</button>
+  </div>
+</div>
+
+<div class="modal" id="ckEditor" hidden role="dialog" aria-modal="true" aria-label="체크리스트 항목 편집">
+  <div class="mbox">
+    <h3 id="ckEdTitle">항목 추가</h3>
+    <p class="msub">제목은 꼭 넣고, 설명엔 시간이나 메모를 적어 두면 혼자 덜 헷갈림.</p>
+    <label class="fl" for="ckEdMain">제목</label>
+    <input id="ckEdMain" type="text" maxlength="60" autocomplete="off" placeholder="예: 스카이캡슐 14:30 타임 · 5인 2대">
+    <label class="fl" for="ckEdSub">설명 (선택)</label>
+    <input id="ckEdSub" type="text" maxlength="80" autocomplete="off" placeholder="예: 11/28(토) 미포 → 청사포 · 30분 탑승">
+    <label class="freq"><input type="checkbox" id="ckEdReq"> 필수 항목으로 표시</label>
+    <div class="mbtns">
+      <button class="b-cancel" id="ckEdCancel" type="button">취소</button>
+      <button class="b-ok" id="ckEdOk" type="button">저장</button>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -1135,7 +1218,11 @@
     wxCard: $('#wxCard'), wxHead: $('#wxHead'), wxMini: $('#wxMini'), wxTog: $('#wxTog'), wxDetail: $('#wxDetail'),
     chatSheet: $('#chatSheet'), chatList: $('#chatList'), chatText: $('#chatText'), chatSend: $('#chatSend'),
     chatFile: $('#chatFile'), chatFileBtn: $('#chatFileBtn'), chatPrev: $('#chatPrev'), chatPrevImg: $('#chatPrevImg'),
-    chatPrevX: $('#chatPrevX'), chatProg: $('#chatProg'), chatSync: $('#chatSync'), chatState: $('#chatState')
+    chatPrevX: $('#chatPrevX'), chatProg: $('#chatProg'), chatSync: $('#chatSync'), chatState: $('#chatState'),
+    whoModal: $('#whoModal'), whoLine: $('#whoLine'), whoState: $('#whoState'), whoHint: $('#whoHint'),
+    whoChips: $('#whoChips'), whoInput: $('#whoInput'),
+    ckEditor: $('#ckEditor'), ckEdTitle: $('#ckEdTitle'), ckEdMain: $('#ckEdMain'), ckEdSub: $('#ckEdSub'), ckEdReq: $('#ckEdReq'),
+    btnCheckAdd: $('#btnCheckAdd')
   };
 
   /* ============ time view ============ */
@@ -1617,19 +1704,56 @@
     }, 130);
   }
 
-  /* ============ checklist ============ */
+  /* ============ checklist (목록 정의는 trip_checklist 의 info_checklist_items 행) ============ */
   const CHECK_KEY = 'busanTrip.checks.v1';
+  const CHECK_ITEMS_CACHE = 'busanTrip.checkItems.v1';
   const CHECK_TBL = 'trip_checklist';
-  const CHECKS = [
-    { id:'sky',   req:true,  label:'스카이캡슐 14:30 타임 · 5인 2대', sub:'11/28(토) 미포 → 청사포 · 30분 탑승' },
-    { id:'catch', req:true,  label:'수변최고돼지국밥 캐치테이블 줄서기', sub:'11/28 11:15 점심 · 도착 전 원격 등록' },
-    { id:'pizza', req:true,  label:'이재모피자 포장 사전 주문', sub:'11/29 14:10 픽업 · 치즈크러스트' },
-    { id:'locker',req:true,  label:'부산역 물품보관함', sub:'11/28 도착 직후 맡기고 11/29 14:10에 찾기' },
-    { id:'ins',   req:false, label:'국내여행자보험 가입', sub:'선택 · 1박 2일 1인 2,000~4,000원대' },
-    { id:'part',  req:false, label:'보드게임·야식 준비', sub:'11/28 밤 파티 · 편의점에서 채우면 OK' }
+  const CHECK_DEF_KEY = 'info_checklist_items';
+  const CHECK_DEFAULTS = [
+    { id:'sky',   title:'스카이캡슐 14:30 타임 · 5인 2대', sub:'11/28(토) 미포 → 청사포 · 30분 탑승', required:true },
+    { id:'catch', title:'수변최고돼지국밥 캐치테이블 줄서기', sub:'11/28 11:15 점심 · 도착 전 원격 등록', required:true },
+    { id:'pizza', title:'이재모피자 포장 사전 주문', sub:'11/29 14:10 픽업 · 치즈크러스트', required:true },
+    { id:'locker',title:'부산역 물품보관함', sub:'11/28 도착 직후 맡기고 11/29 14:10에 찾기', required:true },
+    { id:'ins',   title:'국내여행자보험 가입', sub:'선택 · 1박 2일 1인 2,000~4,000원대', required:false },
+    { id:'part',  title:'보드게임·야식 준비', sub:'11/28 밤 파티 · 편의점에서 채우면 OK', required:false }
   ];
 
-  const check = { map: {}, loadedAt: 0, state: 'idle', loading: false };
+  const check = {
+    map: {}, items: [], loadedAt: 0, state: 'idle', loading: false,
+    itemsState: 'idle', itemsLoadedAt: 0, saving: false
+  };
+
+  function newCheckId() {
+    return 'ck' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  }
+
+  /* 목록 정의 검증 · id 는 info_ 프리픽스를 절대 쓰지 않는다(보드·목록 키 보호) */
+  function cleanCheckItems(arr) {
+    const out = [];
+    (Array.isArray(arr) ? arr : []).forEach(function (it) {
+      if (!it || typeof it !== 'object') return;
+      const title = String(it.title || it.label || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+      if (!title) return;
+      let id = String(it.id || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 32);
+      if (!id || id.indexOf('info_') === 0) id = newCheckId();
+      if (out.some(function (x) { return x.id === id; })) id = newCheckId();
+      out.push({
+        id: id,
+        title: title,
+        sub: String(it.sub || '').replace(/\s+/g, ' ').trim().slice(0, 80),
+        required: !!it.required
+      });
+    });
+    return out.slice(0, 30);
+  }
+
+  function parseCheckItems(v) {
+    if (!v) return null;
+    let raw = v;
+    if (typeof v === 'string') { try { raw = JSON.parse(v); } catch (e) { return null; } }
+    if (!Array.isArray(raw)) return null;
+    return cleanCheckItems(raw);
+  }
 
   function loadChecks() {
     let raw = {};
@@ -1637,6 +1761,7 @@
     const out = {};
     Object.keys(raw).forEach(function (k) {
       const v = raw[k];
+      if (k.indexOf('info_') === 0) return;
       if (v && typeof v === 'object') out[k] = { on: !!v.on, by: v.by || '', at: v.at || '' };
       else out[k] = { on: !!v, by: '', at: '' };
     });
@@ -1645,23 +1770,41 @@
   function saveChecks(map) {
     try { localStorage.setItem(CHECK_KEY, JSON.stringify(map)); } catch (e) {}
   }
+  function loadCheckItemsCache() {
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem(CHECK_ITEMS_CACHE) || 'null'); } catch (e) { raw = null; }
+    if (Array.isArray(raw)) return cleanCheckItems(raw);
+    return CHECK_DEFAULTS.slice();
+  }
+  function saveCheckItemsCache() {
+    try { localStorage.setItem(CHECK_ITEMS_CACHE, JSON.stringify(check.items)); } catch (e) {}
+  }
   check.map = loadChecks();
+  check.items = loadCheckItemsCache();
 
   function renderChecks() {
     const map = check.map || {};
-    el.checklist.innerHTML = CHECKS.map(function (c) {
-      const cur = map[c.id] || {};
-      const on = !!cur.on;
-      return '<li class="' + (on ? 'on' : '') + '">' +
-        '<label><input type="checkbox" data-id="' + c.id + '"' + (on ? ' checked' : '') + '>' +
-        '<span class="txt"><b>' + esc(c.label) + '</b>' +
-        '<span>' + esc(c.sub) + '</span>' +
-        (on && cur.by ? '<span class="by">✓ ' + esc(cur.by) + ' 완료</span>' : '') +
-        '</span></label>' +
-        (c.req ? '<span class="check-req">필수</span>' : '') + '</li>';
-    }).join('');
-    const done = CHECKS.filter(function (c) { return map[c.id] && map[c.id].on; }).length;
-    el.checkCnt.textContent = done + ' / ' + CHECKS.length;
+    const items = check.items || [];
+    if (!items.length) {
+      el.checklist.innerHTML = '<li class="ck-empty">항목이 없어요 — <b>＋ 항목 추가</b>로 새로 만들어 보세요.</li>';
+    } else {
+      el.checklist.innerHTML = items.map(function (c) {
+        const cur = map[c.id] || {};
+        const on = !!cur.on;
+        return '<li class="' + (on ? 'on' : '') + '">' +
+          '<label><input type="checkbox" data-id="' + esc(c.id) + '"' + (on ? ' checked' : '') + '>' +
+          '<span class="txt"><b>' + esc(c.title) + (c.required ? '<i class="check-req">필수</i>' : '') + '</b>' +
+          (c.sub ? '<span>' + esc(c.sub) + '</span>' : '') +
+          (on && cur.by ? '<span class="by">✓ ' + esc(cur.by) + ' 완료</span>' : '') +
+          '</span></label>' +
+          '<span class="ck-act">' +
+            '<button type="button" data-ck="edit" data-id="' + esc(c.id) + '" aria-label="' + esc(c.title) + ' 수정">✏️</button>' +
+            '<button type="button" data-ck="del" data-id="' + esc(c.id) + '" aria-label="' + esc(c.title) + ' 삭제">🗑️</button>' +
+          '</span></li>';
+      }).join('');
+    }
+    const done = items.filter(function (c) { return map[c.id] && map[c.id].on; }).length;
+    el.checkCnt.textContent = done + ' / ' + items.length;
     paintCheckSync();
   }
 
@@ -1669,16 +1812,54 @@
     const n = el.checkSync; if (!n) return;
     if (check.state === 'loading') { n.textContent = '친구들과 상태를 맞추는 중…'; return; }
     if (check.state === 'error') { n.textContent = '이 기기에만 저장됨 · 연결되면 자동으로 맞춰져요'; return; }
+    if (check.saving) { n.textContent = '목록을 저장하는 중…'; return; }
+    if (check.itemsState === 'error') { n.textContent = '목록은 이 기기에만 저장됨 · 연결되면 자동으로 맞춰져요'; return; }
+    if (!check.loadedAt && check.itemsLoadedAt) {
+      const q = stampParts(check.itemsLoadedAt);
+      n.textContent = '5인 공유 목록 · ' + pad(q.hh) + ':' + pad(q.mm) + ' 갱신 · 체크하면 모두에게 보여요';
+      return;
+    }
     if (!check.loadedAt) { n.textContent = ''; return; }
     const p = stampParts(check.loadedAt);
-    n.textContent = '5인 공유 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신 · 체크하면 모두에게 보여요';
+    n.textContent = '5인 공유 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신 · 체크·수정하면 모두에게 보여요';
+  }
+
+  function checkRowGet(key) {
+    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&item_key=eq.' +
+      encodeURIComponent(key) + '&limit=1', { headers: supHeaders(), cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (rows) { return (Array.isArray(rows) && rows[0]) ? rows[0] : null; });
+  }
+
+  function checkRowPut(key, valStr) {
+    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?on_conflict=item_key', {
+      method: 'POST',
+      headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+      body: JSON.stringify([{ item_key: key, checked: true, checked_by: valStr, updated_at: new Date().toISOString() }])
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
+  }
+
+  /* 목록 정의(info_checklist_items) 불러오기 — 행이 없으면 기본 6항목 유지 */
+  function fetchCheckItems() {
+    return checkRowGet(CHECK_DEF_KEY)
+      .then(function (row) {
+        const items = parseCheckItems(row && row.checked_by);
+        if (items) { check.items = items; saveCheckItemsCache(); }
+        check.itemsState = 'ok';
+        check.itemsLoadedAt = Date.now();
+        renderChecks();
+      })
+      .catch(function () {
+        check.itemsState = 'error';
+        paintCheckSync();
+      });
   }
 
   function fetchChecks(manual) {
     if (check.loading) return Promise.resolve();
     check.loading = true;
     if (!check.loadedAt) { check.state = 'loading'; paintCheckSync(); }
-    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&item_key=in.(' + CHECKS.map(function (c) { return c.id; }).join(',') + ')&limit=100',
+    const states = fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&order=item_key&limit=400',
       { headers: supHeaders(), cache: 'no-store' })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1688,6 +1869,7 @@
         const map = {};
         (Array.isArray(rows) ? rows : []).forEach(function (r) {
           if (!r || !r.item_key) return;
+          if (r.item_key.indexOf('info_') === 0) return;  /* 보드·목록 정의 키는 체크 상태가 아니다 */
           map[r.item_key] = { on: !!r.checked, by: r.checked_by || '', at: r.updated_at || '' };
         });
         check.map = map;
@@ -1701,12 +1883,18 @@
         check.state = 'error';
         renderChecks();
         if (manual) toast('공유 체크리스트를 불러오지 못했어요 — 이 기기 저장본으로 보여드려요');
-      })
-      .then(function () { check.loading = false; });
+      });
+    const items = fetchCheckItems();
+    return Promise.all([states, items]).then(function () {
+      check.loading = false;
+      paintCheckSync();
+    });
   }
 
   function setCheck(key, on) {
-    const by = on ? (share.author || MEMBERS[0]) : '';
+    if (String(key || '').indexOf('info_') === 0) return;
+    if (!needWho(function () { setCheck(key, on); })) return;
+    const by = on ? share.author : '';
     const at = new Date().toISOString();
     check.map = check.map || {};
     check.map[key] = { on: !!on, by: by, at: at };
@@ -1728,23 +1916,116 @@
     });
   }
 
+  /* 목록 추가·수정·삭제 → info_checklist_items 행에 JSON 으로 저장(5인 공유) */
+  function applyCheckItems(next, msg) {
+    check.items = cleanCheckItems(next);
+    saveCheckItemsCache();
+    renderChecks();
+    if (!state.online) { toast('오프라인 — 이 기기에만 저장했어요'); return Promise.resolve(); }
+    check.saving = true;
+    paintCheckSync();
+    return checkRowPut(CHECK_DEF_KEY, JSON.stringify(check.items))
+      .then(function () {
+        check.saving = false;
+        check.itemsState = 'ok';
+        check.itemsLoadedAt = Date.now();
+        if (!check.loadedAt) check.loadedAt = Date.now();
+        renderChecks();
+        paintCheckSync();
+        toast(msg || '체크리스트를 저장했어요');
+      })
+      .catch(function () {
+        check.saving = false;
+        check.itemsState = 'error';
+        renderChecks();
+        toast('서버에 저장하지 못했어요 — 이 기기에만 남겼어요');
+      });
+  }
+
+  const checkEd = { mode: 'add', id: null };
+
+  function findCheckItem(id) {
+    const items = check.items || [];
+    for (let i = 0; i < items.length; i++) { if (items[i].id === id) return items[i]; }
+    return null;
+  }
+
+  function openCheckEditor(mode, id) {
+    if (!needWho(function () { openCheckEditor(mode, id); })) return;
+    const it = (mode === 'edit' && id) ? findCheckItem(id) : null;
+    checkEd.mode = it ? 'edit' : 'add';
+    checkEd.id = it ? it.id : null;
+    if (el.ckEdTitle) el.ckEdTitle.textContent = it ? '항목 수정' : '항목 추가';
+    if (el.ckEdMain) el.ckEdMain.value = it ? it.title : '';
+    if (el.ckEdSub) el.ckEdSub.value = it ? (it.sub || '') : '';
+    if (el.ckEdReq) el.ckEdReq.checked = it ? !!it.required : false;
+    if (el.ckEditor) el.ckEditor.hidden = false;
+    if (el.ckEdMain) { try { el.ckEdMain.focus(); } catch (e) {} }
+  }
+
+  function closeCheckEditor() {
+    if (el.ckEditor) el.ckEditor.hidden = true;
+    checkEd.mode = 'add';
+    checkEd.id = null;
+  }
+
+  function saveCheckEditor() {
+    const title = String((el.ckEdMain && el.ckEdMain.value) || '').replace(/\s+/g, ' ').trim();
+    if (!title) { toast('제목을 입력해 주세요'); if (el.ckEdMain) el.ckEdMain.focus(); return; }
+    const sub = String((el.ckEdSub && el.ckEdSub.value) || '').replace(/\s+/g, ' ').trim();
+    const required = !!(el.ckEdReq && el.ckEdReq.checked);
+    const next = (check.items || []).slice();
+    let i = -1;
+    if (checkEd.mode === 'edit' && checkEd.id) {
+      for (let k = 0; k < next.length; k++) { if (next[k].id === checkEd.id) { i = k; break; } }
+    }
+    if (i >= 0) {
+      next[i] = { id: next[i].id, title: title.slice(0, 60), sub: sub.slice(0, 80), required: required };
+    } else {
+      next.push({ id: newCheckId(), title: title.slice(0, 60), sub: sub.slice(0, 80), required: required });
+    }
+    const msg = i >= 0 ? '항목을 수정했어요 — 5인 모두에게 보여요' : '항목을 추가했어요 — 5인 모두에게 보여요';
+    closeCheckEditor();
+    applyCheckItems(next, msg);
+  }
+
+  function removeCheckItem(id) {
+    if (!needWho(function () { removeCheckItem(id); })) return;
+    const it = findCheckItem(id);
+    if (!it) return;
+    if (!confirm('"' + it.title + '" 항목을 지울까요?\n5인 모두의 화면에서 함께 빠져요.')) return;
+    const next = (check.items || []).filter(function (x) { return x.id !== id; });
+    delete check.map[id];
+    saveChecks(check.map);
+    if (state.online) {
+      fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?item_key=eq.' + encodeURIComponent(id), {
+        method: 'DELETE', headers: supHeaders({ 'Prefer': 'return=minimal' })
+      }).catch(function () {});
+    }
+    applyCheckItems(next, '항목을 지웠어요');
+  }
+
   function resetChecks() {
+    const items = (check.items || []).filter(function (c) { return c.id.indexOf('info_') !== 0; });
+    if (!items.length) { toast('초기화할 항목이 없어요'); return; }
     if (!confirm('체크리스트를 모두 미완료로 돌릴까요? 친구 화면에도 함께 바뀌어요.')) return;
     const at = new Date().toISOString();
     const map = {};
-    CHECKS.forEach(function (c) { map[c.id] = { on: false, by: '', at: at }; });
+    items.forEach(function (c) { map[c.id] = { on: false, by: '', at: at }; });
     check.map = map;
     saveChecks(map);
     renderChecks();
+    if (!state.online) { toast('오프라인 — 이 기기에만 저장했어요'); return; }
     fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?on_conflict=item_key', {
       method: 'POST',
       headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
-      body: JSON.stringify(CHECKS.map(function (c) {
+      body: JSON.stringify(items.map(function (c) {
         return { item_key: c.id, checked: false, checked_by: null, updated_at: at };
       }))
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       check.state = 'ok';
+      paintCheckSync();
     }).catch(function () {
       check.state = 'error';
       paintCheckSync();
@@ -1801,11 +2082,12 @@
   const SUPA = 'https://rxsxbmbpetdwbcehsnts.supabase.co';
   const SUPA_KEY = 'sb_publishable_Jpch9M3IzuKDsRLIRfu5Dw_dHD6KhHD';
   const SUPA_BUCKET = 'trip-photos';
-  const AUTHOR_KEY = 'busanTrip.author.v1';
+  const AUTHOR_KEY = 'busanTrip.author.v2';          /* 세션(탭) 안에서만 유지 */
+  const AUTHOR_KEY_OLD = 'busanTrip.author.v1';      /* 예전 localStorage 기본값 — 더 이상 읽지 않음 */
   const AUTHORS = ['영진', '지현', '준섭', '명강', '윤지'];
 
   const share = {
-    author: AUTHORS[0], notes: [], bySpot: {},
+    author: '', notes: [], bySpot: {},
     loading: false, loadedAt: 0, sending: false,
     expanded: {}, drafts: {}, state: 'idle'
   };
@@ -1816,34 +2098,102 @@
     return h;
   }
 
-  /* ----- author ----- */
+  /* ----- author (sessionStorage: 새 세션에서는 다시 묻는다) ----- */
   function loadAuthor() {
     let a = '';
-    try { a = localStorage.getItem(AUTHOR_KEY) || ''; } catch (e) {}
-    share.author = (a || '').slice(0, 12) || AUTHORS[0];
+    try { a = sessionStorage.getItem(AUTHOR_KEY) || ''; } catch (e) { a = ''; }
+    share.author = String(a || '').replace(/\s+/g, ' ').trim().slice(0, 12);
+    try { localStorage.removeItem(AUTHOR_KEY_OLD); } catch (e) {}
     paintAuthor();
   }
   function paintAuthor() {
     $$('#authorChips .achip').forEach(function (b) {
       if (b.id === 'achipCustom') return;
-      b.classList.toggle('on', b.getAttribute('data-name') === share.author);
+      b.classList.toggle('on', !!share.author && b.getAttribute('data-name') === share.author);
     });
-    const custom = AUTHORS.indexOf(share.author) < 0;
+    const custom = !!share.author && AUTHORS.indexOf(share.author) < 0;
     const cb = $('#achipCustom');
     if (cb) {
       cb.classList.toggle('on', custom);
       cb.textContent = custom ? '✏️ ' + share.author : '✏️ 직접 입력';
     }
-    $$('[data-who]').forEach(function (n) { n.textContent = share.author; });
+    $$('[data-who]').forEach(function (n) { n.textContent = share.author || '미선택'; });
+    const st = el.whoState || $('#whoState');
+    if (st) st.textContent = share.author ? share.author + ' (변경)' : '미선택 (클릭해 선택)';
+    const hn = el.whoHint || $('#whoHint');
+    if (hn) hn.textContent = share.author ? '변경' : '고르기';
+    if (el.whoLine) el.whoLine.classList.toggle('set', !!share.author);
+    $$('#whoChips button').forEach(function (b) {
+      b.classList.toggle('on', !!share.author && b.getAttribute('data-name') === share.author);
+    });
   }
-  function setAuthor(name) {
+  function setAuthor(name, opts) {
     const n = String(name || '').replace(/\s+/g, ' ').trim().slice(0, 12);
-    if (!n) return;
+    if (!n) return false;
     share.author = n;
-    try { localStorage.setItem(AUTHOR_KEY, n); } catch (e) {}
+    try { sessionStorage.setItem(AUTHOR_KEY, n); } catch (e) {}
     paintAuthor();
     if (el.chatList) { chat.sig = null; paintChat(); }
-    toast(n + ' 이름으로 남겨요');
+    if (!(opts && opts.silent)) toast(n + ' 이름으로 남겨요');
+    return true;
+  }
+
+  /* ----- "누구세요?" 세션 게이트 ----- */
+  const who = { pending: null, open: false };
+
+  function openWho(force) {
+    if (share.author && !force) return;
+    who.open = true;
+    if (el.whoModal) el.whoModal.hidden = false;
+    if (el.whoInput) el.whoInput.value = '';
+    paintAuthor();
+  }
+  function closeWho(cancel) {
+    who.open = false;
+    if (el.whoModal) el.whoModal.hidden = true;
+    if (cancel) who.pending = null;
+  }
+  function needWho(fn) {
+    if (share.author) return true;
+    who.pending = (typeof fn === 'function') ? fn : null;
+    openWho(false);
+    return false;
+  }
+  function pickWho(name) {
+    if (!setAuthor(name, { silent: true })) return;
+    closeWho(false);
+    const fn = who.pending;
+    who.pending = null;
+    toast(share.author + ' 님으로 시작할게요 👋');
+    if (typeof fn === 'function') { try { fn(); } catch (e) {} }
+  }
+
+  /* ----- 세션 이름 선택 모달 배선 ----- */
+  function bindWho() {
+    if (el.whoLine) el.whoLine.addEventListener('click', function () {
+      if (!share.author) { needWho(null); return; }
+      openWho(true);
+    });
+    if (el.whoChips) el.whoChips.addEventListener('click', function (e) {
+      const b = e.target.closest('button[data-name]');
+      if (b) pickWho(b.getAttribute('data-name'));
+    });
+    const ok = $('#whoOk');
+    if (ok) ok.addEventListener('click', function () {
+      const v = el.whoInput ? el.whoInput.value : '';
+      if (!String(v).trim()) { toast('이름을 입력해 주세요'); if (el.whoInput) el.whoInput.focus(); return; }
+      pickWho(v);
+    });
+    if (el.whoInput) el.whoInput.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      if (ok) ok.click();
+    });
+    const cancel = $('#whoCancel');
+    if (cancel) cancel.addEventListener('click', function () { closeWho(true); });
+    if (el.whoModal) el.whoModal.addEventListener('click', function (e) {
+      if (e.target === el.whoModal) closeWho(true);
+    });
   }
 
   /* ----- time helpers ----- */
@@ -2055,6 +2405,11 @@
   function togglePanel(no, force) {
     const card = document.getElementById('spot-' + no);
     if (!card) return;
+    const panelEl = card.querySelector('.shr-panel');
+    if (panelEl && panelEl.hidden && !share.author) {
+      needWho(function () { togglePanel(no, true); });
+      return;
+    }
     const wrap = card.querySelector('.shr');
     const panel = card.querySelector('.shr-panel');
     const btn = card.querySelector('.shr-tog');
@@ -2125,6 +2480,7 @@
 
   /* ----- send ----- */
   function sendNote(no) {
+    if (!needWho(function () { sendNote(no); })) return;
     if (share.sending) return;
     const card = document.getElementById('spot-' + no);
     if (!card) return;
@@ -2509,6 +2865,7 @@
   }
 
   function sendChat() {
+    if (!needWho(sendChat)) return;
     if (chat.sending) return;
     const ta = el.chatText;
     const text = (ta ? ta.value : '').trim();
@@ -2627,6 +2984,7 @@
   }
 
   function openChat() {
+    if (!needWho(openChat)) return;
     showSheet(el.chatSheet);
     chat.open = true;
     chat.sig = null;
@@ -3230,6 +3588,7 @@
   }
 
   function openSettle() {
+    if (!needWho(openSettle)) return;
     if (!settle.payerPicked && MEMBERS.indexOf(share.author) >= 0) {
       settle.payer = share.author;
       paintExpChips();
@@ -3601,6 +3960,7 @@
   }
 
   function openBoard() {
+    if (!needWho(openBoard)) return;
     showSheet(el.boardSheet);
     paintBoard();
     if (Date.now() - board.loadedAt > 15000) fetchBoard();
@@ -3895,6 +4255,8 @@
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (el.lightbox && !el.lightbox.hidden) { closeLightbox(); return; }
+    if (el.ckEditor && !el.ckEditor.hidden) { closeCheckEditor(); return; }
+    if (el.whoModal && !el.whoModal.hidden) { closeWho(true); return; }
     closeSheets();
   });
 
@@ -3963,8 +4325,35 @@
   el.checklist.addEventListener('change', function (e) {
     const cb = e.target.closest('input[type=checkbox]');
     if (!cb) return;
-    setCheck(cb.dataset.id, cb.checked);
+    const id = cb.dataset.id, on = cb.checked;
+    if (!share.author) { cb.checked = !on; needWho(function () { setCheck(id, on); }); return; }
+    setCheck(id, on);
   });
+
+  el.checklist.addEventListener('click', function (e) {
+    const b = e.target.closest('[data-ck]');
+    if (!b) return;
+    e.preventDefault();
+    const act = b.getAttribute('data-ck');
+    const id = b.getAttribute('data-id');
+    if (act === 'edit') openCheckEditor('edit', id);
+    else if (act === 'del') removeCheckItem(id);
+  });
+
+  if (el.btnCheckAdd) el.btnCheckAdd.addEventListener('click', function () { openCheckEditor('add'); });
+  if (el.ckEditor) {
+    el.ckEditor.addEventListener('click', function (e) { if (e.target === el.ckEditor) closeCheckEditor(); });
+    $('#ckEdCancel').addEventListener('click', closeCheckEditor);
+    $('#ckEdOk').addEventListener('click', saveCheckEditor);
+    [el.ckEdMain, el.ckEdSub].forEach(function (inp) {
+      if (!inp) return;
+      inp.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        saveCheckEditor();
+      });
+    });
+  }
 
   $('#btnReset').addEventListener('click', resetChecks);
 
@@ -3975,6 +4364,7 @@
   /* ============ boot ============ */
   function boot() {
     loadAuthor();
+    bindWho();
     if (!initMap()) ensureMap();
     const v = realView();
     let day = 0;
