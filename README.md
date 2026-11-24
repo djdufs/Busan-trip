@@ -17,6 +17,27 @@
 - **💬 5인 톡방**: 추가 SQL 없이 기존 `trip_notes` 테이블의 **`spot_id = 0`**을 단체 채팅방으로 재사용(1~15번 코스 메모 카운트와 분리). 우하단 FAB 배지에 안 읽은 메시지 수, 카카오톡식 좌우 말풍선·작성자·시각·사진 말풍선(라이트박스)·본인 메시지 삭제, Enter 전송, 1400px/0.82 압축 사진 업로드. 열려 있는 동안 3초 폴링 + Supabase Realtime Broadcast(`realtime:busan-chat`)로 즉시 반영, 닫혀 있으면 45초 폴링이 배지를 갱신
 - **🎫 KTX·숙소 공유 보드**: 숙소(한화리조트 해운대) 호실·메모와 KTX 하행(11/28)·상행(11/29) 5인 호차·좌석을 입력해 공유. 추가 SQL 없이 기존 `trip_checklist` 테이블을 `info_room`·`info_ktx_{down|up}_{이름}` 키로 재사용하며, 45초 폴링·오프라인 폴백. 체크리스트 초기화는 `info_` 키를 건드리지 않도록 조회·저장을 분리했고, 1·15번 KTX 코스 카드에 좌석 배지 표시
 - **👋 세션 기반 작성자("지금 접속한 사람이 누구야?")**: 기본 작성자를 `localStorage`로 자동 선택하지 않고 `sessionStorage`만 쓴다. 이름 미선택 상태에서 톡방·공유 메모(펼치기/남기기)·정산 폼·체크리스트 체크·편집·KTX 보드처럼 이름이 남는 동작을 처음 시도하면 선택 모달이 뜨고, 고른 뒤 원래 하려던 동작이 그대로 이어진다(새 탭·새 세션에서는 다시 묻는다). 공유 메모 바에는 `미선택 (클릭해 선택)` / `영진 (변경)` 상태가 표시된다
+- **🦸 제미나이슈퍼맨 AI 상담 ("도와줘요 제미나이!")**: 화면 우측 중앙에 망토 두른 제미나이 슈퍼맨이 둥실둥실 떠 있다(우하단 💬 톡방 FAB와 겹치지 않게 배치). 누르면 "도와줘요 제미나이!" 말풍선이 뽁 하고 뜬 뒤 대화 시트가 열린다. 추천 질문 칩 4개(정산·다음 코스·드론쇼 날씨·남은 체크리스트), 멀티턴 말풍선, Enter 전송, `슈퍼맨이 계산 중…` 로딩. 질문마다 사이트의 **최신 실시간 상태**(현재 시각·접속자·15개 코스 NOW/NEXT·Open-Meteo 날씨·드론쇼 19시 바람/강수·정산 계산 결과·체크리스트·코스 메모·톡방 최근 대화·KTX/숙소 보드·GPS 위치)를 JSON 컨텍스트로 함께 보낸다. 접속자를 고르지 않아도 바로 상담 가능
+
+## AI 상담 백엔드 (Supabase Edge Function `busan-ai`)
+
+- 소스: [`supabase/functions/busan-ai/index.ts`](supabase/functions/busan-ai/index.ts) — Gemini API를 호출해 답변 텍스트를 돌려준다. 프론트엔드는 `POST {SUPABASE_URL}/functions/v1/busan-ai`에 `{ messages, context }`를 보낸다(apikey = publishable key, `verify_jwt: false`, CORS `*`).
+- **키는 코드·저장소·프론트엔드에 없다.** Gemini 키는 Supabase Secret `GEMINI_API_KEY`에만 저장한다.
+- 모델: 1순위 `gemini-3.1-flash-lite`(응답 1~2초) → 실패 시 `gemini-3.5-flash` → `gemini-2.5-flash-lite` → `gemini-2.5-flash` 폴백. 2026-11 기준 신규 프로젝트에서 `gemini-2.5-flash`·`gemini-2.0-flash`는 404(no longer available to new users)라 단독 사용 불가.
+- 배포(시크릿·토큰은 절대 리포지토리에 커밋하지 않는다):
+
+```bash
+# 1) 시크릿 등록 (Management API)
+curl -X POST "https://api.supabase.com/v1/projects/<ref>/secrets" \
+  -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" -H 'Content-Type: application/json' \
+  -d '[{"name":"GEMINI_API_KEY","value":"<key>"}]'
+
+# 2) 함수 배포 (multipart: metadata + 소스 파일)
+curl -X POST "https://api.supabase.com/v1/projects/<ref>/functions/deploy?slug=busan-ai" \
+  -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" \
+  -F 'metadata={"name":"busan-ai","entrypoint_path":"index.ts","verify_jwt":false}' \
+  -F 'file=@supabase/functions/busan-ai/index.ts;type=application/typescript'
+```
 
 ## 배포
 
