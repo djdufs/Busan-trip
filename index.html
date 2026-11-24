@@ -88,26 +88,26 @@
   .prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#ff8a5c,#ffb020);transition:width .4s ease}
 
   /* ---------- simulation panel ---------- */
-  .simpanel{background:#132135;border:1px solid #24384f;border-radius:14px;padding:10px 12px 12px;margin-bottom:12px;color:#e8eef7;box-shadow:var(--sh)}
+  .simpanel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px 12px;margin-bottom:12px;box-shadow:var(--sh)}
   .simrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
-  .simrow b{display:block;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:-.5px;line-height:1.1}
-  .simrow span{display:block;font-size:11px;color:#94a8c1;margin-top:2px}
-  .play{background:#ffb020;color:#3a2400;font-weight:800;font-size:12px;padding:7px 11px;border-radius:10px}
-  .play.playing{background:#2b3c55;color:#ffd27a;border:1px solid #3d5474}
+  .simrow b{display:block;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:-.5px;line-height:1.1;color:var(--ink)}
+  .simrow span{display:block;font-size:11px;color:var(--ink3);margin-top:2px}
+  .play{background:var(--navy);color:#fff;font-weight:800;font-size:12px;padding:7px 11px;border-radius:10px}
+  .play.playing{background:#fff3e0;color:#a96600;border:1px solid #f5d9ae}
   #simSlider{
     -webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;margin:0;
   }
-  #simSlider::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:#26384f}
-  #simSlider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#ffb020;border:3px solid #132135;margin-top:-8px;box-shadow:0 0 0 1px #ffb020}
-  #simSlider::-moz-range-track{height:6px;border-radius:3px;background:#26384f}
-  #simSlider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#ffb020;border:3px solid #132135}
+  #simSlider::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:#e5eaf3}
+  #simSlider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#0e1a2b;border:3px solid #fff;margin-top:-8px;box-shadow:0 1px 4px rgba(14,26,43,.35)}
+  #simSlider::-moz-range-track{height:6px;border-radius:3px;background:#e5eaf3}
+  #simSlider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#0e1a2b;border:3px solid #fff}
   .presets{display:flex;gap:6px;overflow-x:auto;padding:2px 0 2px;scrollbar-width:none;-ms-overflow-style:none}
   .presets::-webkit-scrollbar{display:none}
   .presets button{
     flex:0 0 auto;font-size:11px;font-weight:700;padding:6px 9px;border-radius:9px;
-    background:#1e3049;color:#b9c9dd;border:1px solid #2c405b;
+    background:#f2f5fa;color:var(--ink2);border:1px solid var(--line);
   }
-  .presets button:active{background:#2a3f5c}
+  .presets button:active{background:#e6ebf4}
 
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;border-radius:18px;padding:16px 16px 15px;margin-bottom:12px;color:#fff;
@@ -159,6 +159,7 @@
 
   /* ---------- map ---------- */
   #map{height:300px;background:#e8eef5;position:relative;z-index:0}
+  #map.map-fail{height:auto}
   .map-legend{position:absolute;left:10px;bottom:10px;z-index:500;display:flex;gap:8px;align-items:center;
     background:rgba(255,255,255,.92);border-radius:9px;padding:5px 8px;font-size:10px;font-weight:800;color:#3b4a60;box-shadow:0 2px 8px rgba(0,0,0,.12)}
   .map-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px}
@@ -447,7 +448,7 @@
 <button class="fab" id="fabInfo" type="button">🎒 준비물·경비</button>
 
 <div class="backdrop" id="backdrop"></div>
-<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="실용 정보">
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="실용 정보" aria-hidden="true" inert>
   <div class="sheet-in">
     <div class="grab"></div>
     <div class="sheet-head">
@@ -702,11 +703,13 @@
   function initMap() {
     if (mapMod.map) return;
     if (typeof L === 'undefined') {
+      $('#map').classList.add('map-fail');
       $('#map').innerHTML = '<div style="padding:26px 16px;font-size:12.5px;color:#5a6b83;line-height:1.6">' +
         '지도를 불러오는 중이에요. (CDN이 느리거나 차단된 상태)<br>각 코스 카드의 <b>카카오맵·네이버지도</b> 버튼으로 길찾기를 이용해 주세요.</div>';
       return false;
     }
     const map = L.map('map', { zoomControl:true, scrollWheelZoom:false, attributionControl:true });
+    $('#map').classList.remove('map-fail');
     mapMod.map = map;
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19, attribution: '&copy; OpenStreetMap'
@@ -1163,12 +1166,16 @@
   /* ============ sheet ============ */
   function openSheet() {
     el.sheet.classList.add('on');
+    el.sheet.removeAttribute('aria-hidden');
+    el.sheet.removeAttribute('inert');
     el.backdrop.classList.add('on');
     document.body.style.overflow = 'hidden';
     renderChecks();
   }
   function closeSheet() {
     el.sheet.classList.remove('on');
+    el.sheet.setAttribute('aria-hidden', 'true');
+    el.sheet.setAttribute('inert', '');
     el.backdrop.classList.remove('on');
     document.body.style.overflow = '';
   }
