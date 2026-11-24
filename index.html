@@ -2895,7 +2895,7 @@
       if (s && /^\d+\/\d /.test(s)) txt = s.replace(/^\d+\/\d /, '') + ' · ' + s.split(' ')[0];
       n.textContent = txt;
       const btn = n.closest('button[data-board]');
-      if (btn) btn.classList.toggle('warn', !s);
+      if (btn) btn.classList.toggle('empty', !s);
     });
   }
 
