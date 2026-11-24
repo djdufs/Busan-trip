@@ -435,6 +435,61 @@
   .check .txt .by{display:inline-flex;align-items:center;gap:3px;margin-top:3px;font-size:10px;font-weight:800;color:#0b7a4d;background:#dff5e8;border-radius:5px;padding:1px 5px}
   .check li.on .txt .by{background:#c9eed8}
 
+  /* ---------- weather (Open-Meteo) ---------- */
+  .wxcard{background:var(--card);border:1px solid #e9edf5;border-radius:var(--r);box-shadow:var(--sh);padding:11px 12px 12px;margin-bottom:12px}
+  .wx-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+  .wx-head h2{margin:0;font-size:13px;font-weight:850;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-head .sub{margin-left:auto;flex:0 0 auto;font-size:10px;font-weight:700;color:var(--ink3);white-space:nowrap;cursor:pointer}
+  .wx-now{display:flex;align-items:center;gap:9px}
+  .wx-ic{font-size:29px;line-height:1;flex:0 0 auto}
+  .wx-t{font-size:26px;font-weight:850;letter-spacing:-1px;line-height:1.05;font-variant-numeric:tabular-nums}
+  .wx-feels{font-size:11px;font-weight:800;color:var(--ink2);margin-top:1px}
+  .wx-meta{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:10.5px;font-weight:700;color:var(--ink3);margin-top:5px}
+  .wx-meta b{color:var(--ink);font-weight:850;font-variant-numeric:tabular-nums}
+  .wx-tip{display:flex;gap:6px;align-items:flex-start;margin-top:7px;font-size:11px;font-weight:750;line-height:1.45;border-radius:9px;padding:7px 8px;background:#f2f6fd;color:#33456b;border:1px solid #e3ebf9}
+  .wx-tip.warn{background:#fff4e6;border-color:#f6ddb6;color:#8a5200}
+  .wx-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  .wx-cell{background:#f8fafd;border:1px solid var(--line);border-radius:10px;padding:6px 8px;min-width:0}
+  .wx-cell .wlb{display:block;font-size:9.5px;font-weight:800;color:var(--ink3);letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-cell .vv{display:flex;align-items:baseline;gap:4px;font-size:14px;font-weight:850;letter-spacing:-.4px;font-variant-numeric:tabular-nums;margin-top:1px}
+  .wx-cell .vv i{font-style:normal;font-size:13px}
+  .wx-cell .mm{display:block;font-size:9.5px;font-weight:700;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-days{display:flex;gap:6px;margin-top:7px}
+  .wx-days span{flex:1 1 0;background:#fbfcfe;border:1px solid var(--line2);border-radius:8px;padding:5px 6px;text-align:center;font-size:10px;font-weight:750;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-foot{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:10.5px;font-weight:700;color:var(--ink3);line-height:1.4}
+  .wx-foot span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .wx-foot a{margin-left:auto;flex:0 0 auto;color:#22397e;background:#eaf0ff;border:1px solid #d7e1fb;border-radius:8px;padding:5px 8px;font-weight:800;text-decoration:none;font-size:10.5px}
+  .wx-inline{display:flex;align-items:center;gap:5px;margin-top:7px;font-size:11px;font-weight:750;color:#33456b;background:#f2f6fd;border:1px solid #e3ebf9;border-radius:9px;padding:6px 8px;line-height:1.4;flex-wrap:wrap}
+  .wx-inline.warn{background:#fff4e6;border-color:#f6ddb6;color:#8a5200}
+  button.wx-inline{width:100%;font:inherit;font-size:11px;font-weight:750;text-align:left}
+  .wx-inline b{font-weight:850;font-variant-numeric:tabular-nums}
+
+  /* ---------- KTX · 숙소 공유 보드 ---------- */
+  .bcard{background:#f8fafd;border:1px solid var(--line);border-radius:12px;padding:9px 10px}
+  .brow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .brow > span{flex:0 0 60px;font-size:11px;font-weight:800;color:var(--ink3)}
+  .brow input,.ktxtbl input{width:100%;min-width:0;font:inherit;font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 8px}
+  .brow input:focus,.ktxtbl input:focus{outline:none;border-color:#b9c9ea;box-shadow:0 0 0 3px rgba(43,91,215,.08)}
+  .brow input::placeholder,.ktxtbl input::placeholder{color:#b6c1d2}
+  .bacts{display:flex;align-items:center;gap:8px;margin-top:4px}
+  .bacts .bf{font-size:10px;font-weight:700;color:var(--ink3);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bsave{margin-left:auto;flex:0 0 auto;font-size:11px;font-weight:850;color:#fff;background:var(--info);border-radius:8px;padding:7px 12px}
+  .bsave:disabled{background:#a4b1c6}
+  .ktxblock{margin-bottom:12px}
+  .ktxblock:last-of-type{margin-bottom:0}
+  .ktxhead{display:flex;align-items:baseline;gap:6px;margin:0 0 5px}
+  .ktxhead b{font-size:12px;font-weight:850;letter-spacing:-.2px}
+  .ktxhead span{font-size:10px;font-weight:700;color:var(--ink3);white-space:nowrap}
+  .ktxtbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:12px}
+  .ktxtbl th,.ktxtbl td{padding:5px 4px;border-bottom:1px solid var(--line2);text-align:left}
+  .ktxtbl thead th{font-size:9.5px;color:var(--ink3);font-weight:800;background:#fbfcfe}
+  .ktxtbl tbody tr:last-child td{border-bottom:0}
+  .ktxtbl td.nm{width:44px;font-weight:850;font-size:11.5px;white-space:nowrap;padding-left:7px}
+  .ktxtbl td.car{width:56px}
+  .ktxtbl td.seat{width:68px}
+  .ktxtbl td.sv{width:16px;text-align:center;font-size:10px;font-weight:800;color:var(--ok)}
+  .ktxtbl td.sv.err{color:#c33f24}
+
   @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 </style>
 </head>
@@ -500,6 +555,28 @@
     <p>지금 어디 있어야 하는지, 다음까지 얼마나 걸리는지 한 화면에.</p>
     <div class="chips">
       <span>👥 5인</span><span>🏨 한화리조트 해운대</span><span>🚄 서울 07:50 출발</span>
+    </div>
+  </section>
+
+  <section class="wxcard" id="wxCard" aria-label="부산 해운대 광안리 날씨">
+    <div class="wx-head">
+      <h2>🌤️ 해운대 · 광안리 날씨</h2>
+      <span class="sub" id="wxSub">불러오는 중…</span>
+    </div>
+    <div class="wx-now">
+      <span class="wx-ic" id="wxIcon" aria-hidden="true">🌤️</span>
+      <div style="min-width:0">
+        <div class="wx-t" id="wxTemp">—</div>
+        <div class="wx-feels" id="wxFeels">&nbsp;</div>
+      </div>
+    </div>
+    <div class="wx-meta" id="wxMeta"></div>
+    <div class="wx-tip" id="wxTip" hidden></div>
+    <div class="wx-grid" id="wxGrid"></div>
+    <div class="wx-days" id="wxDays"></div>
+    <div class="wx-foot">
+      <span id="wxShow">11/28(토) 편성 — 어벤져스: 둠스데이 in 광안리 · 19시/21시</span>
+      <a href="https://www.gwangallimdrone.co.kr/notice" target="_blank" rel="noopener">공식 공지 ↗</a>
     </div>
   </section>
 
@@ -590,6 +667,15 @@
     <span class="mc-go">정산 열기 ›</span>
   </button>
 
+  <button class="moneycard" id="btnTicket" type="button">
+    <span class="mc-l">
+      <span class="mc-k">🎫 KTX · 숙소 공유 보드</span>
+      <span class="mc-v" id="tkRoom">호실 미입력</span>
+      <span class="mc-s" id="tkSub">5인 좌석·숙소 호실을 함께 채워요 — 눌러서 입력</span>
+    </span>
+    <span class="mc-go">보드 열기 ›</span>
+  </button>
+
   <div class="tabs" id="tabs">
     <button type="button" class="d1 on" data-day="0">DAY 1<span class="d">11.28 토 · 9개 코스</span></button>
     <button type="button" class="d2" data-day="1">DAY 2<span class="d">11.29 일 · 6개 코스</span></button>
@@ -624,6 +710,7 @@
       <button class="xbtn" id="btnClose" aria-label="닫기">✕</button>
     </div>
     <div class="sheet-body">
+      <button class="album-link" id="btnTicket2" type="button">🎫 KTX · 숙소 공유 보드 <span id="tkRoom2">호실 미입력</span> <em>열기 ›</em></button>
       <button class="album-link" id="btnAlbum2" type="button">📷 공유 사진첩 <span id="albCount2">0장</span> <em>모아보기 ›</em></button>
       <button class="album-link" id="btnSettle2" type="button">💰 여행 정산 <span id="stCount2">0건</span> <em>정산하기 ›</em></button>
 
@@ -736,6 +823,44 @@
         <button class="stsend" id="stSend" type="submit">지출 추가</button>
         <div class="shr-prog" id="stProg" hidden><i></i></div>
       </form>
+    </div>
+  </div>
+</aside>
+
+<aside class="sheet" id="boardSheet" role="dialog" aria-modal="true" aria-label="KTX · 숙소 공유 보드" aria-hidden="true" inert>
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h2>🎫 KTX · 숙소 공유 보드</h2>
+      <button class="xbtn" id="btnBoardClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body">
+      <p class="fine" id="boardSync" style="margin-top:0">불러오는 중…</p>
+
+      <h3>🏨 한화리조트 해운대 <span class="cnt" id="roomWho"></span></h3>
+      <div class="bcard">
+        <label class="brow"><span>호실</span><input id="bRoom" type="text" maxlength="12" placeholder="예: 1201호" autocomplete="off" enterkeyhint="done" aria-label="숙소 호실"></label>
+        <label class="brow" style="margin-bottom:0"><span>메모</span><input id="bRoomMemo" type="text" maxlength="40" placeholder="예: 15:00 체크인 · 오션뷰" autocomplete="off" enterkeyhint="done" aria-label="숙소 메모"></label>
+        <div class="bacts"><span class="bf" id="bRoomAt">아직 비어 있어요</span><button class="bsave" id="bRoomSave" type="button">저장</button></div>
+      </div>
+
+      <h3>🚄 KTX 좌석 <span class="cnt" id="ktxCnt">0 / 10</span></h3>
+      <div class="ktxblock">
+        <div class="ktxhead"><b>11/28(토) 하행</b><span>서울 07:50 → 부산 10:26</span></div>
+        <table class="ktxtbl" data-dir="down">
+          <thead><tr><th>이름</th><th>호차</th><th>좌석</th><th></th></tr></thead>
+          <tbody id="ktxDown"></tbody>
+        </table>
+      </div>
+      <div class="ktxblock">
+        <div class="ktxhead"><b>11/29(일) 상행</b><span>부산 14:47 → 서울 17:28</span></div>
+        <table class="ktxtbl" data-dir="up">
+          <thead><tr><th>이름</th><th>호차</th><th>좌석</th><th></th></tr></thead>
+          <tbody id="ktxUp"></tbody>
+        </table>
+      </div>
+      <p class="fine">호차는 숫자만(예: 7), 좌석은 12A처럼 적어 주세요. 입력하면 45초 안에 5명 화면에 함께 반영돼요. 비워 두면 표시되지 않아요.</p>
+      <p class="fine" style="margin-top:6px">가장 정확한 방법은 <b>코레일톡 승차권 화면</b>을 열어 호차·좌석을 확인하고 그대로 적는 거예요.</p>
     </div>
   </div>
 </aside>
@@ -926,7 +1051,13 @@
     stForm: $('#stForm'), stTitle: $('#stTitle'), stAmount: $('#stAmount'),
     stPayer: $('#stPayer'), stParts: $('#stParts'), stPartCnt: $('#stPartCnt'), stSpot: $('#stSpot'),
     stFile: $('#stFile'), stPrev: $('#stPrev'), stFname: $('#stFname'), stClearFile: $('#stClearFile'),
-    stSend: $('#stSend'), stProg: $('#stProg')
+    stSend: $('#stSend'), stProg: $('#stProg'),
+    boardSheet: $('#boardSheet'), boardSync: $('#boardSync'),
+    bRoom: $('#bRoom'), bRoomMemo: $('#bRoomMemo'), bRoomAt: $('#bRoomAt'), bRoomSave: $('#bRoomSave'),
+    roomWho: $('#roomWho'), ktxDown: $('#ktxDown'), ktxUp: $('#ktxUp'), ktxCnt: $('#ktxCnt'),
+    tkRoom: $('#tkRoom'), tkSub: $('#tkSub'), tkRoom2: $('#tkRoom2'),
+    wxSub: $('#wxSub'), wxIcon: $('#wxIcon'), wxTemp: $('#wxTemp'), wxFeels: $('#wxFeels'),
+    wxMeta: $('#wxMeta'), wxTip: $('#wxTip'), wxGrid: $('#wxGrid'), wxDays: $('#wxDays')
   };
 
   /* ============ time view ============ */
@@ -1086,6 +1217,9 @@
             '<li class="dist" data-dist hidden><span class="ic">🧭</span><span></span></li>',
           '</ul>',
           s.note ? '<p class="note' + (s.req ? ' req' : '') + '">' + (s.req ? '⏰ ' : '💡 ') + esc(s.note) + '</p>' : '',
+          s.no === 1 ? ktxBadgeHtml('down') : '',
+          s.no === 15 ? ktxBadgeHtml('up') : '',
+          s.no === 7 ? wxBadgeHtml() : '',
           '<div class="acts">',
             '<a class="k" href="' + kakaoTo(s.place, s.lat, s.lng) + '" target="_blank" rel="noopener">카카오맵 길찾기</a>',
             '<a class="n" href="' + naverSearch(s.place) + '" target="_blank" rel="noopener">네이버지도</a>',
@@ -1107,6 +1241,8 @@
     restorePanels();
     focusDay(day);
     updateDistances();
+    paintKtxBadges();
+    if (wx.data) paintWeather();
     refresh();
   }
 
@@ -1464,7 +1600,7 @@
     if (check.loading) return Promise.resolve();
     check.loading = true;
     if (!check.loadedAt) { check.state = 'loading'; paintCheckSync(); }
-    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&limit=100',
+    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&item_key=in.(' + CHECKS.map(function (c) { return c.id; }).join(',') + ')&limit=100',
       { headers: supHeaders(), cache: 'no-store' })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1540,7 +1676,7 @@
 
   /* ============ sheet ============ */
   function showSheet(node) {
-    [el.sheet, el.albumSheet, el.settleSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet].forEach(function (n) {
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
     node.classList.add('on');
@@ -1550,7 +1686,7 @@
     document.body.style.overflow = 'hidden';
   }
   function closeSheets() {
-    [el.sheet, el.albumSheet, el.settleSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet].forEach(function (n) {
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
     el.backdrop.classList.remove('on');
@@ -2064,6 +2200,9 @@
       const card = e.target.closest('.card');
       if (!card) return;
       const no = +card.getAttribute('data-no');
+
+      const bd = e.target.closest('[data-board]');
+      if (bd) { openBoard(); return; }
 
       const pic = e.target.closest('img[data-full]');
       if (pic) { openLightbox(pic.getAttribute('data-full'), pic.getAttribute('data-meta')); return; }
@@ -2660,6 +2799,552 @@
     window.addEventListener('online', function () { fetchExpenses(); fetchChecks(); });
   }
 
+  /* ============ KTX · 숙소 공유 보드 (trip_checklist 의 info_* 키 재사용) ============ */
+  const BOARD_CACHE = 'busanTrip.board.v1';
+  const BOARD_ROOM_KEY = 'info_room';
+  const BOARD_NAMES = AUTHORS.slice();
+  const board = {
+    room: { room:'', memo:'', by:'', at:'' },
+    ktx: { down:{}, up:{} },
+    loadedAt: 0, state: 'idle', loading: false, roomDirty: false,
+    dirty: {}, timers: {}
+  };
+
+  function ktxKey(dir, nm) { return 'info_ktx_' + dir + '_' + nm; }
+  function boardTbId(dir) { return dir === 'down' ? 'ktxDown' : 'ktxUp'; }
+  function boardDirName(dir) { return dir === 'down' ? '하행(11/28)' : '상행(11/29)'; }
+
+  function setInput(inp, val) {
+    if (!inp) return;
+    if (document.activeElement === inp) return;
+    if (inp.value !== val) inp.value = val;
+  }
+
+  function boardParse(v) {
+    if (!v) return {};
+    if (typeof v === 'object') return v;
+    const s = String(v).trim();
+    if (!s) return {};
+    if (s.charAt(0) === '{') {
+      try { const o = JSON.parse(s); return (o && typeof o === 'object') ? o : {}; } catch (e) { return {}; }
+    }
+    return { room: s };
+  }
+
+  function boardRows(rows) {
+    const out = { room: { room:'', memo:'', by:'', at:'' }, ktx: { down:{}, up:{} } };
+    (Array.isArray(rows) ? rows : []).forEach(function (r) {
+      if (!r || typeof r.item_key !== 'string' || r.item_key.indexOf('info_') !== 0) return;
+      const v = boardParse(r.checked_by);
+      const at = v.at || r.updated_at || '';
+      if (r.item_key === BOARD_ROOM_KEY) {
+        out.room = { room: String(v.room || ''), memo: String(v.memo || ''), by: String(v.by || ''), at: at };
+        return;
+      }
+      const m = /^info_ktx_(down|up)_(.+)$/.exec(r.item_key);
+      if (!m) return;
+      const nm = m[2];
+      if (BOARD_NAMES.indexOf(nm) < 0) return;
+      out.ktx[m[1]][nm] = { car: String(v.car || ''), seat: String(v.seat || ''), by: String(v.by || ''), at: at };
+    });
+    return out;
+  }
+
+  function saveBoardCache() {
+    try { localStorage.setItem(BOARD_CACHE, JSON.stringify({ room: board.room, ktx: board.ktx })); } catch (e) {}
+  }
+
+  function loadBoardCache() {
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem(BOARD_CACHE) || 'null'); } catch (e) { raw = null; }
+    if (!raw) return;
+    if (raw.room && typeof raw.room === 'object') {
+      board.room = {
+        room: String(raw.room.room || ''), memo: String(raw.room.memo || ''),
+        by: String(raw.room.by || ''), at: String(raw.room.at || '')
+      };
+    }
+    if (raw.ktx && typeof raw.ktx === 'object') {
+      ['down', 'up'].forEach(function (d) {
+        BOARD_NAMES.forEach(function (nm) {
+          const r = raw.ktx[d] && raw.ktx[d][nm];
+          if (r) board.ktx[d][nm] = { car: String(r.car || ''), seat: String(r.seat || ''), by: String(r.by || ''), at: String(r.at || '') };
+        });
+      });
+    }
+  }
+
+  function dirShort(dir) {
+    const rows = BOARD_NAMES.map(function (nm) { return board.ktx[dir][nm] || {}; });
+    const filled = rows.filter(function (r) { return (r.car || r.seat); });
+    if (!filled.length) return '';
+    const cars = rows.map(function (r) { return String(r.car || '').trim(); }).filter(Boolean);
+    const seats = rows.map(function (r) { return String(r.seat || '').trim(); }).filter(Boolean);
+    const sameCar = cars.length && cars.length === filled.length && cars.every(function (c) { return c === cars[0]; });
+    let seatTxt = seats.join('·');
+    if (seats.length === BOARD_NAMES.length) seatTxt = seats[0] + '~' + seats[seats.length - 1];
+    const body = ((sameCar ? cars[0] + '호차 ' : '') + seatTxt).trim();
+    if (!body) return filled.length + '명 입력';
+    return filled.length < BOARD_NAMES.length ? filled.length + '/' + BOARD_NAMES.length + ' ' + body : body;
+  }
+
+  function paintKtxBadges() {
+    $$('[data-ktxb]').forEach(function (n) {
+      const s = dirShort(n.getAttribute('data-ktxb'));
+      let txt = s || '보드에서 입력';
+      if (s && /^\d+\/\d /.test(s)) txt = s.replace(/^\d+\/\d /, '') + ' · ' + s.split(' ')[0];
+      n.textContent = txt;
+      const btn = n.closest('button[data-board]');
+      if (btn) btn.classList.toggle('warn', !s);
+    });
+  }
+
+  function paintTicket() {
+    const roomTxt = String(board.room.room || '').trim() || '호실 미입력';
+    if (el.tkRoom) el.tkRoom.textContent = roomTxt;
+    if (el.tkRoom2) el.tkRoom2.textContent = roomTxt;
+    if (el.tkSub) {
+      const d = dirShort('down'), u = dirShort('up');
+      el.tkSub.textContent = (!d && !u && !String(board.room.room || '').trim())
+        ? '5인 좌석·숙소 호실을 함께 채워요 — 눌러서 입력'
+        : '하행 ' + (d || '미입력') + ' · 상행 ' + (u || '미입력');
+    }
+    paintKtxBadges();
+  }
+
+  function paintKtx() {
+    ['down', 'up'].forEach(function (dir) {
+      const tb = el[boardTbId(dir)];
+      if (!tb) return;
+      $$('tr[data-name]', tb).forEach(function (tr) {
+        const nm = tr.getAttribute('data-name');
+        const rec = board.ktx[dir][nm] || {};
+        const key = dir + '_' + nm;
+        if (!board.dirty[key]) {
+          setInput(tr.querySelector('.car input'), rec.car || '');
+          setInput(tr.querySelector('.seat input'), rec.seat || '');
+          const sv = tr.querySelector('.sv');
+          if (sv) { sv.textContent = (rec.car || rec.seat) ? '✓' : ''; sv.className = 'sv'; }
+        }
+      });
+    });
+    if (el.ktxCnt) {
+      let n = 0;
+      ['down', 'up'].forEach(function (d) {
+        BOARD_NAMES.forEach(function (nm) { const r = board.ktx[d][nm]; if (r && (r.car || r.seat)) n++; });
+      });
+      el.ktxCnt.textContent = n + ' / ' + (BOARD_NAMES.length * 2);
+    }
+    paintTicket();
+  }
+
+  function paintBoard() {
+    if (el.boardSync) {
+      if (board.state === 'loading') el.boardSync.textContent = '친구들과 맞추는 중…';
+      else if (board.state === 'error') el.boardSync.textContent = '연결 실패 · 이 기기 저장본으로 보여드려요';
+      else if (!board.loadedAt) el.boardSync.textContent = '';
+      else {
+        const p = stampParts(board.loadedAt);
+        el.boardSync.textContent = '5인 공유 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신 · 입력하면 모두에게 보여요';
+      }
+    }
+    if (!board.roomDirty) {
+      setInput(el.bRoom, board.room.room || '');
+      setInput(el.bRoomMemo, board.room.memo || '');
+    }
+    if (el.bRoomAt) {
+      const r = board.room;
+      el.bRoomAt.textContent = (r.room || r.memo)
+        ? (r.by ? r.by + ' · ' : '') + (r.at ? relTime(r.at) + ' 수정' : '수정됨')
+        : '아직 비어 있어요';
+    }
+    if (el.roomWho) el.roomWho.textContent = String(board.room.room || '');
+    paintKtx();
+  }
+
+  function buildKtxRows() {
+    [['down', el.ktxDown], ['up', el.ktxUp]].forEach(function (pair) {
+      const dir = pair[0], tb = pair[1];
+      if (!tb) return;
+      const dn = dir === 'down' ? '하행' : '상행';
+      tb.innerHTML = BOARD_NAMES.map(function (nm) {
+        return '<tr data-dir="' + dir + '" data-name="' + esc(nm) + '">' +
+          '<td class="nm">' + esc(nm) + '</td>' +
+          '<td class="car"><input type="text" inputmode="numeric" maxlength="3" placeholder="7" aria-label="' + esc(nm) + ' ' + dn + ' 호차"></td>' +
+          '<td class="seat"><input type="text" maxlength="6" placeholder="12A" aria-label="' + esc(nm) + ' ' + dn + ' 좌석"></td>' +
+          '<td class="sv" aria-hidden="true"></td></tr>';
+      }).join('');
+    });
+  }
+
+  function boardPut(key, val) {
+    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?on_conflict=item_key', {
+      method: 'POST',
+      headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+      body: JSON.stringify([{ item_key: key, checked: true, checked_by: JSON.stringify(val), updated_at: new Date().toISOString() }])
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      board.state = 'ok';
+      board.loadedAt = Date.now();
+      paintBoard();
+    });
+  }
+
+  function fetchBoard(manual) {
+    if (board.loading) return Promise.resolve();
+    board.loading = true;
+    if (!board.loadedAt) { board.state = 'loading'; paintBoard(); }
+    return fetch(SUPA + '/rest/v1/' + CHECK_TBL + '?select=item_key,checked,checked_by,updated_at&item_key=like.info_*&limit=80',
+      { headers: supHeaders(), cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (rows) {
+        const next = boardRows(rows);
+        if (board.roomDirty) next.room = board.room;
+        ['down', 'up'].forEach(function (d) {
+          BOARD_NAMES.forEach(function (nm) {
+            if (board.dirty[d + '_' + nm] && board.ktx[d][nm]) next.ktx[d][nm] = board.ktx[d][nm];
+          });
+        });
+        board.room = next.room;
+        board.ktx = next.ktx;
+        board.loadedAt = Date.now();
+        board.state = 'ok';
+        saveBoardCache();
+        paintBoard();
+      })
+      .catch(function () {
+        board.state = 'error';
+        paintBoard();
+        if (manual) toast('보드를 불러오지 못했어요 — 이 기기 저장본으로 보여드려요');
+      })
+      .then(function () { board.loading = false; });
+  }
+
+  function seatTr(dir, nm) { return $('#' + boardTbId(dir) + ' tr[data-name="' + nm + '"]'); }
+
+  function saveSeat(dir, nm) {
+    const tr = seatTr(dir, nm);
+    if (!tr) return;
+    const carIn = tr.querySelector('.car input'), seatIn = tr.querySelector('.seat input');
+    if (!carIn || !seatIn) return;
+    const key = dir + '_' + nm;
+    board.dirty[key] = false;
+    const car = String(carIn.value || '').replace(/[^0-9]/g, '').slice(0, 3);
+    const seat = String(seatIn.value || '').replace(/[\s,]/g, '').toUpperCase().slice(0, 6);
+    if (carIn.value !== car) carIn.value = car;
+    if (seatIn.value !== seat) seatIn.value = seat;
+    const prev = board.ktx[dir][nm] || {};
+    const sv = tr.querySelector('.sv');
+    if (String(prev.car || '') === car && String(prev.seat || '') === seat) {
+      if (sv) { sv.textContent = (car || seat) ? '✓' : ''; sv.className = 'sv'; }
+      return;
+    }
+    const at = new Date().toISOString();
+    board.ktx[dir][nm] = { car: car, seat: seat, by: share.author, at: at };
+    saveBoardCache();
+    paintTicket();
+    if (sv) { sv.textContent = '…'; sv.className = 'sv'; }
+    if (!state.online) {
+      if (sv) sv.textContent = '·';
+      toast('오프라인 — 이 기기에만 저장했어요');
+      return;
+    }
+    boardPut(ktxKey(dir, nm), board.ktx[dir][nm])
+      .then(function () { if (sv) { sv.textContent = (car || seat) ? '✓' : ''; sv.className = 'sv'; } })
+      .catch(function () {
+        if (sv) { sv.textContent = '!'; sv.className = 'sv err'; }
+        toast('좌석을 서버에 저장하지 못했어요 — 이 기기에만 남겼어요');
+      });
+  }
+
+  function queueSeat(dir, nm) {
+    const key = dir + '_' + nm;
+    board.dirty[key] = true;
+    clearTimeout(board.timers[key]);
+    board.timers[key] = setTimeout(function () { saveSeat(dir, nm); }, 900);
+  }
+
+  function saveRoom() {
+    const room = String((el.bRoom && el.bRoom.value) || '').replace(/\s+/g, ' ').trim().slice(0, 12);
+    const memo = String((el.bRoomMemo && el.bRoomMemo.value) || '').replace(/\s+/g, ' ').trim().slice(0, 40);
+    if (el.bRoom) el.bRoom.value = room;
+    if (el.bRoomMemo) el.bRoomMemo.value = memo;
+    const at = new Date().toISOString();
+    board.room = { room: room, memo: memo, by: share.author, at: at };
+    board.roomDirty = false;
+    saveBoardCache();
+    paintBoard();
+    if (el.bRoomSave) el.bRoomSave.disabled = true;
+    const done = function () { if (el.bRoomSave) el.bRoomSave.disabled = false; };
+    if (!state.online) { done(); toast('오프라인 — 이 기기에만 저장했어요'); return; }
+    boardPut(BOARD_ROOM_KEY, board.room).then(function () {
+      done();
+    }).catch(function () {
+      done();
+      toast('서버에 저장하지 못했어요 — 이 기기에만 남겼어요');
+    });
+  }
+
+  function openBoard() {
+    showSheet(el.boardSheet);
+    paintBoard();
+    if (Date.now() - board.loadedAt > 15000) fetchBoard();
+  }
+
+  function ktxBadgeHtml(dir) {
+    return '<button type="button" class="wx-inline" data-board="' + dir + '">' +
+      '<span>🎫 ' + (dir === 'down' ? '하행 11/28' : '상행 11/29') + ' 좌석</span>' +
+      '<b data-ktxb="' + dir + '">불러오는 중…</b></button>';
+  }
+
+  function wxBadgeHtml() {
+    return '<div class="wx-inline" data-wx="show" hidden></div>';
+  }
+
+  function bindBoard() {
+    loadBoardCache();
+    buildKtxRows();
+    paintBoard();
+
+    ['#btnTicket', '#btnTicket2'].forEach(function (sel) {
+      const b = $(sel);
+      if (b) b.addEventListener('click', openBoard);
+    });
+    const closeBtn = $('#btnBoardClose');
+    if (closeBtn) closeBtn.addEventListener('click', closeSheets);
+
+    if (el.bRoomSave) el.bRoomSave.addEventListener('click', saveRoom);
+    [el.bRoom, el.bRoomMemo].forEach(function (inp) {
+      if (!inp) return;
+      inp.addEventListener('input', function () { board.roomDirty = true; });
+      inp.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        saveRoom();
+        inp.blur();
+      });
+    });
+
+    if (el.boardSheet) {
+      el.boardSheet.addEventListener('input', function (e) {
+        const inp = e.target.closest('.ktxtbl input');
+        if (!inp) return;
+        const tr = inp.closest('tr');
+        if (!tr || !tr.getAttribute('data-name')) return;
+        queueSeat(tr.getAttribute('data-dir'), tr.getAttribute('data-name'));
+      });
+      el.boardSheet.addEventListener('change', function (e) {
+        const inp = e.target.closest('.ktxtbl input');
+        if (!inp) return;
+        const tr = inp.closest('tr');
+        if (!tr || !tr.getAttribute('data-name')) return;
+        const dir = tr.getAttribute('data-dir'), nm = tr.getAttribute('data-name');
+        clearTimeout(board.timers[dir + '_' + nm]);
+        saveSeat(dir, nm);
+      });
+    }
+
+    fetchBoard();
+    setInterval(function () { if (!document.hidden) fetchBoard(); }, 45000);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && Date.now() - board.loadedAt > 15000) fetchBoard();
+    });
+    window.addEventListener('online', function () { fetchBoard(); });
+  }
+
+  /* ============ weather: 해운대·광안리 (Open-Meteo · 키 없음 · CORS 허용) ============ */
+  const WX_TRIP_DAYS = ['2026-11-28', '2026-11-29'];
+  const WX_KEY_HOURS = [
+    { d:'2026-11-28', h:14, lab:'11/28 14:30 스카이캡슐' },
+    { d:'2026-11-28', h:19, lab:'11/28 19:00 드론쇼' },
+    { d:'2026-11-29', h:9,  lab:'11/29 09:00 체크아웃' },
+    { d:'2026-11-29', h:14, lab:'11/29 14:47 KTX' }
+  ];
+  const WX_CODES = [
+    [0, '☀️', '맑음'], [1, '🌤️', '대체로 맑음'], [2, '⛅', '구름조금'], [3, '☁️', '흐림'],
+    [45, '🌫️', '안개'], [48, '🌫️', '안개'],
+    [51, '🌦️', '약한 이슬비'], [53, '🌦️', '이슬비'], [55, '🌦️', '이슬비'],
+    [56, '🌧️', '어는 이슬비'], [57, '🌧️', '어는 이슬비'],
+    [61, '🌧️', '약한 비'], [63, '🌧️', '비'], [65, '🌧️', '강한 비'],
+    [66, '🌧️', '어는 비'], [67, '🌧️', '어는 비'],
+    [71, '🌨️', '약한 눈'], [73, '🌨️', '눈'], [75, '🌨️', '많은 눈'], [77, '🌨️', '눈알갱이'],
+    [80, '🌦️', '소나기'], [81, '🌦️', '소나기'], [82, '⛈️', '강한 소나기'],
+    [85, '🌨️', '눈 소나기'], [86, '🌨️', '눈 소나기'],
+    [95, '⛈️', '뇌우'], [96, '⛈️', '뇌우·우박'], [99, '⛈️', '뇌우·우박']
+  ];
+  const wx = { data: null, loadedAt: 0, state: 'idle', loading: false };
+
+  function wxNum(v, digits) {
+    const n = Number(v);
+    if (!isFinite(n)) return '—';
+    return digits ? n.toFixed(digits) : String(Math.round(n));
+  }
+
+  function wxInfo(code) {
+    const c = Math.round(Number(code) || 0);
+    for (let i = 0; i < WX_CODES.length; i++) {
+      if (WX_CODES[i][0] === c) return { icon: WX_CODES[i][1], text: WX_CODES[i][2] };
+    }
+    if (c >= 95) return { icon: '⛈️', text: '뇌우' };
+    if (c >= 80) return { icon: '🌦️', text: '소나기' };
+    if (c >= 61) return { icon: '🌧️', text: '비' };
+    if (c >= 51) return { icon: '🌦️', text: '이슬비' };
+    if (c >= 45) return { icon: '🌫️', text: '안개' };
+    return { icon: '🌤️', text: '구름' };
+  }
+
+  function wxApi(dated) {
+    return 'https://api.open-meteo.com/v1/forecast?latitude=35.1532&longitude=129.1190' +
+      '&timezone=Asia%2FSeoul&wind_speed_unit=ms' +
+      '&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_gusts_10m' +
+      '&hourly=temperature_2m,apparent_temperature,wind_speed_10m,precipitation_probability,weather_code' +
+      '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max' +
+      (dated ? '&start_date=2026-11-27&end_date=2026-11-29' : '&forecast_days=16');
+  }
+
+  function wxAt(date, hour) {
+    const H = wx.data && wx.data.hourly;
+    if (!H || !H.time) return null;
+    const i = H.time.indexOf(date + 'T' + pad(hour) + ':00');
+    if (i < 0) return null;
+    return {
+      t: H.temperature_2m[i], feels: H.apparent_temperature[i],
+      wind: H.wind_speed_10m[i], pop: H.precipitation_probability[i], code: H.weather_code[i]
+    };
+  }
+
+  function wxDay(date) {
+    const D = wx.data && wx.data.daily;
+    if (!D || !D.time) return null;
+    const i = D.time.indexOf(date);
+    if (i < 0) return null;
+    return {
+      max: D.temperature_2m_max[i], min: D.temperature_2m_min[i],
+      pop: D.precipitation_probability_max[i], code: D.weather_code[i], wind: D.wind_speed_10m_max[i]
+    };
+  }
+
+  function paintWxBadge() {
+    const node = $('[data-wx="show"]');
+    if (!node) return;
+    const o = wxAt('2026-11-28', 19);
+    if (!o) { node.hidden = true; return; }
+    const w = Number(o.wind) || 0, pop = Number(o.pop) || 0, f = Number(o.feels) || 0;
+    const bad = w >= 6 || pop >= 60 || f <= 0;
+    node.hidden = false;
+    node.className = 'wx-inline' + (bad ? ' warn' : '');
+    node.innerHTML = '🌬️ 19:00 드론쇼 바람 <b>' + wxNum(w, 1) + ' m/s</b> · ☔ <b>' + Math.round(pop) + '%</b> · 체감 <b>' + Math.round(f) + '°</b>' +
+      (bad ? ' — 기상 취소 가능성 체크' : '');
+  }
+
+  function paintWeather() {
+    if (!el.wxSub) return;
+    if (!wx.data) {
+      if (wx.state === 'error') {
+        el.wxSub.textContent = '연결 실패 · 눌러서 재시도 ↻';
+        if (el.wxGrid) el.wxGrid.innerHTML = '<div class="wx-cell" style="grid-column:1/-1"><span class="wlb">날씨</span><span class="mm">불러오지 못했어요 — 공식 공지에서 확인해 주세요</span></div>';
+      } else if (wx.state === 'loading') el.wxSub.textContent = '불러오는 중…';
+      return;
+    }
+    const cur = wx.data.current || {};
+    const info = wxInfo(cur.weather_code);
+    const p = stampParts(wx.loadedAt || Date.now());
+    el.wxSub.textContent = (wx.state === 'error' ? '이전 값 · ' : '광안리 해변 · ') + pad(p.hh) + ':' + pad(p.mm);
+    if (el.wxIcon) el.wxIcon.textContent = info.icon;
+    if (el.wxTemp) el.wxTemp.textContent = wxNum(cur.temperature_2m, 1) + '°';
+    if (el.wxFeels) el.wxFeels.textContent = info.text + ' · 체감 ' + wxNum(cur.apparent_temperature, 1) + '°';
+    if (el.wxMeta) {
+      el.wxMeta.innerHTML =
+        '<span>바람 <b>' + wxNum(cur.wind_speed_10m, 1) + '</b> m/s</span>' +
+        '<span>돌풍 <b>' + wxNum(cur.wind_gusts_10m, 1) + '</b> m/s</span>' +
+        '<span>습도 <b>' + Math.round(Number(cur.relative_humidity_2m) || 0) + '</b>%</span>' +
+        '<span>강수 <b>' + wxNum(cur.precipitation, 1) + '</b>mm</span>';
+    }
+    if (el.wxGrid) {
+      el.wxGrid.innerHTML = WX_KEY_HOURS.map(function (k) {
+        const o = wxAt(k.d, k.h);
+        if (!o) return '<div class="wx-cell"><span class="wlb">' + k.lab + '</span><div class="vv">—</div><span class="mm">예보 범위 밖</span></div>';
+        const inf = wxInfo(o.code);
+        return '<div class="wx-cell"><span class="wlb">' + k.lab + '</span>' +
+          '<div class="vv"><i>' + inf.icon + '</i>' + wxNum(o.t, 1) + '°</div>' +
+          '<span class="mm">체감 ' + wxNum(o.feels, 0) + '° · 바람 ' + wxNum(o.wind, 1) + ' · ☔' + Math.round(Number(o.pop) || 0) + '%</span></div>';
+      }).join('');
+    }
+    if (el.wxDays) {
+      el.wxDays.innerHTML = WX_TRIP_DAYS.map(function (d) {
+        const o = wxDay(d);
+        if (!o) return '';
+        const inf = wxInfo(o.code);
+        const wd = WD[new Date(d + 'T00:00:00Z').getUTCDay()];
+        return '<span>' + d.slice(5).replace('-', '/') + '(' + wd + ') ' + inf.icon + ' ' +
+          wxNum(o.max, 0) + '°/' + wxNum(o.min, 0) + '° · ☔' + Math.round(Number(o.pop) || 0) + '%</span>';
+      }).join('');
+    }
+    if (el.wxTip) {
+      const show = wxAt('2026-11-28', 19);
+      let lvl = 'ok';
+      const tips = [];
+      if (show) {
+        const w = Number(show.wind) || 0, pop = Number(show.pop) || 0, f = Number(show.feels) || 0;
+        if (w >= 6) { lvl = 'warn'; tips.push('드론쇼(19:00) 바람 ' + wxNum(w, 1) + ' m/s — 취소·지연 가능성, 공식 공지 확인'); }
+        else if (w >= 4.5) { lvl = 'warn'; tips.push('드론쇼(19:00) 바람 ' + wxNum(w, 1) + ' m/s — 6 m/s 넘으면 취소 가능성, 공지 확인'); }
+        else tips.push('드론쇼(19:00) 바람 ' + wxNum(w, 1) + ' m/s — 야외 관람 무난');
+        if (pop >= 60) { lvl = 'warn'; tips.push('강수 ' + Math.round(pop) + '% — 우산 필수'); }
+        if (f <= 5) { if (f <= -3) lvl = 'warn'; tips.push('체감 ' + Math.round(f) + '° — 겉옷·핫팩 챙기기'); }
+        else if (f <= 10) tips.push('체감 ' + Math.round(f) + '° — 겉옷 필수');
+      } else {
+        tips.push('예보 범위를 벗어났어요 — 공식 공지에서 확인');
+      }
+      el.wxTip.className = 'wx-tip' + (lvl === 'warn' ? ' warn' : '');
+      el.wxTip.innerHTML = '<span aria-hidden="true">' + (lvl === 'warn' ? '⚠️' : '🧥') + '</span><span>' + tips.join(' · ') + '</span>';
+      el.wxTip.hidden = false;
+    }
+    paintWxBadge();
+  }
+
+  function fetchWeather(manual) {
+    if (wx.loading) return Promise.resolve();
+    wx.loading = true;
+    if (!wx.data) { wx.state = 'loading'; paintWeather(); }
+    const get = function (url) {
+      return fetch(url, { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (d) {
+        if (!d || !d.current || !d.hourly) throw new Error('empty');
+        return d;
+      });
+    };
+    return get(wxApi(true))
+      .catch(function () { return get(wxApi(false)); })
+      .then(function (d) {
+        wx.data = d;
+        wx.loadedAt = Date.now();
+        wx.state = 'ok';
+        paintWeather();
+      })
+      .catch(function () {
+        wx.state = 'error';
+        paintWeather();
+        if (manual) toast('날씨를 불러오지 못했어요 — 잠시 뒤 다시 시도합니다');
+      })
+      .then(function () { wx.loading = false; });
+  }
+
+  function bindWeather() {
+    paintWeather();
+    fetchWeather();
+    if (el.wxSub) el.wxSub.addEventListener('click', function () { fetchWeather(true); });
+    setInterval(function () { if (!document.hidden) fetchWeather(); }, 600000);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && Date.now() - wx.loadedAt > 300000) fetchWeather();
+    });
+    window.addEventListener('online', function () { fetchWeather(); });
+  }
+
   /* ============ events ============ */
   el.btnMode.addEventListener('click', function () { setSim(!state.sim.on); });
   el.hintBtn.addEventListener('click', function () { setSim(true); });
@@ -2769,6 +3454,8 @@
     refresh();
     bindShare();
     bindSettle();
+    bindBoard();
+    bindWeather();
     setInterval(refresh, 1000);
   }
 
