@@ -5283,6 +5283,12 @@
         if (hash === '#chat') openChat(); else openSettle();
       }, 400);
     }
+    /* 이미 열려 있는 탭에서 알림을 누르면 해시만 바뀌므로 hashchange 도 받는다 */
+    window.addEventListener('hashchange', function () {
+      const h = String(location.hash || '');
+      if (h === '#chat') openChat();
+      else if (h === '#settle') openSettle();
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
