@@ -373,6 +373,44 @@
   .lb-meta b{color:#fff;font-weight:800}
   .lb-x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center}
 
+  /* ---------- chat room ---------- */
+  .fab.chat{background:#2b5bd7}
+  .fab .fbadge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#ff4d4f;color:#fff;font-size:10.5px;font-weight:900;font-variant-numeric:tabular-nums}
+  .fab .fbadge[hidden]{display:none}
+  .chatsheet{height:88vh;max-height:88vh}
+  .chatsheet .sheet-in{flex:1 1 auto;min-height:0}
+  .chat-who{flex:0 0 auto;margin-left:auto;margin-right:6px;font-size:10.5px;font-weight:800;color:var(--ink3);white-space:nowrap}
+  .chat-who b{color:var(--ink);font-weight:900}
+  .chat-state{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:5px 16px;background:#f7f9fd;border-bottom:1px solid var(--line);font-size:10px;font-weight:750;color:var(--ink3)}
+  .chat-state .dot{width:6px;height:6px;border-radius:50%;background:#c8d2e0;flex:0 0 auto}
+  .chat-state.live .dot{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.16)}
+  .chat-list{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 14px 10px;display:flex;flex-direction:column;gap:9px;background:#f6f8fc}
+  .chat-empty{margin:auto;text-align:center;font-size:11.5px;font-weight:750;color:var(--ink3);line-height:1.75;padding:22px 10px}
+  .msg{display:flex;flex-direction:column;max-width:84%;gap:3px}
+  .msg.ot{align-self:flex-start;align-items:flex-start}
+  .msg.me{align-self:flex-end;align-items:flex-end}
+  .msg .who{font-size:10px;font-weight:850;color:#5b6b82;padding:0 3px}
+  .msg .bub{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:7px 10px;font-size:12.5px;font-weight:600;line-height:1.5;white-space:pre-wrap;word-break:break-word;color:var(--ink);box-shadow:0 1px 2px rgba(14,26,43,.05)}
+  .msg.me .bub{background:var(--navy);border-color:var(--navy);color:#fff}
+  .msg .bub.has-img{padding:4px}
+  .msg .bub .txt{display:block}
+  .msg .bub img{display:block;max-width:min(60vw,240px);max-height:240px;border-radius:11px;object-fit:cover;margin-top:4px}
+  .msg .bub.has-img img{margin-top:0}
+  .msg .meta{display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;color:var(--ink3);padding:0 3px}
+  .msg .del{font:inherit;font-size:9.5px;font-weight:800;color:#93a1b5;background:none;padding:0;cursor:pointer}
+  .chat-in{flex:0 0 auto;position:relative;display:flex;align-items:flex-end;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
+  .chat-in textarea{flex:1 1 auto;min-width:0;max-height:96px;resize:none;border:1px solid var(--line);border-radius:12px;padding:9px 11px;font:inherit;font-size:12.5px;font-weight:650;line-height:1.45;background:#f8fafd;outline:none}
+  .chat-in textarea:focus{border-color:#b9c9ea;background:#fff}
+  .chat-in .cf{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:#f2f5fa;color:#4d5d75;font-size:16px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);cursor:pointer}
+  .chat-in .cs{flex:0 0 auto;height:36px;padding:0 14px;border-radius:999px;background:var(--navy);color:#fff;font-size:12px;font-weight:850;border:none;cursor:pointer}
+  .chat-in .cs:disabled{opacity:.55}
+  .chat-prev{flex:0 0 auto;position:relative}
+  .chat-prev img{width:36px;height:36px;border-radius:9px;object-fit:cover;display:block}
+  .chat-prev button{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#0e1a2b;color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .chat-prog{position:absolute;left:0;right:0;top:0;height:2px;background:#e6ecf7;overflow:hidden}
+  .chat-prog i{display:block;height:100%;width:40%;background:var(--navy);animation:chatprog 1s linear infinite}
+  @keyframes chatprog{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+
   /* ---------- settlement ---------- */
   .fabbar{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:7px}
   .fabbar .fab{position:static;padding:10px 13px}
@@ -463,6 +501,13 @@
   .wx-inline.warn{background:#fff4e6;border-color:#f6ddb6;color:#8a5200}
   button.wx-inline{width:100%;font:inherit;font-size:11px;font-weight:750;text-align:left}
   .wx-inline b{font-weight:850;font-variant-numeric:tabular-nums}
+  .wx-head{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .wx-mini{display:none;flex:1 1 auto;min-width:0;font-size:11px;font-weight:850;color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wx-tog{flex:0 0 auto;font:inherit;font-size:10.5px;font-weight:800;color:#2b4bb0;background:#eaf0ff;border:1px solid #d7e1fb;border-radius:8px;padding:4px 8px;white-space:nowrap;cursor:pointer}
+  .wxcard.collapsed .wx-head{margin-bottom:0}
+  .wxcard.collapsed .wx-head .sub{display:none}
+  .wxcard.collapsed .wx-mini{display:block}
+  .wxcard.collapsed .wx-body{display:none}
 
   /* ---------- KTX · 숙소 공유 보드 ---------- */
   .bcard{background:#f8fafd;border:1px solid var(--line);border-radius:12px;padding:9px 10px}
@@ -558,11 +603,14 @@
     </div>
   </section>
 
-  <section class="wxcard" id="wxCard" aria-label="부산 해운대 광안리 날씨">
-    <div class="wx-head">
-      <h2>🌤️ 해운대 · 광안리 날씨</h2>
+  <section class="wxcard collapsed" id="wxCard" aria-label="부산 해운대 광안리 날씨">
+    <div class="wx-head" id="wxHead">
+      <h2>🌤️ 해운대·광안리</h2>
+      <span class="wx-mini" id="wxMini">불러오는 중…</span>
       <span class="sub" id="wxSub">불러오는 중…</span>
+      <button class="wx-tog" id="wxTog" type="button" aria-expanded="false" aria-controls="wxDetail">펼치기 ▾</button>
     </div>
+    <div class="wx-body" id="wxDetail">
     <div class="wx-now">
       <span class="wx-ic" id="wxIcon" aria-hidden="true">🌤️</span>
       <div style="min-width:0">
@@ -577,6 +625,7 @@
     <div class="wx-foot">
       <span id="wxShow">11/28(토) 편성 — 어벤져스: 둠스데이 in 광안리 · 19시/21시</span>
       <a href="https://www.gwangallimdrone.co.kr/notice" target="_blank" rel="noopener">공식 공지 ↗</a>
+    </div>
     </div>
   </section>
 
@@ -697,6 +746,7 @@
 </main>
 
 <div class="fabbar">
+  <button class="fab chat" id="fabChat" type="button">💬 톡방 <b class="fbadge" id="chatBadge" hidden>0</b></button>
   <button class="fab bag" id="fabInfo" type="button">🎒 준비물</button>
   <button class="fab" id="fabSettle" type="button">💰 정산</button>
 </div>
@@ -712,6 +762,7 @@
     <div class="sheet-body">
       <button class="album-link" id="btnTicket2" type="button">🎫 KTX · 숙소 공유 보드 <span id="tkRoom2">호실 미입력</span> <em>열기 ›</em></button>
       <button class="album-link" id="btnAlbum2" type="button">📷 공유 사진첩 <span id="albCount2">0장</span> <em>모아보기 ›</em></button>
+      <button class="album-link" id="btnChat2" type="button">💬 5인 톡방 <span id="chatCount2">0개</span> <em>열기 ›</em></button>
       <button class="album-link" id="btnSettle2" type="button">💰 여행 정산 <span id="stCount2">0건</span> <em>정산하기 ›</em></button>
 
       <h3>✅ 필수 사전 예약 <span class="cnt" id="checkCnt">0 / 0</span></h3>
@@ -759,6 +810,28 @@
     <div class="sheet-body">
       <div class="agrid" id="agrid"></div>
       <p class="aempty" id="albEmpty" hidden>아직 올라온 사진이 없어요.<br>코스 카드의 <b>공유 메모</b>를 열어 사진을 올려 보세요.</p>
+      <p class="fine" style="margin-top:10px">코스 공유 메모와 <b>💬 톡방</b>에 올린 사진이 함께 모여 있어요.</p>
+    </div>
+  </div>
+</aside>
+
+<aside class="sheet chatsheet" id="chatSheet" role="dialog" aria-modal="true" aria-label="5인 톡방" aria-hidden="true" inert>
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h2>💬 5인 톡방</h2>
+      <span class="chat-who">작성자 <b data-who>영진</b></span>
+      <button class="xbtn" id="btnChatClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="chat-state" id="chatState"><span class="dot"></span><span id="chatSync">불러오는 중…</span></div>
+    <div class="chat-list" id="chatList"></div>
+    <div class="chat-in" id="chatIn">
+      <div class="chat-prog" id="chatProg" hidden><i></i></div>
+      <button class="cf" id="chatFileBtn" type="button" aria-label="사진 첨부">📷</button>
+      <input type="file" id="chatFile" accept="image/*" hidden aria-label="톡방 사진 첨부">
+      <div class="chat-prev" id="chatPrev" hidden><img alt="" id="chatPrevImg"><button type="button" id="chatPrevX" aria-label="사진 지우기">✕</button></div>
+      <textarea id="chatText" rows="1" maxlength="500" placeholder="메시지를 입력하세요 (Enter 전송)" aria-label="톡방 메시지"></textarea>
+      <button class="cs" id="chatSend" type="button">전송</button>
     </div>
   </div>
 </aside>
@@ -1057,7 +1130,11 @@
     roomWho: $('#roomWho'), ktxDown: $('#ktxDown'), ktxUp: $('#ktxUp'), ktxCnt: $('#ktxCnt'),
     tkRoom: $('#tkRoom'), tkSub: $('#tkSub'), tkRoom2: $('#tkRoom2'),
     wxSub: $('#wxSub'), wxIcon: $('#wxIcon'), wxTemp: $('#wxTemp'), wxFeels: $('#wxFeels'),
-    wxMeta: $('#wxMeta'), wxTip: $('#wxTip'), wxGrid: $('#wxGrid'), wxDays: $('#wxDays')
+    wxMeta: $('#wxMeta'), wxTip: $('#wxTip'), wxGrid: $('#wxGrid'), wxDays: $('#wxDays'),
+    wxCard: $('#wxCard'), wxHead: $('#wxHead'), wxMini: $('#wxMini'), wxTog: $('#wxTog'), wxDetail: $('#wxDetail'),
+    chatSheet: $('#chatSheet'), chatList: $('#chatList'), chatText: $('#chatText'), chatSend: $('#chatSend'),
+    chatFile: $('#chatFile'), chatFileBtn: $('#chatFileBtn'), chatPrev: $('#chatPrev'), chatPrevImg: $('#chatPrevImg'),
+    chatPrevX: $('#chatPrevX'), chatProg: $('#chatProg'), chatSync: $('#chatSync'), chatState: $('#chatState')
   };
 
   /* ============ time view ============ */
@@ -1676,9 +1753,10 @@
 
   /* ============ sheet ============ */
   function showSheet(node) {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet].forEach(function (n) {
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
+    if (node !== el.chatSheet && chat.open) chatTeardown();
     node.classList.add('on');
     node.removeAttribute('aria-hidden');
     node.removeAttribute('inert');
@@ -1686,9 +1764,10 @@
     document.body.style.overflow = 'hidden';
   }
   function closeSheets() {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet].forEach(function (n) {
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
+    if (chat.open) chatTeardown();
     el.backdrop.classList.remove('on');
     document.body.style.overflow = '';
   }
@@ -1754,7 +1833,7 @@
       cb.classList.toggle('on', custom);
       cb.textContent = custom ? '✏️ ' + share.author : '✏️ 직접 입력';
     }
-    $$('#cards [data-who]').forEach(function (n) { n.textContent = share.author; });
+    $$('[data-who]').forEach(function (n) { n.textContent = share.author; });
   }
   function setAuthor(name) {
     const n = String(name || '').replace(/\s+/g, ' ').trim().slice(0, 12);
@@ -1762,6 +1841,7 @@
     share.author = n;
     try { localStorage.setItem(AUTHOR_KEY, n); } catch (e) {}
     paintAuthor();
+    if (el.chatList) { chat.sig = ''; paintChat(); }
     toast(n + ' 이름으로 남겨요');
   }
 
@@ -1810,6 +1890,10 @@
     share.bySpot = g;
   }
 
+  function courseNotes() {
+    return share.notes.filter(function (r) { return +r.spot_id !== 0; });
+  }
+
   function setSyncState(s) { share.state = s; paintSync(); }
   function paintSync() {
     const n = el.shareSync;
@@ -1820,7 +1904,7 @@
     if (share.state === 'error') { n.textContent = '연결 실패 · 다시 시도 ↻'; return; }
     if (!share.loadedAt) { n.textContent = ''; return; }
     const p = stampParts(share.loadedAt);
-    n.textContent = share.notes.length + '개 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신';
+    n.textContent = courseNotes().length + '개 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신';
   }
 
   function fetchNotes(manual) {
@@ -1923,6 +2007,8 @@
     if (el.agrid) renderAlbum();
     paintSync();
     paintAuthor();
+    paintChatBadge();
+    if (chat.open) paintChat();
   }
 
   function updateAlbumCount() {
@@ -1938,12 +2024,13 @@
     updateAlbumCount();
     el.albEmpty.hidden = rows.length > 0;
     el.agrid.innerHTML = rows.map(function (r) {
+      const isChat = +r.spot_id === 0;
       const s = byNo[+r.spot_id];
-      const meta = (s ? s.no + '. ' + s.place : '코스 ' + r.spot_id) + ' · ' + (r.author || '익명') + ' · ' + absTime(r.created_at) +
+      const meta = (isChat ? '💬 톡방' : (s ? s.no + '. ' + s.place : '코스 ' + r.spot_id)) + ' · ' + (r.author || '익명') + ' · ' + absTime(r.created_at) +
         (r.memo ? ' · ' + r.memo : '');
       return '<button type="button" class="atile" data-full="' + esc(r.image_url) + '" data-meta="' + esc(meta) + '">' +
         '<img src="' + esc(r.image_url) + '" alt="" loading="lazy" decoding="async">' +
-        '<span class="tagno">' + (s ? s.no : r.spot_id) + '</span>' +
+        '<span class="tagno">' + (isChat ? '톡' : (s ? s.no : r.spot_id)) + '</span>' +
         '<span class="tagau">' + esc(r.author || '익명') + '</span>' +
       '</button>';
     }).join('');
@@ -2258,6 +2345,431 @@
     window.addEventListener('offline', function () { state.online = false; });
 
     fetchNotes();
+  }
+
+  /* ============ realtime group chat (trip_notes spot_id = 0) ============ */
+  const CHAT_SPOT = 0;
+  const CHAT_TOPIC = 'realtime:busan-chat';
+  const CHAT_READ_KEY = 'busanTrip.chatRead.v1';
+  const CHAT_TAG = '💬 톡방';
+
+  const chat = {
+    open: false, sending: false, loading: false, state: 'idle', loadedAt: 0,
+    lastRead: 0, file: null, prevUrl: '', sig: '', poll: 0, retry: 0, pending: 0,
+    ws: null, wsJoined: false, wsRef: 0, wsJoinRef: '1', wsHeart: 0
+  };
+
+  function chatRows() {
+    return share.notes.filter(function (r) { return +r.spot_id === CHAT_SPOT; })
+      .slice().sort(function (a, b) { return String(a.created_at || '').localeCompare(String(b.created_at || '')); });
+  }
+
+  function loadChatRead() {
+    let v = 0;
+    try { v = parseInt(localStorage.getItem(CHAT_READ_KEY) || '0', 10) || 0; } catch (e) {}
+    chat.lastRead = v;
+  }
+
+  function chatLatestTs(rows) {
+    let t = 0;
+    (rows || []).forEach(function (r) { const v = Date.parse(r.created_at || '') || 0; if (v > t) t = v; });
+    return t;
+  }
+
+  function unreadChat() {
+    return chatRows().filter(function (r) {
+      return String(r.author || '') !== share.author && (Date.parse(r.created_at || '') || 0) > chat.lastRead;
+    }).length;
+  }
+
+  function paintChatBadge() {
+    const n = unreadChat();
+    const b = $('#chatBadge');
+    if (b) { b.textContent = n > 99 ? '99+' : String(n); b.hidden = n === 0; }
+    const c = $('#chatCount2');
+    if (c) {
+      const total = chatRows().length;
+      c.textContent = total ? total + '개' + (n ? ' · 새 ' + n : '') : '비어 있음';
+    }
+  }
+
+  function setChatState(s) { chat.state = s; paintChatState(); }
+  function paintChatState() {
+    if (!el.chatSync) return;
+    const live = !!chat.wsJoined;
+    if (el.chatState) el.chatState.classList.toggle('live', live && chat.state !== 'error');
+    if (chat.state === 'error') { el.chatSync.textContent = '연결 실패 · 3초마다 다시 시도'; return; }
+    if (!chat.loadedAt && chat.state === 'loading') { el.chatSync.textContent = '불러오는 중…'; return; }
+    const n = chatRows().length;
+    const p = stampParts(chat.loadedAt || Date.now());
+    el.chatSync.textContent = n + '개 · ' + (live ? '실시간 연결' : '3초 자동 갱신') + ' · ' + pad(p.hh) + ':' + pad(p.mm);
+  }
+
+  function chatMsgHTML(r) {
+    const mine = String(r.author || '') === share.author;
+    const img = safeImg(r.image_url);
+    const p = stampParts(Date.parse(r.created_at || '') || Date.now());
+    const meta = CHAT_TAG + ' · ' + (r.author || '익명') + ' · ' + absTime(r.created_at) + (r.memo ? ' · ' + r.memo : '');
+    return '' +
+      '<div class="msg ' + (mine ? 'me' : 'ot') + '" data-id="' + esc(String(r.id)) + '">' +
+        (mine ? '' : '<span class="who">' + esc(r.author || '익명') + '</span>') +
+        '<div class="bub' + (img ? ' has-img' : '') + '">' +
+          (r.memo ? '<span class="txt">' + esc(r.memo) + '</span>' : '') +
+          (img ? '<img src="' + esc(img) + '" data-full="' + esc(img) + '" data-meta="' + esc(meta) + '" alt="톡방 사진" loading="lazy" decoding="async">' : '') +
+        '</div>' +
+        '<span class="meta">' +
+          (mine ? '<button class="del" type="button" data-act="chat-del" data-id="' + esc(String(r.id)) + '">삭제</button>' : '') +
+          '<span>' + pad(p.hh) + ':' + pad(p.mm) + '</span>' +
+        '</span>' +
+      '</div>';
+  }
+
+  function chatAtBottom() {
+    const n = el.chatList;
+    if (!n) return true;
+    return n.scrollHeight - n.scrollTop - n.clientHeight < 80;
+  }
+
+  function scrollChatBottom(instant) {
+    const n = el.chatList;
+    if (!n) return;
+    const go = function () {
+      try { n.scrollTo({ top: n.scrollHeight, behavior: instant ? 'auto' : 'smooth' }); }
+      catch (e) { n.scrollTop = n.scrollHeight; }
+    };
+    if (instant) go(); else requestAnimationFrame(go);
+  }
+
+  function markChatRead() {
+    const t = chatLatestTs(chatRows());
+    if (t > chat.lastRead) {
+      chat.lastRead = t;
+      try { localStorage.setItem(CHAT_READ_KEY, String(t)); } catch (e) {}
+    }
+    paintChatBadge();
+  }
+
+  function paintChat() {
+    if (!el.chatList) return;
+    const rows = chatRows();
+    const sig = rows.map(function (r) { return String(r.id) + ':' + (r.memo ? r.memo.length : 0) + ':' + (r.image_url ? 1 : 0); }).join('|');
+    if (sig !== chat.sig) {
+      const nearBottom = chatAtBottom();
+      chat.sig = sig;
+      el.chatList.innerHTML = rows.length
+        ? rows.map(chatMsgHTML).join('')
+        : '<div class="chat-empty">아직 메시지가 없어요.<br>첫 인사를 남겨 보세요 👋</div>';
+      if (nearBottom) scrollChatBottom(false);
+    }
+    paintChatState();
+    paintChatBadge();
+  }
+
+  function fetchChat(manual) {
+    if (chat.loading) return Promise.resolve();
+    chat.loading = true;
+    setChatState('loading');
+    return fetch(SUPA + '/rest/v1/trip_notes?spot_id=eq.' + CHAT_SPOT +
+      '&select=id,spot_id,author,memo,image_url,created_at&order=created_at.asc&limit=500',
+      { headers: supHeaders(), cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (rows) {
+        chat.loading = false;
+        chat.loadedAt = Date.now();
+        applyChat(Array.isArray(rows) ? rows : []);
+        setChatState('ok');
+      })
+      .catch(function () {
+        chat.loading = false;
+        setChatState('error');
+        if (manual) toast('톡방을 불러오지 못했어요 — 연결을 확인해 주세요');
+      });
+  }
+
+  function applyChat(rows) {
+    share.notes = share.notes.filter(function (r) { return +r.spot_id !== CHAT_SPOT; }).concat(rows);
+    share.notes.sort(function (a, b) { return String(b.created_at || '').localeCompare(String(a.created_at || '')); });
+    paintChat();
+    paintSync();
+    updateAlbumCount();
+    if (chat.open) markChatRead();
+  }
+
+  function clearChatFile() {
+    chat.file = null;
+    if (chat.prevUrl) { try { URL.revokeObjectURL(chat.prevUrl); } catch (e) {} }
+    chat.prevUrl = '';
+    if (el.chatFile) el.chatFile.value = '';
+    if (el.chatPrev) el.chatPrev.hidden = true;
+    if (el.chatPrevImg) el.chatPrevImg.removeAttribute('src');
+  }
+
+  function sendChat() {
+    if (chat.sending) return;
+    const ta = el.chatText;
+    const text = (ta ? ta.value : '').trim();
+    if (!text && !chat.file) { if (ta) ta.focus(); return; }
+    if (!state.online) { toast('오프라인 상태예요 — 연결 후 다시 시도해 주세요'); return; }
+
+    chat.sending = true;
+    if (el.chatSend) { el.chatSend.disabled = true; el.chatSend.textContent = chat.file ? '올리는 중…' : '전송 중…'; }
+    if (el.chatProg) el.chatProg.hidden = false;
+
+    let imageUrl = null;
+    Promise.resolve()
+      .then(function () {
+        if (!chat.file) return null;
+        return compressImage(chat.file).then(function (blob) {
+          const path = '0/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg';
+          return fetch(SUPA + '/storage/v1/object/' + SUPA_BUCKET + '/' + path, {
+            method: 'POST',
+            headers: supHeaders({ 'Content-Type': 'image/jpeg', 'cache-control': '31536000', 'x-upsert': 'false' }),
+            body: blob
+          }).then(function (r) {
+            if (!r.ok) { return r.text().then(function () { throw new Error('사진 업로드 실패 (' + r.status + ')'); }); }
+            imageUrl = SUPA + '/storage/v1/object/public/' + SUPA_BUCKET + '/' + path;
+          });
+        });
+      })
+      .then(function () {
+        const payload = { spot_id: CHAT_SPOT, author: share.author || '익명', memo: text || null, image_url: imageUrl };
+        return fetch(SUPA + '/rest/v1/trip_notes', {
+          method: 'POST',
+          headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+          body: JSON.stringify(payload)
+        }).then(function (r) {
+          if (!r.ok) {
+            return r.text().then(function (t) {
+              let m = '';
+              try { m = (JSON.parse(t).message || ''); } catch (e) { m = String(t).slice(0, 120); }
+              throw new Error('메시지 전송 실패 (' + r.status + ')' + (m ? ' · ' + m : ''));
+            });
+          }
+          return r.json().then(function (rows) {
+            const row = (Array.isArray(rows) && rows[0]) ? rows[0] : {
+              id: 'tmp' + Date.now(), spot_id: CHAT_SPOT, author: payload.author,
+              memo: payload.memo, image_url: imageUrl, created_at: new Date().toISOString()
+            };
+            row.spot_id = CHAT_SPOT;
+            row.author = row.author || payload.author;
+            row.memo = (row.memo === undefined ? payload.memo : row.memo);
+            row.image_url = row.image_url || imageUrl;
+            if (!share.notes.some(function (x) { return String(x.id) === String(row.id); })) {
+              share.notes = [row].concat(share.notes);
+            }
+            chat.sig = '';
+            paintChat();
+            scrollChatBottom(false);
+            markChatRead();
+            broadcastChat(row);
+          });
+        });
+      })
+      .then(function () {
+        if (ta) { ta.value = ''; ta.style.height = ''; }
+        clearChatFile();
+        toast('보냈어요 💬');
+      })
+      .catch(function (e) { toast(String((e && e.message) || e) || '보내지 못했어요'); })
+      .then(function () {
+        chat.sending = false;
+        if (el.chatSend) { el.chatSend.disabled = false; el.chatSend.textContent = '전송'; }
+        if (el.chatProg) el.chatProg.hidden = true;
+      });
+  }
+
+  function removeChat(id) {
+    const row = chatRows().filter(function (r) { return String(r.id) === String(id); })[0];
+    if (!row) return;
+    if (String(row.author || '') !== share.author) { toast('내가 보낸 메시지만 지울 수 있어요'); return; }
+    if (!confirm('이 메시지를 삭제할까요? 사진도 함께 지워져요.')) return;
+    fetch(SUPA + '/rest/v1/trip_notes?id=eq.' + encodeURIComponent(id), {
+      method: 'DELETE', headers: supHeaders({ 'Prefer': 'return=minimal' })
+    }).then(function (r) {
+      if (!r.ok && r.status !== 204) throw new Error('삭제 실패 (' + r.status + ')');
+      share.notes = share.notes.filter(function (x) { return String(x.id) !== String(id); });
+      chat.sig = '';
+      paintChat();
+      paintSync();
+      updateAlbumCount();
+      paintChatBadge();
+      toast('메시지를 삭제했어요');
+      const img = safeImg(row.image_url);
+      if (img) {
+        const marker = '/object/public/' + SUPA_BUCKET + '/';
+        const i = img.indexOf(marker);
+        if (i >= 0) {
+          const path = img.slice(i + marker.length).split('?')[0];
+          fetch(SUPA + '/storage/v1/object/' + SUPA_BUCKET + '/' + path, {
+            method: 'DELETE', headers: supHeaders()
+          }).catch(function () {});
+        }
+      }
+    }).catch(function (e) { toast(String((e && e.message) || e)); });
+  }
+
+  function startChatPoll() {
+    stopChatPoll();
+    chat.poll = setInterval(function () { if (!document.hidden) fetchChat(); }, 3000);
+  }
+  function stopChatPoll() { if (chat.poll) { clearInterval(chat.poll); chat.poll = 0; } }
+
+  function chatTeardown() {
+    chat.open = false;
+    stopChatPoll();
+    if (chat.pending) { clearTimeout(chat.pending); chat.pending = 0; }
+    if (chat.retry) { clearTimeout(chat.retry); chat.retry = 0; }
+    chatWsClose();
+  }
+
+  function openChat() {
+    showSheet(el.chatSheet);
+    chat.open = true;
+    chat.sig = '';
+    paintChat();
+    scrollChatBottom(true);
+    markChatRead();
+    fetchChat();
+    chatWsConnect();
+    startChatPoll();
+  }
+
+  function chatWsClose() {
+    if (chat.wsHeart) { clearInterval(chat.wsHeart); chat.wsHeart = 0; }
+    const ws = chat.ws;
+    chat.ws = null; chat.wsJoined = false;
+    if (ws) { try { ws.close(); } catch (e) {} }
+    paintChatState();
+  }
+
+  function chatWsConnect() {
+    if (!window.WebSocket) return;
+    if (chat.ws) {
+      if (chat.ws.readyState === 1 && !chat.wsJoined) chatWsJoin();
+      return;
+    }
+    let ws;
+    try {
+      ws = new WebSocket('wss://rxsxbmbpetdwbcehsnts.supabase.co/realtime/v1/websocket?apikey=' +
+        encodeURIComponent(SUPA_KEY) + '&vsn=1.0.0');
+    } catch (e) { return; }
+    chat.ws = ws;
+    chat.wsJoined = false;
+    ws.onopen = function () { chatWsJoin(); };
+    ws.onmessage = function (ev) { chatWsFrame(ev.data); };
+    ws.onerror = function () {};
+    ws.onclose = function () {
+      chat.ws = null; chat.wsJoined = false;
+      if (chat.wsHeart) { clearInterval(chat.wsHeart); chat.wsHeart = 0; }
+      paintChatState();
+      if (chat.open) chat.retry = setTimeout(function () { chat.retry = 0; if (chat.open) chatWsConnect(); }, 10000);
+    };
+  }
+
+  function chatWsJoin() {
+    if (!chat.ws) return;
+    chat.wsRef += 1;
+    chat.wsJoinRef = String(chat.wsRef);
+    try {
+      chat.ws.send(JSON.stringify({
+        topic: CHAT_TOPIC, event: 'phx_join', ref: chat.wsJoinRef, join_ref: chat.wsJoinRef,
+        payload: {
+          config: { broadcast: { self: true, ack: true }, presence: { key: '' }, postgres_changes: [] },
+          access_token: SUPA_KEY
+        }
+      }));
+    } catch (e) {}
+  }
+
+  function chatWsFrame(raw) {
+    let m;
+    try { m = JSON.parse(raw); } catch (e) { return; }
+    if (!m) return;
+    if (m.event === 'phx_reply') {
+      const p = m.payload || {};
+      if (p.status === 'ok' && p.response && Object.prototype.hasOwnProperty.call(p.response, 'postgres_changes')) {
+        chat.wsJoined = true;
+        paintChatState();
+        if (!chat.wsHeart) chat.wsHeart = setInterval(chatWsPing, 25000);
+        if (chat.open) fetchChat();
+      }
+      return;
+    }
+    if (m.event === 'broadcast') {
+      const p = m.payload || {};
+      if (p.event !== 'msg') return;
+      const d = p.payload || {};
+      if (String(d.author || '') === share.author) return;
+      if (chat.pending) clearTimeout(chat.pending);
+      chat.pending = setTimeout(function () { chat.pending = 0; if (chat.open) fetchChat(); }, 120);
+    }
+  }
+
+  function chatWsPing() {
+    if (!chat.ws || chat.ws.readyState !== 1) return;
+    chat.wsRef += 1;
+    try { chat.ws.send(JSON.stringify({ topic: 'phoenix', event: 'heartbeat', payload: {}, ref: String(chat.wsRef) })); } catch (e) {}
+  }
+
+  function broadcastChat(row) {
+    if (!chat.ws || chat.ws.readyState !== 1 || !chat.wsJoined) return;
+    chat.wsRef += 1;
+    try {
+      chat.ws.send(JSON.stringify({
+        topic: CHAT_TOPIC, event: 'broadcast', ref: String(chat.wsRef), join_ref: chat.wsJoinRef,
+        payload: { type: 'broadcast', event: 'msg', payload: { id: String(row.id), author: row.author, at: row.created_at } }
+      }));
+    } catch (e) {}
+  }
+
+  function bindChat() {
+    loadChatRead();
+    paintChatBadge();
+    const fab = $('#fabChat');
+    if (fab) fab.addEventListener('click', openChat);
+    const entry = $('#btnChat2');
+    if (entry) entry.addEventListener('click', openChat);
+    const x = $('#btnChatClose');
+    if (x) x.addEventListener('click', function () { closeSheets(); });
+
+    if (el.chatList) el.chatList.addEventListener('click', function (e) {
+      const pic = e.target.closest('img[data-full]');
+      if (pic) { openLightbox(pic.getAttribute('data-full'), pic.getAttribute('data-meta')); return; }
+      const del = e.target.closest('[data-act="chat-del"]');
+      if (del) removeChat(del.getAttribute('data-id'));
+    });
+
+    if (el.chatSend) el.chatSend.addEventListener('click', sendChat);
+    if (el.chatFileBtn && el.chatFile) el.chatFileBtn.addEventListener('click', function () { el.chatFile.click(); });
+    if (el.chatFile) el.chatFile.addEventListener('change', function () {
+      const f = el.chatFile.files && el.chatFile.files[0];
+      if (!f) return;
+      if (!/^image\//.test(f.type || '')) { toast('이미지 파일만 올릴 수 있어요'); el.chatFile.value = ''; return; }
+      if (f.size > 25 * 1024 * 1024) { toast('25MB 이하 사진만 올릴 수 있어요'); el.chatFile.value = ''; return; }
+      clearChatFile();
+      chat.file = f;
+      try {
+        chat.prevUrl = URL.createObjectURL(f);
+        if (el.chatPrevImg) el.chatPrevImg.src = chat.prevUrl;
+        if (el.chatPrev) el.chatPrev.hidden = false;
+      } catch (err) {}
+    });
+    if (el.chatPrevX) el.chatPrevX.addEventListener('click', clearChatFile);
+
+    if (el.chatText) {
+      el.chatText.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); sendChat(); }
+      });
+      el.chatText.addEventListener('input', function () {
+        el.chatText.style.height = 'auto';
+        el.chatText.style.height = Math.min(96, el.chatText.scrollHeight) + 'px';
+      });
+    }
+
+    window.addEventListener('online', function () { if (chat.open) { fetchChat(); chatWsConnect(); } });
   }
 
   /* ============ settlement (trip_expenses) ============ */
@@ -3239,8 +3751,32 @@
       (bad ? ' — 기상 취소 가능성 체크' : '');
   }
 
+  function paintWxMini() {
+    if (!el.wxMini) return;
+    if (!wx.data) {
+      el.wxMini.textContent = (wx.state === 'error' ? '연결 실패 — 잠시 뒤 자동 재시도' : '불러오는 중…');
+      return;
+    }
+    const cur = wx.data.current || {};
+    const show = wxAt('2026-11-28', 19);
+    let s = wxNum(cur.temperature_2m, 1) + '°';
+    if (show) s += ' · 드론쇼 19시 체감 ' + Math.round(Number(show.feels) || 0) + '°';
+    el.wxMini.textContent = s;
+  }
+
+  function setWxCollapsed(on) {
+    if (!el.wxCard) return;
+    el.wxCard.classList.toggle('collapsed', !!on);
+    if (el.wxTog) {
+      el.wxTog.textContent = on ? '펼치기 ▾' : '접기 ▴';
+      el.wxTog.setAttribute('aria-expanded', on ? 'false' : 'true');
+    }
+    if (el.wxDetail) el.wxDetail.hidden = !!on;
+  }
+
   function paintWeather() {
     if (!el.wxSub) return;
+    paintWxMini();
     if (!wx.data) {
       if (wx.state === 'error') {
         el.wxSub.textContent = '연결 실패 · 눌러서 재시도 ↻';
@@ -3334,9 +3870,13 @@
   }
 
   function bindWeather() {
+    setWxCollapsed(el.wxCard.classList.contains('collapsed'));
     paintWeather();
     fetchWeather();
-    if (el.wxSub) el.wxSub.addEventListener('click', function () { fetchWeather(true); });
+    if (el.wxSub) el.wxSub.addEventListener('click', function (e) { e.stopPropagation(); fetchWeather(true); });
+    if (el.wxHead) el.wxHead.addEventListener('click', function () {
+      setWxCollapsed(!el.wxCard.classList.contains('collapsed'));
+    });
     setInterval(function () { if (!document.hidden) fetchWeather(); }, 600000);
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden && Date.now() - wx.loadedAt > 300000) fetchWeather();
@@ -3452,6 +3992,7 @@
     renderChecks();
     refresh();
     bindShare();
+    bindChat();
     bindSettle();
     bindBoard();
     bindWeather();
