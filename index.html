@@ -1014,7 +1014,7 @@
       <h3>지출 추가</h3>
       <form class="stform" id="stForm" autocomplete="off">
         <div class="fld row2">
-          <input class="t" id="stTitle" type="text" maxlength="40" placeholder="항목명 (예: 수변최고돼지국밥)" aria-label="항목명">
+          <input class="t" id="stTitle" type="text" maxlength="40" placeholder="항목명 (예: 영진돼지국밥)" aria-label="항목명">
           <input class="a" id="stAmount" type="text" inputmode="numeric" placeholder="금액(원)" aria-label="금액">
         </div>
         <div class="fld">
@@ -1164,22 +1164,22 @@
 
   /* ============ itinerary data (좌표: Kakao Map 실좌표) ============ */
   const RAW = [
-    { no:1, day:0, s:'10:26', e:'11:15', tag:'도착', title:'부산역 도착 · 리조트에 짐 맡기기',
+    { no:1, day:0, s:'10:26', e:'11:15', tag:'도착', title:'부산역 도착 · 경성대 점심으로 이동',
       desc:'KTX 서울 07:50 → 부산 10:26',
       place:'부산역', lat:35.1152034, lng:129.0415499, addr:'부산 동구 중앙대로 206',
-      move:'리조트까지 13.4km · 1003번 급행버스 45분 · 1인 2,100원',
-      note:'한화리조트 프런트에 짐 맡기고 바로 점심 이동' },
+      move:'경성대·부경대역까지 7.5km · 1001번 급행버스 33분 · 1인 2,100원',
+      note:'짐은 들고 이동 — 리조트 프런트 보관은 19:30 체크인 때' },
 
-    { no:2, day:0, s:'11:15', e:'12:45', tag:'점심', title:'수변최고돼지국밥 (민락본점)',
-      desc:'항정국밥 · 수육',
-      place:'수변최고돼지국밥 민락본점', lat:35.1566735, lng:129.1342702, addr:'부산 수영구 광안해변로370번길 9-32',
-      move:'지하철 2호선 동백역 → 광안역 7분 · 1인 1,400원 (3.4km)',
-      note:'캐치테이블 원격 줄서기 — 도착 전에 등록', req:true },
+    { no:2, day:0, s:'11:15', e:'12:45', tag:'점심', title:'영진돼지국밥 (경성부경점)',
+      desc:'돼지국밥 · 수육백반 (매일 09:00~22:00 · 051-621-0045)',
+      place:'영진돼지국밥 경성부경점', lat:35.1381278215689, lng:129.103775612735, addr:'부산 남구 수영로346번길 18',
+      move:'경성대·부경대역 하차 후 도보 4분 (151m)',
+      note:'예약 없이 현장 착석 — 12시 넘으면 웨이팅' },
 
     { no:3, day:0, s:'12:55', e:'13:35', tag:'카페', title:'밀창고 · 밀락더마켓',
       desc:'민락수변공원 옆 복합문화공간 (대안: 해리단길 달인 빵집)',
       place:'밀락더마켓', lat:35.1542800, lng:129.1270010, addr:'부산 수영구 민락수변로17번길 56',
-      move:'국밥집에서 도보 3분 (해리단길 갈 땐 2호선 15분 · 1,400원)',
+      move:'41번 버스 16분 · 1인 1,550원 (5.5km, 경성대·부경대역 승차)',
       note:'커피 한 잔 하고 미포로 출발' },
 
     { no:4, day:0, s:'13:35', e:'15:10', tag:'스카이캡슐', title:'미포정거장 → 스카이캡슐 미포→청사포',
@@ -1809,9 +1809,9 @@
   const CHECK_DEF_KEY = 'info_checklist_items';
   const CHECK_DEFAULTS = [
     { id:'sky',   title:'스카이캡슐 14:30 타임 · 5인 2대', sub:'11/28(토) 미포 → 청사포 · 30분 탑승', required:true },
-    { id:'catch', title:'수변최고돼지국밥 캐치테이블 줄서기', sub:'11/28 11:15 점심 · 도착 전 원격 등록', required:true },
+    { id:'catch', title:'영진돼지국밥 경성부경점 웨이팅 확인', sub:'11/28 11:15 점심 · 현장 번호표', required:false },
     { id:'pizza', title:'이재모피자 포장 사전 주문', sub:'11/29 14:10 픽업 · 치즈크러스트', required:true },
-    { id:'locker',title:'부산역 물품보관함', sub:'11/28 도착 직후 맡기고 11/29 14:10에 찾기', required:true },
+    { id:'locker',title:'부산역 물품보관함', sub:'11/29 09:50 부산역에 맡기고 14:10에 찾기', required:true },
     { id:'ins',   title:'국내여행자보험 가입', sub:'선택 · 1박 2일 1인 2,000~4,000원대', required:false },
     { id:'part',  title:'보드게임·야식 준비', sub:'11/28 밤 파티 · 편의점에서 채우면 OK', required:false }
   ];
