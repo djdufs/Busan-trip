@@ -343,7 +343,8 @@
   .shr-form textarea{width:100%;min-height:52px;resize:vertical;font:inherit;font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 9px;line-height:1.4}
   .shr-form textarea:focus{outline:none;border-color:#b9c9ea;box-shadow:0 0 0 3px rgba(43,91,215,.08)}
   .shr-tools{display:flex;align-items:center;gap:7px;margin-top:7px;min-height:26px;min-width:0}
-  .shr-file{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#3d4f68;background:#eef2f9;border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer}
+  .shr-file{flex:0 0 auto;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#3d4f68;background:#eef2f9;border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer}
+  .shr-file input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
   .shr-fname{font-size:10.5px;color:var(--ink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
   .shr-prev{width:30px;height:30px;object-fit:cover;border-radius:7px;border:1px solid var(--line);flex:0 0 auto}
   .shr-clr{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#b04030;background:#fdeeea;border-radius:7px;padding:4px 6px}
@@ -1477,7 +1478,7 @@
           '<div class="shr-form">' +
             '<textarea data-memo rows="2" maxlength="500" placeholder="이 코스에 메모를 남겨 보세요 (예: 12시 넘으면 웨이팅 길어요)"></textarea>' +
             '<div class="shr-tools">' +
-              '<label class="shr-file">📷 사진<input type="file" accept="image/*" data-file hidden></label>' +
+              '<label class="shr-file">📷 사진<input type="file" accept="image/*" data-file aria-label="사진 첨부"></label>' +
               '<img class="shr-prev" data-prev alt="" hidden>' +
               '<span class="shr-fname" data-fname></span>' +
               '<button type="button" class="shr-clr" data-act="clear-file" hidden>지우기</button>' +
