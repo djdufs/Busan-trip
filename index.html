@@ -1841,7 +1841,7 @@
     share.author = n;
     try { localStorage.setItem(AUTHOR_KEY, n); } catch (e) {}
     paintAuthor();
-    if (el.chatList) { chat.sig = ''; paintChat(); }
+    if (el.chatList) { chat.sig = null; paintChat(); }
     toast(n + ' 이름으로 남겨요');
   }
 
@@ -2355,7 +2355,7 @@
 
   const chat = {
     open: false, sending: false, loading: false, state: 'idle', loadedAt: 0,
-    lastRead: 0, file: null, prevUrl: '', sig: '', poll: 0, retry: 0, pending: 0,
+    lastRead: 0, file: null, prevUrl: '', sig: null, poll: 0, retry: 0, pending: 0,
     ws: null, wsJoined: false, wsRef: 0, wsJoinRef: '1', wsHeart: 0
   };
 
@@ -2560,7 +2560,7 @@
             if (!share.notes.some(function (x) { return String(x.id) === String(row.id); })) {
               share.notes = [row].concat(share.notes);
             }
-            chat.sig = '';
+            chat.sig = null;
             paintChat();
             scrollChatBottom(false);
             markChatRead();
@@ -2591,7 +2591,7 @@
     }).then(function (r) {
       if (!r.ok && r.status !== 204) throw new Error('삭제 실패 (' + r.status + ')');
       share.notes = share.notes.filter(function (x) { return String(x.id) !== String(id); });
-      chat.sig = '';
+      chat.sig = null;
       paintChat();
       paintSync();
       updateAlbumCount();
@@ -2628,7 +2628,7 @@
   function openChat() {
     showSheet(el.chatSheet);
     chat.open = true;
-    chat.sig = '';
+    chat.sig = null;
     paintChat();
     scrollChatBottom(true);
     markChatRead();
