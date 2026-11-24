@@ -302,6 +302,76 @@
   .toast.on{opacity:1;transform:translate(-50%,0)}
   .fab{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:80;background:var(--navy);color:#fff;
     font-size:12px;font-weight:800;padding:11px 14px;border-radius:999px;box-shadow:0 8px 22px rgba(9,17,29,.35);display:flex;align-items:center;gap:6px}
+  /* ---------- shared memos & photos ---------- */
+  .sharebar{background:var(--card);border:1px solid #e9edf5;border-radius:var(--r);box-shadow:var(--sh);padding:10px 12px 11px;margin-bottom:12px}
+  .sbrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+  .sbrow .sbl{display:flex;align-items:center;gap:6px;min-width:0}
+  .sbrow b{font-size:12.5px;font-weight:800;letter-spacing:-.2px;white-space:nowrap}
+  .sbrow .sub{font-size:10.5px;color:var(--ink3);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sbref{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:#f2f5fa;color:#65758c;font-size:11px;display:flex;align-items:center;justify-content:center}
+  .sbref.spin{animation:spin .9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .albtn{flex:0 0 auto;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:800;padding:6px 9px;border-radius:9px;background:#eaf0ff;color:#2b4bb0;border:1px solid #d7e1fb}
+  .albtn b{font-weight:900;font-variant-numeric:tabular-nums}
+  .achips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;-ms-overflow-style:none}
+  .achips::-webkit-scrollbar{display:none}
+  .achip{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:6px 10px;border-radius:999px;background:#f2f5fa;color:var(--ink2);border:1px solid var(--line)}
+  .achip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .achip.add{background:#fff;border-style:dashed;color:var(--ink3)}
+  .achip.add.on{background:var(--navy);color:#fff;border-style:solid}
+  .acinput{display:flex;gap:6px;margin-top:7px}
+  .acinput input{flex:1;min-width:0;font:inherit;font-size:12.5px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#f8fafd;color:var(--ink)}
+  .acinput button{flex:0 0 auto;background:var(--info);color:#fff;font-weight:800;font-size:12px;padding:0 12px;border-radius:9px}
+
+  .shr{margin-top:9px;border-top:1px dashed var(--line);padding-top:8px}
+  .shr-tog{display:flex;align-items:center;gap:6px;width:100%;font-size:11.5px;font-weight:800;color:#3d4f68;padding:3px 0}
+  .shr-tog .shr-x{margin-left:auto;font-size:9px;color:var(--ink3);transition:transform .2s}
+  .shr.open .shr-x{transform:rotate(180deg)}
+  .shn{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#eef1f6;color:#63748c;font-size:10.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+  .shn.hot{background:var(--d1b);color:var(--d1t)}
+  .shn.ph{background:#eaf0ff;color:#2b4bb0}
+  .shr-panel{margin-top:8px}
+  .shr-list{display:flex;flex-direction:column;gap:7px}
+  .memo{background:#f8fafd;border:1px solid var(--line);border-radius:11px;padding:8px 9px}
+  .memo-top{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--ink3);font-weight:700}
+  .memo-top b{color:var(--ink);font-size:11.5px;font-weight:800}
+  .memo-top .del{margin-left:auto;font-size:10px;color:#a3aebf;font-weight:800;padding:3px 4px}
+  .memo p{margin:4px 0 0;font-size:12px;color:#2c3c52;line-height:1.45;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
+  .memo img{display:block;margin-top:6px;width:100%;max-height:240px;object-fit:cover;border-radius:9px;background:#e8eef5;cursor:zoom-in}
+  .shr-empty{font-size:11.5px;color:var(--ink3);background:#f8fafd;border:1px dashed #e2e8f2;border-radius:10px;padding:11px 10px;text-align:center;line-height:1.45}
+  .shr-form{margin-top:9px;background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:8px 9px 9px}
+  .shr-form textarea{width:100%;min-height:52px;resize:vertical;font:inherit;font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 9px;line-height:1.4}
+  .shr-form textarea:focus{outline:none;border-color:#b9c9ea;box-shadow:0 0 0 3px rgba(43,91,215,.08)}
+  .shr-tools{display:flex;align-items:center;gap:7px;margin-top:7px;min-height:26px;min-width:0}
+  .shr-file{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;color:#3d4f68;background:#eef2f9;border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer}
+  .shr-fname{font-size:10.5px;color:var(--ink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .shr-prev{width:30px;height:30px;object-fit:cover;border-radius:7px;border:1px solid var(--line);flex:0 0 auto}
+  .shr-clr{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#b04030;background:#fdeeea;border-radius:7px;padding:4px 6px}
+  .shr-sendrow{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .shr-who{font-size:10.5px;color:var(--ink3);font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .shr-who b{color:var(--ink);font-weight:800}
+  .shr-send{margin-left:auto;flex:0 0 auto;background:var(--info);color:#fff;font-weight:800;font-size:12px;padding:8px 14px;border-radius:9px;box-shadow:0 3px 10px rgba(43,91,215,.18)}
+  .shr-send:disabled{background:#8898b4;box-shadow:none}
+  .shr-prog{height:3px;background:#e5eaf3;border-radius:2px;overflow:hidden;margin-top:8px;position:relative}
+  .shr-prog i{position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,#2b5bd7,#5d8cff);animation:indet 1.1s ease-in-out infinite}
+  @keyframes indet{0%{left:-40%}100%{left:100%}}
+
+  .album-link{display:flex;align-items:center;gap:7px;width:100%;background:#eaf0ff;border:1px solid #d7e1fb;color:#22397e;font-size:12.5px;font-weight:800;border-radius:12px;padding:11px 12px;margin-bottom:16px}
+  .album-link span{color:#4a63a0;font-weight:800}
+  .album-link em{margin-left:auto;font-style:normal;font-size:11px;color:#4a63a0}
+  .agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .atile{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#e8eef5;border:1px solid var(--line);padding:0}
+  .atile img{width:100%;height:100%;object-fit:cover;display:block}
+  .atile .tagno{position:absolute;left:4px;top:4px;background:rgba(14,26,43,.78);color:#fff;font-size:9.5px;font-weight:800;padding:1px 5px;border-radius:5px}
+  .atile .tagau{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(6,12,22,.78));color:#fff;font-size:9.5px;font-weight:700;padding:12px 5px 3px;text-align:right}
+  .aempty{font-size:12px;color:var(--ink3);line-height:1.6;text-align:center;padding:26px 10px}
+
+  .lb{position:fixed;inset:0;z-index:130;background:rgba(6,12,22,.93);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:12px}
+  .lb img{max-width:100%;max-height:76vh;border-radius:10px;object-fit:contain;background:#0b1220}
+  .lb-meta{color:#c9d6e6;font-size:12px;text-align:center;line-height:1.55;max-width:540px;word-break:break-word}
+  .lb-meta b{color:#fff;font-weight:800}
+  .lb-x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center}
+
   @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 </style>
 </head>
@@ -425,6 +495,29 @@
     </div>
   </section>
 
+  <section class="sharebar" id="sharebar">
+    <div class="sbrow">
+      <div class="sbl">
+        <b>✍️ 공유 메모</b>
+        <button class="sbref" id="btnShareRefresh" type="button" aria-label="공유 메모 새로고침">↻</button>
+        <span class="sub" id="shareSync">불러오는 중…</span>
+      </div>
+      <button class="albtn" id="btnAlbum" type="button">📷 사진첩 <b id="albCount">0</b></button>
+    </div>
+    <div class="achips" id="authorChips">
+      <button class="achip" type="button" data-name="영진">영진</button>
+      <button class="achip" type="button" data-name="지현">지현</button>
+      <button class="achip" type="button" data-name="준섭">준섭</button>
+      <button class="achip" type="button" data-name="명강">명강</button>
+      <button class="achip" type="button" data-name="윤지">윤지</button>
+      <button class="achip add" type="button" id="achipCustom">✏️ 직접 입력</button>
+    </div>
+    <div class="acinput" id="acInput" hidden>
+      <input id="acName" type="text" maxlength="12" placeholder="이름 (최대 12자)" autocomplete="off" enterkeyhint="done">
+      <button id="acOk" type="button">확인</button>
+    </div>
+  </section>
+
   <div class="tabs" id="tabs">
     <button type="button" class="d1 on" data-day="0">DAY 1<span class="d">11.28 토 · 9개 코스</span></button>
     <button type="button" class="d2" data-day="1">DAY 2<span class="d">11.29 일 · 6개 코스</span></button>
@@ -456,6 +549,8 @@
       <button class="xbtn" id="btnClose" aria-label="닫기">✕</button>
     </div>
     <div class="sheet-body">
+      <button class="album-link" id="btnAlbum2" type="button">📷 공유 사진첩 <span id="albCount2">0장</span> <em>모아보기 ›</em></button>
+
       <h3>✅ 필수 사전 예약 <span class="cnt" id="checkCnt">0 / 0</span></h3>
       <ul class="check" id="checklist"></ul>
       <button class="reset" id="btnReset" type="button">체크 초기화</button>
@@ -489,6 +584,26 @@
     </div>
   </div>
 </aside>
+
+<aside class="sheet" id="albumSheet" role="dialog" aria-modal="true" aria-label="공유 사진첩" aria-hidden="true" inert>
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h2>공유 사진첩 <span class="cnt" id="albCnt" style="font-size:11px;color:var(--ink3);font-weight:700"></span></h2>
+      <button class="xbtn" id="btnAlbumClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="agrid" id="agrid"></div>
+      <p class="aempty" id="albEmpty" hidden>아직 올라온 사진이 없어요.<br>코스 카드의 <b>공유 메모</b>를 열어 사진을 올려 보세요.</p>
+    </div>
+  </div>
+</aside>
+
+<div class="lb" id="lightbox" hidden>
+  <button class="lb-x" id="lbClose" type="button" aria-label="닫기">✕</button>
+  <img id="lbImg" alt="공유 사진">
+  <div class="lb-meta" id="lbMeta"></div>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -643,7 +758,8 @@
     sim: { on:false, day:0, min:626, playing:false, timer:null },
     pos: { lat:null, lng:null, label:'', virtual:false, watchId:null },
     view: { day:0 },
-    dist: {}   // no -> km
+    dist: {},   // no -> km
+    online: (typeof navigator === 'undefined' || navigator.onLine !== false)
   };
 
   /* ============ el cache ============ */
@@ -660,7 +776,10 @@
     mapSub: $('#mapSub'), tabs: $('#tabs'), cards: $('#cards'),
     tlTitle: $('#tlTitle'), tlCnt: $('#tlCnt'),
     sheet: $('#sheet'), backdrop: $('#backdrop'), checklist: $('#checklist'),
-    checkCnt: $('#checkCnt'), toast: $('#toast')
+    checkCnt: $('#checkCnt'), toast: $('#toast'),
+    albumSheet: $('#albumSheet'), agrid: $('#agrid'), albEmpty: $('#albEmpty'),
+    lightbox: $('#lightbox'), lbImg: $('#lbImg'), lbMeta: $('#lbMeta'),
+    shareSync: $('#shareSync')
   };
 
   /* ============ time view ============ */
@@ -825,6 +944,7 @@
             '<a class="n" href="' + naverSearch(s.place) + '" target="_blank" rel="noopener">네이버지도</a>',
             extra,
           '</div>',
+          buildShare(s),
         '</div>',
       '</article>'
     ].join('');
@@ -837,6 +957,7 @@
     el.tlTitle.textContent = DAYS[day].long;
     $$('#tabs button').forEach(b => b.classList.toggle('on', +b.dataset.day === day));
     el.mapSub.textContent = DAYS[day].label + ' · 번호를 누르면 코스로 이동';
+    restorePanels();
     focusDay(day);
     updateDistances();
     refresh();
@@ -1168,21 +1289,26 @@
   }
 
   /* ============ sheet ============ */
-  function openSheet() {
-    el.sheet.classList.add('on');
-    el.sheet.removeAttribute('aria-hidden');
-    el.sheet.removeAttribute('inert');
+  function showSheet(node) {
+    [el.sheet, el.albumSheet].forEach(function (n) {
+      n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
+    });
+    node.classList.add('on');
+    node.removeAttribute('aria-hidden');
+    node.removeAttribute('inert');
     el.backdrop.classList.add('on');
     document.body.style.overflow = 'hidden';
-    renderChecks();
   }
-  function closeSheet() {
-    el.sheet.classList.remove('on');
-    el.sheet.setAttribute('aria-hidden', 'true');
-    el.sheet.setAttribute('inert', '');
+  function closeSheets() {
+    [el.sheet, el.albumSheet].forEach(function (n) {
+      n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
+    });
     el.backdrop.classList.remove('on');
     document.body.style.overflow = '';
   }
+  function openSheet() { showSheet(el.sheet); renderChecks(); }
+  function closeSheet() { closeSheets(); }
+  function openAlbum() { showSheet(el.albumSheet); renderAlbum(); }
 
   let toastTimer = null;
   function toast(msg) {
@@ -1205,6 +1331,543 @@
     setTimeout(function () { node.classList.remove('flash'); }, 1600);
   }
 
+  /* ============ shared notes & photos (Supabase) ============ */
+  const SUPA = 'https://rxsxbmbpetdwbcehsnts.supabase.co';
+  const SUPA_KEY = 'sb_publishable_Jpch9M3IzuKDsRLIRfu5Dw_dHD6KhHD';
+  const SUPA_BUCKET = 'trip-photos';
+  const AUTHOR_KEY = 'busanTrip.author.v1';
+  const AUTHORS = ['영진', '지현', '준섭', '명강', '윤지'];
+
+  const share = {
+    author: AUTHORS[0], notes: [], bySpot: {},
+    loading: false, loadedAt: 0, sending: false,
+    expanded: {}, drafts: {}, state: 'idle'
+  };
+
+  function supHeaders(extra) {
+    const h = { apikey: SUPA_KEY, Authorization: 'Bearer ' + SUPA_KEY };
+    if (extra) { for (const k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) h[k] = extra[k]; } }
+    return h;
+  }
+
+  /* ----- author ----- */
+  function loadAuthor() {
+    let a = '';
+    try { a = localStorage.getItem(AUTHOR_KEY) || ''; } catch (e) {}
+    share.author = (a || '').slice(0, 12) || AUTHORS[0];
+    paintAuthor();
+  }
+  function paintAuthor() {
+    $$('#authorChips .achip').forEach(function (b) {
+      if (b.id === 'achipCustom') return;
+      b.classList.toggle('on', b.getAttribute('data-name') === share.author);
+    });
+    const custom = AUTHORS.indexOf(share.author) < 0;
+    const cb = $('#achipCustom');
+    if (cb) {
+      cb.classList.toggle('on', custom);
+      cb.textContent = custom ? '✏️ ' + share.author : '✏️ 직접 입력';
+    }
+    $$('#cards [data-who]').forEach(function (n) { n.textContent = share.author; });
+  }
+  function setAuthor(name) {
+    const n = String(name || '').replace(/\s+/g, ' ').trim().slice(0, 12);
+    if (!n) return;
+    share.author = n;
+    try { localStorage.setItem(AUTHOR_KEY, n); } catch (e) {}
+    paintAuthor();
+    toast(n + ' 이름으로 남겨요');
+  }
+
+  /* ----- time helpers ----- */
+  function stampParts(ms) {
+    const f = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Seoul', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', hour12:false
+    });
+    const o = {};
+    f.formatToParts(new Date(ms)).forEach(function (p) { o[p.type] = p.value; });
+    let hh = parseInt(o.hour, 10); if (hh === 24) hh = 0;
+    return { y:+o.year, m:+o.month, d:+o.day, hh:hh, mm:+o.minute };
+  }
+  function relTime(iso) {
+    const t = Date.parse(iso);
+    if (!t) return '';
+    const d = Date.now() - t;
+    if (d >= 0 && d < 60000) return '방금';
+    if (d >= 0 && d < 3600000) return Math.max(1, Math.round(d / 60000)) + '분 전';
+    const p = stampParts(t), n = stampParts(Date.now());
+    const hm = pad(p.hh) + ':' + pad(p.mm);
+    if (p.y === n.y && p.m === n.m && p.d === n.d) return hm;
+    return p.m + '/' + p.d + ' ' + hm;
+  }
+  function absTime(iso) {
+    const t = Date.parse(iso);
+    if (!t) return '';
+    const p = stampParts(t);
+    return p.m + '/' + p.d + ' ' + pad(p.hh) + ':' + pad(p.mm);
+  }
+
+  /* ----- data ----- */
+  function safeImg(u) { return (typeof u === 'string' && /^https?:\/\//i.test(u)) ? u : null; }
+
+  function groupNotes() {
+    const g = {};
+    share.notes.forEach(function (r) {
+      const k = +r.spot_id;
+      if (!k) return;
+      (g[k] = g[k] || []).push(r);
+    });
+    Object.keys(g).forEach(function (k) {
+      g[k].sort(function (a, b) { return String(b.created_at || '').localeCompare(String(a.created_at || '')); });
+    });
+    share.bySpot = g;
+  }
+
+  function setSyncState(s) { share.state = s; paintSync(); }
+  function paintSync() {
+    const n = el.shareSync;
+    if (!n) return;
+    const btn = $('#btnShareRefresh');
+    if (btn) btn.classList.toggle('spin', share.state === 'loading');
+    if (share.state === 'loading') { n.textContent = '불러오는 중…'; return; }
+    if (share.state === 'error') { n.textContent = '연결 실패 · 다시 시도 ↻'; return; }
+    if (!share.loadedAt) { n.textContent = ''; return; }
+    const p = stampParts(share.loadedAt);
+    n.textContent = share.notes.length + '개 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신';
+  }
+
+  function fetchNotes(manual) {
+    if (share.loading) return Promise.resolve();
+    share.loading = true;
+    setSyncState('loading');
+    return fetch(SUPA + '/rest/v1/trip_notes?select=id,spot_id,author,memo,image_url,created_at&order=created_at.desc&limit=500',
+      { headers: supHeaders(), cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (rows) {
+        share.notes = Array.isArray(rows) ? rows : [];
+        groupNotes();
+        share.loadedAt = Date.now();
+        share.loading = false;
+        setSyncState('ok');
+        renderShareAll();
+      })
+      .catch(function (e) {
+        share.loading = false;
+        setSyncState('error');
+        if (manual) toast('공유 메모를 불러오지 못했어요 — 연결을 확인해 주세요');
+      });
+  }
+
+  /* ----- render: inside cards ----- */
+  function buildShare(s) {
+    return '' +
+      '<div class="shr" data-no="' + s.no + '">' +
+        '<button type="button" class="shr-tog" data-act="tog" aria-expanded="false">' +
+          '<span>💬 공유 메모</span>' +
+          '<span class="shn" data-cnt-note>0</span>' +
+          '<span class="shn ph" data-cnt-photo hidden>📷 0</span>' +
+          '<span class="shr-x">▼</span>' +
+        '</button>' +
+        '<div class="shr-panel" hidden>' +
+          '<div class="shr-list" data-list><div class="shr-empty">불러오는 중…</div></div>' +
+          '<div class="shr-form">' +
+            '<textarea data-memo rows="2" maxlength="500" placeholder="이 코스에 메모를 남겨 보세요 (예: 12시 넘으면 웨이팅 길어요)"></textarea>' +
+            '<div class="shr-tools">' +
+              '<label class="shr-file">📷 사진<input type="file" accept="image/*" data-file hidden></label>' +
+              '<img class="shr-prev" data-prev alt="" hidden>' +
+              '<span class="shr-fname" data-fname></span>' +
+              '<button type="button" class="shr-clr" data-act="clear-file" hidden>지우기</button>' +
+            '</div>' +
+            '<div class="shr-sendrow">' +
+              '<span class="shr-who">작성자 <b data-who>' + esc(share.author) + '</b></span>' +
+              '<button type="button" class="shr-send" data-act="send">남기기</button>' +
+            '</div>' +
+            '<div class="shr-prog" data-prog hidden><i></i></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function memoHTML(r) {
+    const img = safeImg(r.image_url);
+    const s = byNo[+r.spot_id];
+    const meta = (s ? s.no + '. ' + s.place : '코스 ' + r.spot_id) + ' · ' + (r.author || '익명') + ' · ' + absTime(r.created_at) +
+      (r.memo ? ' · ' + r.memo : '');
+    return '' +
+      '<div class="memo">' +
+        '<div class="memo-top">' +
+          '<b>' + esc(r.author || '익명') + '</b>' +
+          '<span>' + esc(relTime(r.created_at)) + '</span>' +
+          '<button type="button" class="del" data-act="del" data-id="' + esc(String(r.id)) + '">삭제</button>' +
+        '</div>' +
+        (r.memo ? '<p>' + esc(r.memo) + '</p>' : '') +
+        (img ? '<img src="' + esc(img) + '" data-full="' + esc(img) + '" data-meta="' + esc(meta) + '" alt="공유 사진" loading="lazy" decoding="async">' : '') +
+      '</div>';
+  }
+
+  function renderShareAll() {
+    $$('#cards .card').forEach(function (card) {
+      const no = +card.getAttribute('data-no');
+      const rows = share.bySpot[no] || [];
+      const photos = rows.filter(function (r) { return safeImg(r.image_url); }).length;
+
+      const cn = card.querySelector('[data-cnt-note]');
+      if (cn) { cn.textContent = rows.length; cn.classList.toggle('hot', rows.length > 0); }
+      const cp = card.querySelector('[data-cnt-photo]');
+      if (cp) { cp.hidden = photos === 0; cp.textContent = '📷 ' + photos; }
+
+      const list = card.querySelector('[data-list]');
+      if (list) {
+        if (!share.loadedAt && share.state === 'loading') {
+          list.innerHTML = '<div class="shr-empty">불러오는 중…</div>';
+        } else if (!rows.length) {
+          list.innerHTML = '<div class="shr-empty">' +
+            (share.state === 'error' ? '공유 메모를 불러오지 못했어요. ↻ 새로고침을 눌러 주세요.' : '아직 올린 메모가 없어요 — 첫 번째로 남겨 보세요!') +
+            '</div>';
+        } else {
+          list.innerHTML = rows.map(memoHTML).join('');
+        }
+      }
+    });
+    updateAlbumCount();
+    if (el.albumSheet && el.albumSheet.classList.contains('on')) renderAlbum();
+    paintAuthor();
+  }
+
+  function updateAlbumCount() {
+    const n = share.notes.filter(function (r) { return safeImg(r.image_url); }).length;
+    const a = $('#albCount'); if (a) a.textContent = n;
+    const b = $('#albCount2'); if (b) b.textContent = n + '장';
+    const c = $('#albCnt'); if (c) c.textContent = n ? n + '장' : '';
+  }
+
+  function renderAlbum() {
+    if (!el.agrid) return;
+    const rows = share.notes.filter(function (r) { return safeImg(r.image_url); });
+    updateAlbumCount();
+    el.albEmpty.hidden = rows.length > 0;
+    el.agrid.innerHTML = rows.map(function (r) {
+      const s = byNo[+r.spot_id];
+      const meta = (s ? s.no + '. ' + s.place : '코스 ' + r.spot_id) + ' · ' + (r.author || '익명') + ' · ' + absTime(r.created_at) +
+        (r.memo ? ' · ' + r.memo : '');
+      return '<button type="button" class="atile" data-full="' + esc(r.image_url) + '" data-meta="' + esc(meta) + '">' +
+        '<img src="' + esc(r.image_url) + '" alt="" loading="lazy" decoding="async">' +
+        '<span class="tagno">' + (s ? s.no : r.spot_id) + '</span>' +
+        '<span class="tagau">' + esc(r.author || '익명') + '</span>' +
+      '</button>';
+    }).join('');
+  }
+
+  /* ----- lightbox ----- */
+  function openLightbox(url, meta) {
+    if (!safeImg(url)) return;
+    el.lbImg.src = url;
+    el.lbMeta.textContent = meta || '';
+    el.lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    el.lightbox.hidden = true;
+    el.lbImg.removeAttribute('src');
+    if (!$('.sheet.on')) document.body.style.overflow = '';
+  }
+
+  /* ----- panel ----- */
+  function togglePanel(no, force) {
+    const card = document.getElementById('spot-' + no);
+    if (!card) return;
+    const wrap = card.querySelector('.shr');
+    const panel = card.querySelector('.shr-panel');
+    const btn = card.querySelector('.shr-tog');
+    if (!wrap || !panel) return;
+    const open = (force === undefined) ? panel.hidden : !!force;
+    panel.hidden = !open;
+    wrap.classList.toggle('open', open);
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    share.expanded[no] = open;
+    if (open) {
+      const rows = share.bySpot[no] || [];
+      const list = card.querySelector('[data-list]');
+      if (list && !rows.length && !share.loadedAt && !share.loading) fetchNotes();
+    }
+  }
+
+  function restorePanels() {
+    $$('#cards .card').forEach(function (card) {
+      const no = +card.getAttribute('data-no');
+      const d = share.drafts[no];
+      if (d && d.memo) {
+        const ta = card.querySelector('[data-memo]');
+        if (ta) ta.value = d.memo;
+      }
+      if (d && d.file && d.prevUrl) {
+        const prev = card.querySelector('[data-prev]');
+        const fn = card.querySelector('[data-fname]');
+        const clr = card.querySelector('[data-act="clear-file"]');
+        if (prev) { prev.src = d.prevUrl; prev.hidden = false; }
+        if (fn) fn.textContent = d.fname || '사진';
+        if (clr) clr.hidden = false;
+      }
+    });
+  }
+
+  /* ----- photo prep ----- */
+  function compressImage(file) {
+    return new Promise(function (resolve, reject) {
+      const MAX = 1400, Q = 0.82;
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      let done = false;
+      function fail(msg) { if (done) return; done = true; URL.revokeObjectURL(url); reject(new Error(msg)); }
+      img.onload = function () {
+        try {
+          let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+          if (!w || !h) return fail('사진을 읽지 못했어요');
+          const sc = Math.min(1, MAX / Math.max(w, h));
+          w = Math.max(1, Math.round(w * sc)); h = Math.max(1, Math.round(h * sc));
+          const cv = document.createElement('canvas');
+          cv.width = w; cv.height = h;
+          const g = cv.getContext('2d');
+          g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+          g.drawImage(img, 0, 0, w, h);
+          cv.toBlob(function (blob) {
+            if (!blob) return fail('사진 변환에 실패했어요');
+            if (done) return;
+            done = true; URL.revokeObjectURL(url); resolve(blob);
+          }, 'image/jpeg', Q);
+        } catch (e) { fail('사진을 처리하지 못했어요'); }
+      };
+      img.onerror = function () { fail('이 사진은 브라우저에서 열 수 없어요 (JPG·PNG로 저장해 주세요)'); };
+      img.src = url;
+    });
+  }
+
+  /* ----- send ----- */
+  function sendNote(no) {
+    if (share.sending) return;
+    const card = document.getElementById('spot-' + no);
+    if (!card) return;
+    const panel = card.querySelector('.shr-panel');
+    const ta = card.querySelector('[data-memo]');
+    const btn = card.querySelector('[data-act="send"]');
+    const prog = card.querySelector('[data-prog]');
+    const memo = (ta ? ta.value : '').trim();
+    const draft = share.drafts[no] || {};
+    const file = draft.file || null;
+
+    if (!memo && !file) { toast('메모나 사진 중 하나는 넣어 주세요'); if (ta) ta.focus(); return; }
+    if (!state.online) { toast('오프라인 상태예요 — 연결 후 다시 시도해 주세요'); return; }
+
+    share.sending = true;
+    if (btn) { btn.disabled = true; btn.textContent = file ? '올리는 중…' : '남기는 중…'; }
+    if (prog) prog.hidden = false;
+
+    let imageUrl = null;
+    Promise.resolve()
+      .then(function () {
+        if (!file) return null;
+        return compressImage(file).then(function (blob) {
+          const path = no + '/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg';
+          return fetch(SUPA + '/storage/v1/object/' + SUPA_BUCKET + '/' + path, {
+            method: 'POST',
+            headers: supHeaders({ 'Content-Type': 'image/jpeg', 'cache-control': '31536000', 'x-upsert': 'false' }),
+            body: blob
+          }).then(function (r) {
+            if (!r.ok) { return r.text().then(function (t) { throw new Error('사진 업로드 실패 (' + r.status + ')'); }); }
+            imageUrl = SUPA + '/storage/v1/object/public/' + SUPA_BUCKET + '/' + path;
+          });
+        });
+      })
+      .then(function () {
+        const payload = {
+          spot_id: no,
+          author: share.author || '익명',
+          memo: memo || null,
+          image_url: imageUrl
+        };
+        return fetch(SUPA + '/rest/v1/trip_notes', {
+          method: 'POST',
+          headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+          body: JSON.stringify(payload)
+        }).then(function (r) {
+          if (!r.ok) {
+            return r.text().then(function (t) {
+              let m = '';
+              try { m = (JSON.parse(t).message || ''); } catch (e) { m = t.slice(0, 120); }
+              throw new Error('메모 저장 실패 (' + r.status + ')' + (m ? ' · ' + m : ''));
+            });
+          }
+          return r.json().then(function (rows) {
+            const row = (Array.isArray(rows) && rows[0]) ? rows[0] : {
+              id: 'tmp' + Date.now(), created_at: new Date().toISOString()
+            };
+            row.spot_id = row.spot_id || no;
+            row.author = row.author || payload.author;
+            row.memo = (row.memo === undefined ? payload.memo : row.memo);
+            row.image_url = row.image_url || imageUrl;
+            share.notes = [row].concat(share.notes.filter(function (x) { return String(x.id) !== String(row.id); }));
+            groupNotes();
+            renderShareAll();
+          });
+        });
+      })
+      .then(function () {
+        if (ta) ta.value = '';
+        share.drafts[no] = {};
+        resetFileUI(card);
+        share.expanded[no] = true;
+        togglePanel(no, true);
+        toast('남겼어요 ✍️');
+        fetchNotes();
+      })
+      .catch(function (e) {
+        toast(String((e && e.message) || e) || '남기지 못했어요');
+      })
+      .then(function () {
+        share.sending = false;
+        if (btn) { btn.disabled = false; btn.textContent = '남기기'; }
+        if (prog) prog.hidden = true;
+      });
+  }
+
+  function resetFileUI(card) {
+    const inp = card.querySelector('[data-file]');
+    if (inp) inp.value = '';
+    const prev = card.querySelector('[data-prev]');
+    if (prev) { prev.hidden = true; prev.removeAttribute('src'); }
+    const fn = card.querySelector('[data-fname]');
+    if (fn) fn.textContent = '';
+    const clr = card.querySelector('[data-act="clear-file"]');
+    if (clr) clr.hidden = true;
+  }
+
+  function removeNote(id, no) {
+    const row = share.notes.filter(function (r) { return String(r.id) === String(id); })[0];
+    if (!confirm('이 메모를 삭제할까요? 사진도 함께 지워져요.')) return;
+    fetch(SUPA + '/rest/v1/trip_notes?id=eq.' + encodeURIComponent(id), {
+      method: 'DELETE', headers: supHeaders({ 'Prefer': 'return=minimal' })
+    }).then(function (r) {
+      if (!r.ok && r.status !== 204) throw new Error('삭제 실패 (' + r.status + ')');
+      share.notes = share.notes.filter(function (x) { return String(x.id) !== String(id); });
+      groupNotes();
+      renderShareAll();
+      toast('메모를 삭제했어요');
+      const img = row && safeImg(row.image_url);
+      if (img) {
+        const marker = '/object/public/' + SUPA_BUCKET + '/';
+        const i = img.indexOf(marker);
+        if (i >= 0) {
+          const path = img.slice(i + marker.length).split('?')[0];
+          fetch(SUPA + '/storage/v1/object/' + SUPA_BUCKET + '/' + path, {
+            method: 'DELETE', headers: supHeaders()
+          }).catch(function () {});
+        }
+      }
+    }).catch(function (e) { toast(String((e && e.message) || e)); });
+  }
+
+  /* ----- share events ----- */
+  function bindShare() {
+    loadAuthor();
+
+    $('#authorChips').addEventListener('click', function (e) {
+      const b = e.target.closest('.achip');
+      if (!b) return;
+      if (b.id === 'achipCustom') {
+        const box = $('#acInput');
+        box.hidden = !box.hidden;
+        if (!box.hidden) { $('#acName').value = AUTHORS.indexOf(share.author) < 0 ? share.author : ''; $('#acName').focus(); }
+        return;
+      }
+      setAuthor(b.getAttribute('data-name'));
+    });
+    $('#acOk').addEventListener('click', function () {
+      const v = $('#acName').value;
+      if (!String(v).trim()) { toast('이름을 입력해 주세요'); return; }
+      setAuthor(v);
+      $('#acInput').hidden = true;
+    });
+    $('#acName').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('#acOk').click(); } });
+
+    $('#btnShareRefresh').addEventListener('click', function () { fetchNotes(true); });
+    $('#btnAlbum').addEventListener('click', openAlbum);
+    $('#btnAlbum2').addEventListener('click', openAlbum);
+    $('#btnAlbumClose').addEventListener('click', closeSheets);
+
+    el.agrid.addEventListener('click', function (e) {
+      const t = e.target.closest('.atile');
+      if (!t) return;
+      openLightbox(t.getAttribute('data-full'), t.getAttribute('data-meta'));
+    });
+
+    $('#lbClose').addEventListener('click', closeLightbox);
+    el.lightbox.addEventListener('click', function (e) { if (e.target === el.lightbox || e.target === el.lbImg) closeLightbox(); });
+
+    el.cards.addEventListener('click', function (e) {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      const no = +card.getAttribute('data-no');
+
+      const pic = e.target.closest('img[data-full]');
+      if (pic) { openLightbox(pic.getAttribute('data-full'), pic.getAttribute('data-meta')); return; }
+
+      const t = e.target.closest('[data-act]');
+      if (!t) return;
+      const act = t.getAttribute('data-act');
+      if (act === 'tog') togglePanel(no);
+      else if (act === 'send') sendNote(no);
+      else if (act === 'del') removeNote(t.getAttribute('data-id'), no);
+      else if (act === 'clear-file') {
+        share.drafts[no] = share.drafts[no] || {};
+        share.drafts[no].file = null;
+        resetFileUI(card);
+      }
+    });
+
+    el.cards.addEventListener('input', function (e) {
+      const ta = e.target.closest('[data-memo]');
+      if (!ta) return;
+      const card = ta.closest('.card');
+      const no = +card.getAttribute('data-no');
+      share.drafts[no] = share.drafts[no] || {};
+      share.drafts[no].memo = ta.value;
+    });
+
+    el.cards.addEventListener('change', function (e) {
+      const inp = e.target.closest('input[data-file]');
+      if (!inp) return;
+      const card = inp.closest('.card');
+      const no = +card.getAttribute('data-no');
+      const f = inp.files && inp.files[0];
+      if (!f) return;
+      if (!/^image\//.test(f.type || '')) { toast('이미지 파일만 올릴 수 있어요'); inp.value = ''; return; }
+      if (f.size > 25 * 1024 * 1024) { toast('25MB 이하 사진만 올릴 수 있어요'); inp.value = ''; return; }
+      share.drafts[no] = share.drafts[no] || {};
+      share.drafts[no].file = f;
+      const prev = card.querySelector('[data-prev]');
+      const fn = card.querySelector('[data-fname]');
+      const clr = card.querySelector('[data-act="clear-file"]');
+      try {
+        if (prev) { prev.src = URL.createObjectURL(f); prev.hidden = false; }
+      } catch (err) {}
+      if (fn) fn.textContent = (f.name || '사진') + ' · ' + Math.round(f.size / 1024) + 'KB';
+      if (clr) clr.hidden = false;
+      share.drafts[no].prevUrl = prev ? prev.getAttribute('src') || '' : '';
+      share.drafts[no].fname = fn ? fn.textContent : '';
+    });
+
+    setInterval(function () { if (!document.hidden) fetchNotes(); }, 45000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) fetchNotes(); });
+    window.addEventListener('online', function () { state.online = true; fetchNotes(); });
+    window.addEventListener('offline', function () { state.online = false; });
+
+    fetchNotes();
+  }
+
   /* ============ events ============ */
   el.btnMode.addEventListener('click', function () { setSim(!state.sim.on); });
   el.hintBtn.addEventListener('click', function () { setSim(true); });
@@ -1212,7 +1875,11 @@
   $('#fabInfo').addEventListener('click', openSheet);
   $('#btnClose').addEventListener('click', closeSheet);
   el.backdrop.addEventListener('click', closeSheet);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (el.lightbox && !el.lightbox.hidden) { closeLightbox(); return; }
+    closeSheets();
+  });
 
   $('#btnShare').addEventListener('click', function () {
     const url = location.href;
@@ -1314,6 +1981,7 @@
     }
     renderChecks();
     refresh();
+    bindShare();
     setInterval(refresh, 1000);
   }
 
