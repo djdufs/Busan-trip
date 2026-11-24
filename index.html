@@ -5278,7 +5278,7 @@
 
     /* 알림 클릭으로 들어온 경우 해당 화면 열기 (#chat / #settle) */
     const hash = String(location.hash || '');
-    if ((hash === '#chat' || hash === '#settle') && share.author) {
+    if (hash === '#chat' || hash === '#settle') {
       setTimeout(function () {
         if (hash === '#chat') openChat(); else openSettle();
       }, 400);
