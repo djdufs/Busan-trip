@@ -18,6 +18,7 @@
 - **🎫 KTX·숙소 공유 보드**: 숙소(한화리조트 해운대) 호실·메모와 KTX 하행(11/28)·상행(11/29) 5인 호차·좌석을 입력해 공유. 추가 SQL 없이 기존 `trip_checklist` 테이블을 `info_room`·`info_ktx_{down|up}_{이름}` 키로 재사용하며, 45초 폴링·오프라인 폴백. 체크리스트 초기화는 `info_` 키를 건드리지 않도록 조회·저장을 분리했고, 1·17번 KTX 코스 카드에 좌석 배지 표시
 - **👋 세션 기반 작성자("지금 접속한 사람이 누구야?")**: 기본 작성자를 `localStorage`로 자동 선택하지 않고 `sessionStorage`만 쓴다. 이름 미선택 상태에서 톡방·공유 메모(펼치기/남기기)·정산 폼·체크리스트 체크·편집·KTX 보드처럼 이름이 남는 동작을 처음 시도하면 선택 모달이 뜨고, 고른 뒤 원래 하려던 동작이 그대로 이어진다(새 탭·새 세션에서는 다시 묻는다). 공유 메모 바에는 `미선택 (클릭해 선택)` / `영진 (변경)` 상태가 표시된다
 - **🦸 제미나이슈퍼맨 AI 상담 ("도와줘요 제미나이!")**: 화면 우측 중앙에 망토 두른 제미나이 슈퍼맨이 둥실둥실 떠 있다(우하단 💬 톡방 FAB와 겹치지 않게 배치). 누르면 "도와줘요 제미나이!" 말풍선이 뽁 하고 뜬 뒤 대화 시트가 열린다. 추천 질문 칩 4개(정산·다음 코스·드론쇼 날씨·남은 체크리스트), 멀티턴 말풍선, Enter 전송, `슈퍼맨이 계산 중…` 로딩. 질문마다 사이트의 **최신 실시간 상태**(현재 시각·접속자·17개 코스 NOW/NEXT·Open-Meteo 날씨·드론쇼 19시 바람/강수·정산 계산 결과·체크리스트·코스 메모·톡방 최근 대화·KTX/숙소 보드·GPS 위치)를 JSON 컨텍스트로 함께 보낸다. 접속자를 고르지 않아도 바로 상담 가능
+- **🔔 웹 푸시 알림 (PWA)**: 헤더 종 아이콘(`🔕`/`🔔`) → 알림 시트에서 기기별로 켜고 끈다. 켜면 **톡방 새 메시지·사진**과 **정산 지출 등록**이 다른 참석자 폰으로 푸시된다(보낸 사람 기기·작성자는 제외). `🧪 테스트 알림 보내기`로 바로 확인. 안드로이드는 크롬·삼성 인터넷에서 그대로, **아이폰은 iOS 16.4+ 사파리에서 공유(□↑) → '홈 화면에 추가' 후 홈 아이콘으로 연 상태**에서만 동작하며, 일반 사파리 탭에서는 설치 안내 배너를 띄운다. 구성: `manifest.json` + `sw.js` + `icons/icon-192.png`·`icon-512.png`(maskable 포함)
 
 ## AI 상담 백엔드 (Supabase Edge Function `busan-ai`)
 
@@ -38,6 +39,32 @@ curl -X POST "https://api.supabase.com/v1/projects/<ref>/functions/deploy?slug=b
   -F 'metadata={"name":"busan-ai","entrypoint_path":"index.ts","verify_jwt":false}' \
   -F 'file=@supabase/functions/busan-ai/index.ts;type=application/typescript'
 ```
+
+## 웹 푸시 알림 백엔드 (Supabase Edge Function `push-notify`)
+
+- 소스: [`supabase/functions/push-notify/index.ts`](supabase/functions/push-notify/index.ts) — Web Push(RFC 8291 `aes128gcm` + RFC 8292 VAPID)를 Deno 표준 WebCrypto만으로 구현했다(외부 라이브러리 없음). FCM·Apple(`web.push.apple.com`) 등 표준 엔드포인트로 실제 발송한다.
+- 구독 저장: `push_subscriptions`(id, author, endpoint unique, p256dh, auth, ua, updated_at) — 프론트가 `on_conflict=endpoint` upsert, RLS 공개 정책.
+- 액션: `test`(특정 endpoint로 테스트 푸시) / `broadcast`(`exclude_endpoint`·`exclude_author` 제외 전체 발송, 404·410 응답 시 해당 구독 자동 삭제). `verify_jwt: false`, CORS `*`.
+- **VAPID 공개키만 `index.html`에 있고, 비공개키는 Supabase Secret에만 있다.** 저장소·프론트엔드에 `VAPID_PRIVATE_KEY`가 들어가지 않는다.
+  - Secrets: `VAPID_PRIVATE_KEY`(base64url 32바이트 P-256 d), `VAPID_PUBLIC_KEY`(base64url 65바이트 비압축점), `VAPID_SUBJECT`(`https://djdufs.github.io/Busan-trip/`)
+- 배포(시크릿·토큰은 절대 리포지토리에 커밋하지 않는다):
+
+```bash
+# 1) VAPID 시크릿 등록 (Management API)
+curl -X POST "https://api.supabase.com/v1/projects/<ref>/secrets" \
+  -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" -H 'Content-Type: application/json' \
+  -d '[{"name":"VAPID_PRIVATE_KEY","value":"<base64url>"},{"name":"VAPID_PUBLIC_KEY","value":"<base64url>"},{"name":"VAPID_SUBJECT","value":"https://djdufs.github.io/Busan-trip/"}]'
+
+# 2) 함수 배포 (JSON body 방식)
+curl -X POST "https://api.supabase.com/v1/projects/<ref>/functions" \
+  -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" -H 'Content-Type: application/json' \
+  -d "$(python3 -c 'import json;print(json.dumps({"slug":"push-notify","name":"push-notify","verify_jwt":False,"body":open("supabase/functions/push-notify/index.ts").read()}))')"
+
+# 3) 상태 확인
+curl "https://<ref>.supabase.co/functions/v1/push-notify" -H "apikey: <publishable>"
+```
+
+- 알림 클릭 시 `sw.js`가 `/Busan-trip/` 창을 포커스하고 `data.url`(`#chat`·`#settle`)로 이동한다. 앱은 그 해시를 보고 해당 시트를 연다(이름이 이미 선택된 세션에서).
 
 ## 배포
 

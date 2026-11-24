@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e1a2b">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="부산여행">
+<meta name="application-name" content="부산여행">
 <title>부산 1박 2일 길라잡이 · 11.28–29</title>
 <meta name="description" content="2026년 11월 28~29일 부산 1박 2일, 5인 여행 실시간 타임라인·지도·길찾기 가이드">
 <meta property="og:title" content="부산 1박 2일 길라잡이 (11.28–29)">
@@ -652,6 +660,25 @@
   .ai-send[disabled]{opacity:.45;box-shadow:none}
 
   @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+  /* ---------- web push notifications ---------- */
+  .ibtn.ntfbtn{font-size:12.5px;line-height:1;padding:0}
+  .ibtn.on{background:#ffb020;border-color:#ffb020;color:#3a2400;box-shadow:0 0 0 3px rgba(255,176,32,.16)}
+  .ntf-card{background:linear-gradient(180deg,#f7faff,#eef3fb);border:1px solid #e2e9f5;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:5px}
+  .ntf-card b{font-size:14.5px;letter-spacing:-.2px}
+  .ntf-card span{font-size:12.5px;color:var(--ink2);line-height:1.55}
+  .ntf-card.on{background:linear-gradient(180deg,#e9f9f0,#ddf5e9);border-color:#bfe8d2}
+  .ntf-card.warn{background:linear-gradient(180deg,#fff8ec,#fff3e0);border-color:#ffe0b0}
+  .ntf-ios{margin-top:10px;background:#fff6e6;border:1px solid #ffe0b0;border-radius:12px;padding:11px 12px;font-size:12.5px;line-height:1.6;color:#7a4a00}
+  .ntf-actions{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .ntf-main{height:48px;border-radius:13px;background:var(--navy);color:#fff;font-weight:850;font-size:15px;letter-spacing:-.3px}
+  .ntf-main.on{background:#0f9d63}
+  .ntf-main:disabled{opacity:.55;cursor:default}
+  .ntf-ghost{height:44px;border-radius:12px;background:#eef2fa;border:1px solid #e0e7f3;color:var(--ink);font-weight:800;font-size:13.5px}
+  .ntf-ghost:disabled{opacity:.45;cursor:default}
+  .ntf-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--ink2);line-height:1.5}
+  .ntf-list li{background:#f7f9fd;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .ntf-list b{color:var(--ink)}
+  .ntf-note{margin:14px 0 0;font-size:11.5px;color:var(--ink3);line-height:1.6}
 </style>
 </head>
 <body>
@@ -666,6 +693,7 @@
       </div>
       <div class="hbtns">
         <button class="seg" id="btnMode" aria-pressed="false"><span id="btnModeTxt">실시간</span></button>
+        <button class="ibtn ntfbtn" id="btnNotify" aria-label="알림 설정" aria-pressed="false">🔕</button>
         <button class="ibtn" id="btnShare" aria-label="링크 공유">↗</button>
         <button class="ibtn" id="btnInfo" aria-label="실용 정보">☰</button>
       </div>
@@ -1047,6 +1075,35 @@
   </div>
 </aside>
 
+<aside class="sheet" id="notifySheet" role="dialog" aria-modal="true" aria-label="알림 설정" aria-hidden="true" inert>
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h2>🔔 알림 설정 <span class="cnt" id="ntfStateTxt" style="font-size:10.5px;color:var(--ink3);font-weight:700"></span></h2>
+      <button class="xbtn" id="btnNotifyClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="ntf-card" id="ntfCard">
+        <b id="ntfTitle">알림을 켜면 톡방 새 글을 바로 받아요</b>
+        <span id="ntfSub">여행 중 휴대폰 알림으로 알려드려요. 참석자 각자 자기 폰에서 한 번씩만 켜면 돼요.</span>
+      </div>
+      <div class="ntf-ios" id="ntfIos" hidden>
+        아이폰은 <b>사파리 하단 공유(□↑) → ‘홈 화면에 추가’</b>로 설치한 뒤 <b>홈 아이콘으로 열어야</b> 푸시 알림이 와요!
+      </div>
+      <div class="ntf-actions">
+        <button class="ntf-main" id="btnNtfToggle" type="button">🔔 알림 켜기</button>
+        <button class="ntf-ghost" id="btnNtfTest" type="button">🧪 테스트 알림 보내기</button>
+      </div>
+      <h3>이런 알림을 보내요</h3>
+      <ul class="ntf-list">
+        <li><b>💬 부산 톡방</b> — 새 메시지·사진이 올라올 때 (내가 보낸 건 제외)</li>
+        <li><b>💰 여행 정산</b> — 누가 지출을 새로 등록할 때</li>
+      </ul>
+      <p class="ntf-note" id="ntfNote">알림은 이 기기에서만 켜져요. 브라우저 설정에서 알림을 막으면 오지 않아요. 안드로이드는 크롬·삼성 인터넷 등에서 그대로 켤 수 있어요.</p>
+    </div>
+  </div>
+</aside>
+
 <aside class="sheet" id="boardSheet" role="dialog" aria-modal="true" aria-label="KTX · 숙소 공유 보드" aria-hidden="true" inert>
   <div class="sheet-in">
     <div class="grab"></div>
@@ -1329,6 +1386,7 @@
     wxMeta: $('#wxMeta'), wxTip: $('#wxTip'), wxGrid: $('#wxGrid'), wxDays: $('#wxDays'),
     wxCard: $('#wxCard'), wxHead: $('#wxHead'), wxMini: $('#wxMini'), wxTog: $('#wxTog'), wxDetail: $('#wxDetail'),
     chatSheet: $('#chatSheet'), chatList: $('#chatList'), chatText: $('#chatText'), chatSend: $('#chatSend'),
+    notifySheet: $('#notifySheet'), btnNotify: $('#btnNotify'),
     aiSheet: $('#aiSheet'),
     chatFile: $('#chatFile'), chatFileBtn: $('#chatFileBtn'), chatPrev: $('#chatPrev'), chatPrevImg: $('#chatPrevImg'),
     chatPrevX: $('#chatPrevX'), chatProg: $('#chatProg'), chatSync: $('#chatSync'), chatState: $('#chatState'),
@@ -2148,7 +2206,7 @@
 
   /* ============ sheet ============ */
   function showSheet(node) {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet].forEach(function (n) {
       if (!n) return;
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
@@ -2161,7 +2219,7 @@
     document.body.style.overflow = 'hidden';
   }
   function closeSheets() {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet].forEach(function (n) {
       if (!n) return;
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
@@ -3041,6 +3099,13 @@
             scrollChatBottom(false);
             markChatRead();
             broadcastChat(row);
+            ntfBroadcast({
+              title: '💬 부산 톡방',
+              body: (row.author || '익명') + ': ' + (row.memo ? String(row.memo).replace(/\s+/g, ' ').slice(0, 80) : '📷 사진을 보냈어요'),
+              url: '/Busan-trip/#chat',
+              tag: 'busan-chat',
+              exclude_author: row.author || payload.author
+            });
           });
         });
       })
@@ -3611,6 +3676,13 @@
             saveExpCache(settle.rows);
             renderSettle();
             paintMoney();
+            ntfBroadcast({
+              title: '💰 부산 정산',
+              body: (share.author || settle.payer) + '님이 지출 등록: ' + title + ' ' + amount.toLocaleString('ko-KR') + '원',
+              url: '/Busan-trip/#settle',
+              tag: 'busan-expense',
+              exclude_author: share.author || settle.payer
+            });
           });
         });
       })
@@ -4925,6 +4997,255 @@
     gemPaintWho();
   }
 
+  /* ============ web push notifications ============ */
+  const PUSH_FN = SUPA + '/functions/v1/push-notify';
+  const VAPID_PUBLIC = 'BMY7jQQ0XyEUPbLrTWZcBvcr3PsETM2b-Y0Ykj0OwEriJXNHq3mouEYjyem0VOsdvhjNB8NJIULyo-6e6_sKw_Y';
+  const NTF_KEY = 'busanTrip.notify.v1';
+
+  const ntf = { sub: null, reg: null, busy: false, ready: false, iosHint: false };
+
+  function ntfIsIOS() {
+    const ua = navigator.userAgent || '';
+    if (/iPad|iPhone|iPod/.test(ua)) return true;
+    return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  }
+  function ntfStandalone() {
+    try { if (window.matchMedia('(display-mode: standalone)').matches) return true; } catch (e) {}
+    return navigator.standalone === true;
+  }
+  function ntfMode() {
+    const has = ('serviceWorker' in navigator) && ('PushManager' in window) && ('Notification' in window);
+    if (!has) return 'unsupported';
+    if (ntfIsIOS() && !ntfStandalone()) return 'ios-install';
+    if (Notification.permission === 'denied') return 'denied';
+    return 'ok';
+  }
+  function ntfB64Bytes(s) {
+    let t = String(s || '').replace(/-/g, '+').replace(/_/g, '/');
+    while (t.length % 4) t += '=';
+    const bin = atob(t);
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function ntfBytesB64(buf) {
+    const b = new Uint8Array(buf || []);
+    let bin = '';
+    for (let i = 0; i < b.length; i++) bin += String.fromCharCode(b[i]);
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function ntfPaint() {
+    const mode = ntfMode();
+    const on = !!ntf.sub;
+    const btn = el.btnNotify;
+    if (btn) {
+      btn.textContent = on ? '🔔' : '🔕';
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? '알림 켜짐 — 알림 설정' : '알림 꺼짐 — 알림 설정');
+    }
+    const card = $('#ntfCard'), title = $('#ntfTitle'), sub = $('#ntfSub');
+    const st = $('#ntfStateTxt'), ios = $('#ntfIos'), tg = $('#btnNtfToggle'), ts = $('#btnNtfTest');
+    if (ios) ios.hidden = mode !== 'ios-install';
+    if (card) card.classList.toggle('on', on);
+    if (card) card.classList.toggle('warn', mode === 'ios-install' || mode === 'denied' || mode === 'unsupported');
+    if (st) st.textContent = on ? '켜짐' : (mode === 'unsupported' ? '지원 안 됨' : mode === 'denied' ? '차단됨' : mode === 'ios-install' ? '설치 필요' : '꺼짐');
+    if (tg) {
+      tg.textContent = on ? '🔕 알림 끄기' : (mode === 'denied' ? '🔕 브라우저에서 알림 차단됨' : '🔔 알림 켜기');
+      tg.classList.toggle('on', on);
+      tg.disabled = ntf.busy || mode === 'unsupported' || mode === 'denied' || (mode === 'ios-install' && !on);
+    }
+    if (ts) ts.disabled = ntf.busy || !on;
+    if (title && sub) {
+      if (on) {
+        title.textContent = '이 기기에서 알림을 받고 있어요 🔔';
+        sub.textContent = '톡방 새 글·지출 등록 소식을 휴대폰 알림으로 보내드려요.' + (share.author ? ' (' + share.author + ' 기기)' : '');
+      } else if (mode === 'ios-install') {
+        title.textContent = '아이폰은 홈 화면에 추가한 뒤 켤 수 있어요';
+        sub.textContent = '사파리 공유(□↑) → 홈 화면에 추가 → 홈 아이콘으로 열기 → 이 화면에서 알림 켜기.';
+      } else if (mode === 'denied') {
+        title.textContent = '브라우저에서 알림이 차단돼 있어요';
+        sub.textContent = '주소창 왼쪽 자물쇠(또는 사이트 설정) → 알림 허용으로 바꾸고 새로고침해 주세요.';
+      } else if (mode === 'unsupported') {
+        title.textContent = '이 브라우저는 푸시 알림을 지원하지 않아요';
+        sub.textContent = '아이폰은 iOS 16.4 이상 사파리(홈 화면 추가), 안드로이드는 크롬·삼성 인터넷에서 켤 수 있어요.';
+      } else {
+        title.textContent = '알림을 켜면 톡방 새 글을 바로 받아요';
+        sub.textContent = '여행 중 휴대폰 알림으로 알려드려요. 참석자 각자 자기 폰에서 한 번씩만 켜면 돼요.';
+      }
+    }
+  }
+
+  function ntfRegister() {
+    if (ntf.reg) return Promise.resolve(ntf.reg);
+    return navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function (reg) {
+      ntf.reg = reg;
+      return reg;
+    });
+  }
+
+  function ntfSaveSub(sub) {
+    let j = {};
+    try { j = (sub && sub.toJSON) ? sub.toJSON() : {}; } catch (e) { j = {}; }
+    const keys = j.keys || {};
+    const p256 = keys.p256dh || (sub && sub.getKey ? ntfBytesB64(sub.getKey('p256dh')) : '');
+    const auth = keys.auth || (sub && sub.getKey ? ntfBytesB64(sub.getKey('auth')) : '');
+    if (!sub || !sub.endpoint || !p256 || !auth) return Promise.reject(new Error('구독 정보를 읽지 못했어요'));
+    const row = {
+      author: String(share.author || '').slice(0, 24),
+      endpoint: sub.endpoint,
+      p256dh: p256,
+      auth: auth,
+      ua: String(navigator.userAgent || '').slice(0, 240),
+      updated_at: new Date().toISOString()
+    };
+    return fetch(SUPA + '/rest/v1/push_subscriptions?on_conflict=endpoint', {
+      method: 'POST',
+      headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+      body: JSON.stringify(row)
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error('알림 등록 실패 (' + r.status + ')' + (t ? ' · ' + String(t).slice(0, 100) : '')); });
+      try { localStorage.setItem(NTF_KEY, '1'); } catch (e) {}
+    });
+  }
+
+  function ntfEnable() {
+    if (ntf.busy) return;
+    const mode = ntfMode();
+    if (mode === 'unsupported') { toast('이 브라우저는 푸시 알림을 지원하지 않아요'); ntfPaint(); return; }
+    if (mode === 'denied') { toast('브라우저에서 알림이 차단돼 있어요 — 사이트 설정에서 허용해 주세요'); ntfPaint(); return; }
+    if (mode === 'ios-install') { toast("아이폰은 '홈 화면에 추가' 후 홈 아이콘으로 열어 주세요"); ntfPaint(); return; }
+    if (!needWho(ntfEnable)) return;
+    if (!state.online) { toast('오프라인 상태예요 — 연결 후 다시 시도해 주세요'); return; }
+
+    ntf.busy = true;
+    ntfPaint();
+    if ($('#btnNtfToggle')) $('#btnNtfToggle').textContent = '켜는 중…';
+
+    Promise.resolve()
+      .then(function () {
+        if (Notification.permission === 'granted') return 'granted';
+        return Notification.requestPermission();
+      })
+      .then(function (perm) {
+        if (perm !== 'granted') throw new Error(perm === 'denied' ? '알림이 차단됐어요 — 브라우저 사이트 설정에서 허용해 주세요' : '알림 권한을 허용해야 켤 수 있어요');
+        return ntfRegister();
+      })
+      .then(function (reg) {
+        return reg.pushManager.getSubscription().then(function (existing) {
+          if (existing) return existing;
+          return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: ntfB64Bytes(VAPID_PUBLIC) });
+        });
+      })
+      .then(function (sub) {
+        ntf.sub = sub;
+        return ntfSaveSub(sub);
+      })
+      .then(function () {
+        ntf.busy = false;
+        ntfPaint();
+        toast('알림을 켰어요 🔔 테스트 알림으로 확인해 보세요');
+        return ntfTest(true);
+      })
+      .catch(function (e) {
+        ntf.busy = false;
+        ntfPaint();
+        toast(String((e && e.message) || e) || '알림을 켜지 못했어요');
+      });
+  }
+
+  function ntfDisable() {
+    if (ntf.busy) return;
+    const sub = ntf.sub;
+    if (!sub) { ntfPaint(); return; }
+    ntf.busy = true;
+    ntfPaint();
+    const ep = sub.endpoint;
+    Promise.resolve()
+      .then(function () { return sub.unsubscribe().catch(function () { return false; }); })
+      .then(function () {
+        return fetch(SUPA + '/rest/v1/push_subscriptions?endpoint=eq.' + encodeURIComponent(ep), {
+          method: 'DELETE', headers: supHeaders({ Prefer: 'return=minimal' })
+        });
+      })
+      .then(function () {
+        ntf.sub = null;
+        try { localStorage.removeItem(NTF_KEY); } catch (e) {}
+        toast('알림을 껐어요 🔕');
+      })
+      .catch(function (e) { toast('알림을 끄지 못했어요 — ' + String((e && e.message) || e)); })
+      .then(function () { ntf.busy = false; ntfPaint(); });
+  }
+
+  function ntfTest(silent) {
+    if (!ntf.sub) { if (!silent) toast('먼저 알림을 켜 주세요'); return Promise.resolve(false); }
+    if (ntf.busy && !silent) return Promise.resolve(false);
+    if (!silent) { ntf.busy = true; ntfPaint(); }
+    return fetch(PUSH_FN, {
+      method: 'POST',
+      headers: supHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ action: 'test', endpoint: ntf.sub.endpoint })
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        let j = null;
+        try { j = JSON.parse(t); } catch (e) { j = null; }
+        if (!r.ok || !j || !j.ok) throw new Error((j && (j.error || j.status)) ? String(j.error || ('HTTP ' + j.status)) : ('HTTP ' + r.status));
+        toast('테스트 알림을 보냈어요 🧪 잠시 후 확인!');
+        return true;
+      });
+    }).catch(function (e) {
+      toast('테스트 알림 실패 — ' + String((e && e.message) || e));
+      return false;
+    }).then(function (v) {
+      if (!silent) { ntf.busy = false; ntfPaint(); }
+      return v;
+    });
+  }
+
+  /* 다른 사람 폰으로 알림 발송 (내 기기는 제외) */
+  function ntfBroadcast(payload) {
+    try {
+      const body = Object.assign({ action: 'broadcast' }, payload || {});
+      if (ntf.sub && ntf.sub.endpoint) body.exclude_endpoint = ntf.sub.endpoint;
+      fetch(PUSH_FN, {
+        method: 'POST',
+        headers: supHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify(body),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function openNotify() {
+    showSheet(el.notifySheet);
+    ntfPaint();
+  }
+
+  function bindNotify() {
+    if (el.btnNotify) el.btnNotify.addEventListener('click', openNotify);
+    const close = $('#btnNotifyClose');
+    if (close) close.addEventListener('click', function () { closeSheets(); });
+    const tg = $('#btnNtfToggle');
+    if (tg) tg.addEventListener('click', function () { if (ntf.sub) ntfDisable(); else ntfEnable(); });
+    const ts = $('#btnNtfTest');
+    if (ts) ts.addEventListener('click', function () { ntfTest(false); });
+
+    ntfPaint();
+    if (ntfMode() !== 'ok') return;
+    ntfRegister().then(function (reg) {
+      return reg.pushManager.getSubscription();
+    }).then(function (sub) {
+      ntf.sub = sub || null;
+      ntf.ready = true;
+      ntfPaint();
+      if (sub) ntfSaveSub(sub).catch(function () {});
+    }).catch(function () {
+      ntf.ready = true;
+      ntfPaint();
+    });
+  }
+
   /* ============ boot ============ */
   function boot() {
     loadAuthor();
@@ -4952,7 +5273,16 @@
     bindBoard();
     bindWeather();
     bindAi();
+    bindNotify();
     setInterval(refresh, 1000);
+
+    /* 알림 클릭으로 들어온 경우 해당 화면 열기 (#chat / #settle) */
+    const hash = String(location.hash || '');
+    if ((hash === '#chat' || hash === '#settle') && share.author) {
+      setTimeout(function () {
+        if (hash === '#chat') openChat(); else openSettle();
+      }, 400);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

@@ -1,0 +1,36 @@
+{
+  "name": "부산 1박 2일 길라잡이",
+  "short_name": "부산여행",
+  "description": "2026년 11월 28~29일 부산 1박 2일, 5인 여행 실시간 타임라인·지도·톡방·정산",
+  "lang": "ko",
+  "dir": "ltr",
+  "id": "/Busan-trip/",
+  "start_url": "/Busan-trip/",
+  "scope": "/Busan-trip/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0e1a2b",
+  "theme_color": "#0e1a2b",
+  "categories": ["travel", "productivity"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
