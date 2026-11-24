@@ -484,11 +484,11 @@
   .ktxtbl th,.ktxtbl td{padding:5px 4px;border-bottom:1px solid var(--line2);text-align:left}
   .ktxtbl thead th{font-size:9.5px;color:var(--ink3);font-weight:800;background:#fbfcfe}
   .ktxtbl tbody tr:last-child td{border-bottom:0}
-  .ktxtbl td.nm{width:44px;font-weight:850;font-size:11.5px;white-space:nowrap;padding-left:7px}
-  .ktxtbl td.car{width:56px}
-  .ktxtbl td.seat{width:68px}
-  .ktxtbl td.sv{width:16px;text-align:center;font-size:10px;font-weight:800;color:var(--ok)}
-  .ktxtbl td.sv.err{color:#c33f24}
+  .ktxtbl th.nm,.ktxtbl td.nm{width:32%;font-weight:850;font-size:11.5px;white-space:nowrap;padding-left:7px}
+  .ktxtbl th.car,.ktxtbl td.car{width:28%}
+  .ktxtbl th.seat,.ktxtbl td.seat{width:40%}
+  .ktxtbl .sv{display:inline-block;margin-left:4px;font-style:normal;font-size:10px;font-weight:800;color:var(--ok)}
+  .ktxtbl .sv.err{color:#c33f24}
 
   @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 </style>
@@ -848,14 +848,14 @@
       <div class="ktxblock">
         <div class="ktxhead"><b>11/28(토) 하행</b><span>서울 07:50 → 부산 10:26</span></div>
         <table class="ktxtbl" data-dir="down">
-          <thead><tr><th>이름</th><th>호차</th><th>좌석</th><th></th></tr></thead>
+          <thead><tr><th class="nm">이름</th><th class="car">호차</th><th class="seat">좌석</th></tr></thead>
           <tbody id="ktxDown"></tbody>
         </table>
       </div>
       <div class="ktxblock">
         <div class="ktxhead"><b>11/29(일) 상행</b><span>부산 14:47 → 서울 17:28</span></div>
         <table class="ktxtbl" data-dir="up">
-          <thead><tr><th>이름</th><th>호차</th><th>좌석</th><th></th></tr></thead>
+          <thead><tr><th class="nm">이름</th><th class="car">호차</th><th class="seat">좌석</th></tr></thead>
           <tbody id="ktxUp"></tbody>
         </table>
       </div>
@@ -2969,10 +2969,9 @@
       const dn = dir === 'down' ? '하행' : '상행';
       tb.innerHTML = BOARD_NAMES.map(function (nm) {
         return '<tr data-dir="' + dir + '" data-name="' + esc(nm) + '">' +
-          '<td class="nm">' + esc(nm) + '</td>' +
+          '<td class="nm">' + esc(nm) + '<i class="sv" aria-hidden="true"></i></td>' +
           '<td class="car"><input type="text" inputmode="numeric" maxlength="3" placeholder="7" aria-label="' + esc(nm) + ' ' + dn + ' 호차"></td>' +
-          '<td class="seat"><input type="text" maxlength="6" placeholder="12A" aria-label="' + esc(nm) + ' ' + dn + ' 좌석"></td>' +
-          '<td class="sv" aria-hidden="true"></td></tr>';
+          '<td class="seat"><input type="text" maxlength="6" placeholder="12A" aria-label="' + esc(nm) + ' ' + dn + ' 좌석"></td></tr>';
       }).join('');
     });
   }
