@@ -160,7 +160,7 @@
   /* ---------- map ---------- */
   #map{height:300px;background:#e8eef5;position:relative;z-index:0}
   #map.map-fail{height:auto}
-  .map-legend{position:absolute;left:10px;bottom:10px;z-index:500;display:flex;gap:8px;align-items:center;
+  .map-legend{position:absolute;left:10px;bottom:10px;z-index:1;display:flex;gap:8px;align-items:center;
     background:rgba(255,255,255,.92);border-radius:9px;padding:5px 8px;font-size:10px;font-weight:800;color:#3b4a60;box-shadow:0 2px 8px rgba(0,0,0,.12)}
   .map-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px}
   .map-legend .l1{background:var(--d1)} .map-legend .l2{background:var(--d2)} .map-legend .lp{background:#2b5bd7;box-shadow:0 0 0 2px #fff}
@@ -250,7 +250,7 @@
   .backdrop.on{opacity:1;pointer-events:auto}
   .sheet{
     position:fixed;left:0;right:0;bottom:0;z-index:100;background:#fff;border-radius:20px 20px 0 0;
-    max-height:88vh;transform:translateY(102%);transition:transform .3s cubic-bezier(.2,.8,.3,1);
+    max-width:620px;margin:0 auto;max-height:88vh;transform:translateY(102%);transition:transform .3s cubic-bezier(.2,.8,.3,1);
     display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(9,17,29,.28);
   }
   .sheet.on{transform:translateY(0)}
@@ -265,9 +265,9 @@
   .xbtn{width:30px;height:30px;border-radius:50%;background:#f2f5fa;color:#65758c;font-size:14px;display:flex;align-items:center;justify-content:center}
 
   .check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
-  .check li{display:flex;gap:9px;align-items:flex-start;background:#f8fafd;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
+  .check li{position:relative;display:flex;gap:9px;align-items:flex-start;background:#f8fafd;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
   .check li.on{background:var(--okb);border-color:#c7edd8}
-  .check label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;width:100%}
+  .check label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;width:100%;padding-right:34px}
   .check input{appearance:none;-webkit-appearance:none;width:19px;height:19px;border-radius:6px;border:2px solid #c3cede;background:#fff;flex:0 0 auto;margin:1px 0 0;position:relative;cursor:pointer}
   .check input:checked{background:var(--ok);border-color:var(--ok)}
   .check input:checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
@@ -275,7 +275,7 @@
   .check .txt b{display:block;font-size:12.5px;font-weight:800;letter-spacing:-.2px;line-height:1.35}
   .check .txt span{display:block;font-size:11px;color:var(--ink3);margin-top:2px}
   .check li.on .txt b{color:#0b7a4d;text-decoration:line-through;text-decoration-color:rgba(11,122,77,.4)}
-  .check-req{font-size:9.5px;font-weight:800;background:#ffe9e3;color:#c33f24;border-radius:5px;padding:1px 5px;margin-left:4px;vertical-align:1px}
+  .check-req{position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:800;background:#ffe9e3;color:#c33f24;border-radius:5px;padding:1px 5px}
   .check li.on .check-req{background:#d7f2e3;color:#0b7a4d}
 
   .tbl{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
@@ -418,7 +418,7 @@
       <span class="sub" id="mapSub">DAY 1 · 번호를 누르면 코스로 이동</span>
     </div>
     <div id="map"></div>
-    <div class="map-legend">
+    <div class="map-legend" id="mapLegend">
       <span><i class="l1"></i>DAY 1</span>
       <span><i class="l2"></i>DAY 2</span>
       <span><i class="lp"></i>내 위치</span>
@@ -704,12 +704,14 @@
     if (mapMod.map) return;
     if (typeof L === 'undefined') {
       $('#map').classList.add('map-fail');
+      $('#mapLegend').hidden = true;
       $('#map').innerHTML = '<div style="padding:26px 16px;font-size:12.5px;color:#5a6b83;line-height:1.6">' +
         '지도를 불러오는 중이에요. (CDN이 느리거나 차단된 상태)<br>각 코스 카드의 <b>카카오맵·네이버지도</b> 버튼으로 길찾기를 이용해 주세요.</div>';
       return false;
     }
     const map = L.map('map', { zoomControl:true, scrollWheelZoom:false, attributionControl:true });
     $('#map').classList.remove('map-fail');
+    $('#mapLegend').hidden = false;
     mapMod.map = map;
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19, attribution: '&copy; OpenStreetMap'
@@ -851,7 +853,7 @@
     } else {
       const t = v.t;
       el.clock.textContent = pad(t.m) + '.' + pad(t.d) + '(' + WD[new Date(Date.UTC(t.y, t.m - 1, t.d)).getUTCDay()] + ') ' +
-        pad(t.hh) + ':' + pad(t.mm) + ':' + pad(t.ss);
+        pad(t.hh) + ':' + pad(t.mm);
     }
 
     /* progress over the whole trip */
@@ -869,6 +871,7 @@
       const dMs = Date.UTC(2026, 10, 28, 1, 26, 0) - v.now;
       title = '11.28(토) 10:26 부산역 도착까지';
       sub = untilText(dMs);
+      pill = 'D-DAY';
       pillCls = 'done'; badgeTxt = '여행 전'; badgeCls = 'off';
     } else if (v.phase === 'after') {
       title = '부산 1박 2일 여행 끝 🎉';
@@ -1154,10 +1157,11 @@
     const st = loadChecks();
     el.checklist.innerHTML = CHECKS.map(function (c) {
       const on = !!st[c.id];
-      return '<li class="' + (on ? 'on' : '') + '"><label>' +
-        '<input type="checkbox" data-id="' + c.id + '"' + (on ? ' checked' : '') + '>' +
-        '<span class="txt"><b>' + esc(c.label) + (c.req ? '<span class="check-req">필수</span>' : '') + '</b>' +
-        '<span>' + esc(c.sub) + '</span></span></label></li>';
+      return '<li class="' + (on ? 'on' : '') + '">' +
+        '<label><input type="checkbox" data-id="' + c.id + '"' + (on ? ' checked' : '') + '>' +
+        '<span class="txt"><b>' + esc(c.label) + '</b>' +
+        '<span>' + esc(c.sub) + '</span></span></label>' +
+        (c.req ? '<span class="check-req">필수</span>' : '') + '</li>';
     }).join('');
     const done = CHECKS.filter(c => st[c.id]).length;
     el.checkCnt.textContent = done + ' / ' + CHECKS.length;
