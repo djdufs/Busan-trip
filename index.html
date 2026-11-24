@@ -396,7 +396,8 @@
   .msg .bub .txt{display:block}
   .msg .bub img{display:block;max-width:min(60vw,240px);max-height:240px;border-radius:11px;object-fit:cover;margin-top:4px}
   .msg .bub.has-img img{margin-top:0}
-  .msg .meta{display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;color:var(--ink3);padding:0 3px}
+  .msg .meta{display:flex;flex-direction:row;align-items:center;gap:5px;font-size:9.5px;font-weight:700;color:var(--ink3);padding:0 3px}
+  .chat-list>.msg:first-of-type{margin-top:auto}
   .msg .del{font:inherit;font-size:9.5px;font-weight:800;color:#93a1b5;background:none;padding:0;cursor:pointer}
   .chat-in{flex:0 0 auto;position:relative;display:flex;align-items:flex-end;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
   .chat-in textarea{flex:1 1 auto;min-width:0;max-height:96px;resize:none;border:1px solid var(--line);border-radius:12px;padding:9px 11px;font:inherit;font-size:12.5px;font-weight:650;line-height:1.45;background:#f8fafd;outline:none}
