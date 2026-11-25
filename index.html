@@ -230,6 +230,7 @@
   .meta .dist.nearest{color:#1b4bd0}
   .note{margin:8px 0 0;font-size:11.5px;line-height:1.4;background:#f7f9fc;border-radius:9px;padding:7px 9px;color:#465a74}
   .note.req{background:var(--warnb);color:#8a5500;font-weight:700}
+  .tkt{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;background:#0a2b6b;color:#fff;border-radius:10px;padding:9px 10px;font-size:12px;font-weight:800;text-decoration:none}
   .acts{display:flex;gap:6px;margin-top:9px}
   .acts a{
     flex:1;text-align:center;font-size:11.5px;font-weight:800;padding:8px 6px;border-radius:9px;text-decoration:none;
@@ -730,8 +731,8 @@
       <button data-day="0" data-m="420">07:00 집합</button>
       <button data-day="0" data-m="626">10:26 도착</button>
       <button data-day="0" data-m="710">11:50 점심</button>
-      <button data-day="0" data-m="775">12:55 광안역 짐</button>
-      <button data-day="0" data-m="825">13:45 해변열차</button>
+      <button data-day="0" data-m="750">12:30 광안역 짐</button>
+      <button data-day="0" data-m="795">13:15 스카이캡슐</button>
       <button data-day="0" data-m="1140">19:00 드론쇼</button>
       <button data-day="0" data-m="1230">20:30 파티</button>
       <button data-day="1" data-m="565">09:25 모모스 본점</button>
@@ -950,13 +951,13 @@
         <thead><tr><th>항목</th><th>5인 합계</th><th>1인</th></tr></thead>
         <tbody>
           <tr><td>숙소 <span class="muted">한화리조트</span></td><td>150,000</td><td>30,000</td></tr>
-          <tr><td>해변열차 <span class="muted">1회권 5인</span></td><td>50,000</td><td>10,000</td></tr>
+          <tr><td>스카이캡슐 <span class="muted">2인+3인 2대 · 예매완료</span></td><td>105,000</td><td>21,000</td></tr>
           <tr><td>식비·카페</td><td>525,000<br>~655,000</td><td>105,000<br>~131,000</td></tr>
           <tr><td>대중교통</td><td>67,500<br>~75,000</td><td>13,500<br>~15,000</td></tr>
-          <tr class="tot"><td>합계 (KTX 제외)</td><td>792,500<br>~930,000</td><td>158,500<br>~186,000</td></tr>
+          <tr class="tot"><td>합계 (KTX 제외)</td><td>847,500<br>~985,000</td><td>169,500<br>~197,000</td></tr>
         </tbody>
       </table>
-      <p class="fine">단위 원 · KTX는 예매 완료로 별도. 1인 약 16~19만 원, 왕복 KTX 포함하면 1인 28~33만 원 수준. 광안역 물품보관함은 별도 — 주말 기본 3시간 소 2,700 · 대 4,950 · 특대 6,600원.</p>
+      <p class="fine">단위 원 · KTX는 예매 완료로 별도. 1인 약 17~20만 원, 왕복 KTX 포함하면 1인 29~34만 원 수준. 광안역 물품보관함은 별도 — 주말 기본 3시간 소 2,700 · 대 4,950 · 특대 6,600원.</p>
 
       <h3>🚄 KTX · 연락처</h3>
       <ul class="kv">
@@ -1175,9 +1176,9 @@
     <h3 id="ckEdTitle">항목 추가</h3>
     <p class="msub">제목은 꼭 넣고, 설명엔 시간·메모를 적어 두면 5명이 같이 보기 좋아요.</p>
     <label class="fl" for="ckEdMain">제목</label>
-    <input id="ckEdMain" type="text" maxlength="60" autocomplete="off" placeholder="예: 해변열차 13:45 미포 출발 · 5인 1회권">
+    <input id="ckEdMain" type="text" maxlength="60" autocomplete="off" placeholder="예: 스카이캡슐 10회차 13:00~13:30 입장 · 5인 2대">
     <label class="fl" for="ckEdSub">설명 (선택)</label>
-    <input id="ckEdSub" type="text" maxlength="80" autocomplete="off" placeholder="예: 11/28(토) 미포 → 청사포 · 1회권 10,000원">
+    <input id="ckEdSub" type="text" maxlength="80" autocomplete="off" placeholder="예: 11/28(토) 미포 → 청사포 · 2인+3인 2대 · 105,000원">
     <label class="freq"><input type="checkbox" id="ckEdReq"> 필수 항목으로 표시</label>
     <div class="mbtns">
       <button class="b-cancel" id="ckEdCancel" type="button">취소</button>
@@ -1236,29 +1237,30 @@
       move:'경성대·부경대역까지 7.5km · 1001번 급행버스 33분 · 1인 2,100원',
       note:'짐은 그대로 들고 이동 — 광안역 보관함에 맡기고 가볍게 다님' },
 
-    { no:3, day:0, s:'11:15', e:'12:45', tag:'점심', title:'영진돼지국밥 (경성부경점)',
+    { no:3, day:0, s:'11:15', e:'12:15', tag:'점심', title:'영진돼지국밥 (경성부경점)',
       desc:'돼지국밥 · 수육백반 (매일 09:00~22:00 · 051-621-0045)',
       place:'영진돼지국밥 경성부경점', lat:35.1381278215689, lng:129.103775612735, addr:'부산 남구 수영로346번길 18',
       move:'경성대·부경대역 하차 후 도보 4분 (151m)',
-      note:'예약 없이 현장 착석 — 12시 넘으면 웨이팅 · 12:20~30쯤 일찍 마무리하면 광안역 짐 보관까지 여유' },
+      note:'예약 없이 현장 착석 — 12시 넘으면 웨이팅 · 12:05~12:10쯤 일찍 마무리해야 13:30 전 미포 스카이캡슐 입장이 여유로움' },
 
-    { no:4, day:0, s:'12:45', e:'13:10', tag:'짐 보관', title:'광안역 물품보관함에 짐 맡기기',
+    { no:4, day:0, s:'12:15', e:'12:40', tag:'짐 보관', title:'광안역 물품보관함에 짐 맡기기',
       desc:'부산 2호선 광안역 지하 1층(B1) 5번 출입구 방향 · 총 80칸(소 50 · 대 20 · 특대 10)',
       place:'광안역', lat:35.157858583447, lng:129.113145418291, addr:'부산 수영구 수영로 지하 576',
-      move:'영진돼지국밥 → 도보 4분 → 경성대·부경대역 2호선(장산 방면) 3정거장 5분 · 1,600원 → 13:00경 광안역',
-      note:'주말 기본 3시간 소 2,700 · 대 4,950 · 특대 6,600원(이후 시간당 추가) · 맡긴 뒤 바로 미포정거장으로 이동 (2호선 해운대역→141번 버스 등 약 30~35분)' },
+      move:'영진돼지국밥 → 도보 4분 → 경성대·부경대역 2호선(장산 방면) 3정거장 5분 · 1,600원 → 12:25경 광안역',
+      note:'주말 기본 3시간 소 2,700 · 대 4,950 · 특대 6,600원(이후 시간당 추가) · 맡긴 뒤 바로 미포정거장으로 이동 — 대중교통 약 35~40분(2호선 해운대역→141번 버스 등) · 시간 촉박하면 광안역→미포 택시 2대 약 15~20분 추천' },
 
-    { no:5, day:0, s:'13:10', e:'14:05', tag:'해변열차', title:'미포정거장 → 해변열차 미포→청사포',
-      desc:'블루라인파크 해변열차 13:45 탑승 · 1회권 1인 10,000원 (약 10~15분)',
+    { no:5, day:0, s:'12:40', e:'14:00', tag:'스카이캡슐', title:'미포정거장 → 스카이캡슐 미포→청사포',
+      desc:'블루라인파크 스카이캡슐 10회차(13:00~13:30 입장) · 예매완료 (2인+3인 2대 · 105,000원 · 약 30분)',
       place:'해운대블루라인파크 미포정거장', lat:35.1581526, lng:129.1728147, addr:'부산 해운대구 달맞이길62번길 13',
-      move:'광안역 2호선 → 해운대역(12분) → 141번 버스 환승 미포 하차 (총 약 30~35분)',
-      note:'13:45 탑승 목표 · 해변열차는 시간 지정 없이 현장 발권·선착순이라 13:45~14:00 사이 타면 됨 · 1회권은 내리면 재탑승 불가 (청사포 또는 다릿돌전망대 중 한 곳 하차)', req:true },
+      move:'광안역 2호선 → 해운대역(12분) → 141번 버스 환승 미포 하차 (총 약 35~40분) · 늦을 듯하면 택시 2대 약 15~20분',
+      note:'예매번호 RS26022020029 · 모바일 티켓(https://tket.me/9e5iXAl) · 13:30 전 미포 게이트 입장 필수! 대중교통 약 35~40분(늦을 듯하면 광안역→미포 택시 2대 약 15~20분)',
+      ticket:'https://tket.me/9e5iXAl', req:true },
 
-    { no:6, day:0, s:'14:05', e:'15:00', tag:'관광', title:'청사포 다릿돌전망대 스카이워크',
+    { no:6, day:0, s:'14:00', e:'15:00', tag:'관광', title:'청사포 다릿돌전망대 스카이워크',
       desc:'투명 유리 전망대 · 무료',
       place:'청사포다릿돌전망대', lat:35.1641889, lng:129.1963140, addr:'부산 해운대구 중동 산 3-9',
-      move:'해변열차 청사포 하차 → 해안 데크길 도보 10분 (600m)',
-      note:'전망대 보고 15:00까지 청사포정거장으로 복귀 · 바닥 유리에 사람 많으면 30분이면 충분' },
+      move:'스카이캡슐 청사포 하차 → 해안 데크길 도보 10분 (600m)',
+      note:'스카이캡슐 13:50~14:00경 청사포 도착 · 전망대 보고 15:00까지 청사포정거장으로 복귀 · 바닥 유리에 사람 많으면 30분이면 충분' },
 
     { no:7, day:0, s:'15:00', e:'16:20', tag:'카페', title:'밀창고 (해리단길)',
       desc:'매일 09:00~18:00 · 해리단길 베이커리카페 (지하1층)',
@@ -1553,6 +1555,7 @@
             '<li class="dist" data-dist hidden><span class="ic">🧭</span><span></span></li>',
           '</ul>',
           s.note ? '<p class="note' + (s.req ? ' req' : '') + '">' + (s.req ? '⏰ ' : '💡 ') + esc(s.note) + '</p>' : '',
+          s.ticket ? '<a class="tkt" href="' + esc(s.ticket) + '" target="_blank" rel="noopener">🎫 스카이캡슐 모바일 티켓 열기</a>' : '',
           s.no === 1 ? ktxBadgeHtml('down') : '',
           s.no === 17 ? ktxBadgeHtml('up') : '',
           s.no === 9 ? wxBadgeHtml() : '',
@@ -1881,7 +1884,7 @@
   const CHECK_TBL = 'trip_checklist';
   const CHECK_DEF_KEY = 'info_checklist_items';
   const CHECK_DEFAULTS = [
-    { id:'sky',   title:'해변열차 13:45 미포 출발 · 5인 1회권', sub:'11/28(토) 미포 → 청사포 · 1인 10,000원 · 하차 후 재탑승 불가', required:false },
+    { id:'sky',   title:'스카이캡슐 10회차 13:00~13:30 입장 · 2인+3인 2대', sub:'11/28(토) 미포 → 청사포 · 예매완료 105,000원 · 13:30 전 미포 게이트 입장 필수 (RS26022020029)', required:true },
     { id:'catch', title:'영진돼지국밥 경성부경점 웨이팅 확인', sub:'11/28 11:15 점심 · 현장 번호표', required:false },
     { id:'pizza', title:'이재모피자 포장 사전 주문', sub:'11/29 14:10 픽업 · 치즈크러스트', required:true },
     { id:'locker',title:'광안역(11/28)·부산역(11/29) 물품보관함', sub:'11/28 12:45 광안역 B1에 맡기고 19:30 전에 찾기 · 11/29 10:50 부산역에 맡기고 14:10에 찾기', required:true },
@@ -4220,7 +4223,7 @@
   /* ============ weather: 해운대·광안리 (Open-Meteo · 키 없음 · CORS 허용) ============ */
   const WX_TRIP_DAYS = ['2026-11-28', '2026-11-29'];
   const WX_KEY_HOURS = [
-    { d:'2026-11-28', h:13, lab:'11/28 13:45 해변열차' },
+    { d:'2026-11-28', h:13, lab:'11/28 13:00 스카이캡슐' },
     { d:'2026-11-28', h:19, lab:'11/28 19:00 드론쇼' },
     { d:'2026-11-29', h:8,  lab:'11/29 08:30 체크아웃' },
     { d:'2026-11-29', h:14, lab:'11/29 14:47 KTX' }
@@ -4751,9 +4754,9 @@
       place_facts: {
         resort: '한화리조트 해운대 (부산 해운대구 마린시티3로 52)',
         seoul_meet: '서울역 롯데리아 서울역사점 (서울 중구 한강대로 405) · 11/28 07:00 아침 식사 인원 집합, 식사 안 하면 07:30 집합, 07:50 KTX',
-        gwangalli_locker: '광안역 B1(5번 출입구 방향) 물품보관함 · 80칸(소50·대20·특대10) · 주말 3시간 기준 소 2,700·대 4,950·특대 6,600원, 이후 시간당 추가 · 11/28 12:45~13:10 보관, 드론쇼 뒤 찾아서 2호선 동백역(한화리조트)으로 · 11/29는 부산역 보관함',
+        gwangalli_locker: '광안역 B1(5번 출입구 방향) 물품보관함 · 80칸(소50·대20·특대10) · 주말 3시간 기준 소 2,700·대 4,950·특대 6,600원, 이후 시간당 추가 · 11/28 12:15~12:40 보관, 드론쇼 뒤 찾아서 2호선 동백역(한화리조트)으로 · 11/29는 부산역 보관함',
         drone_show: '광안리 M 드론라이트쇼 · 11/28(토) 19:00 · 무료',
-        beach_train: '블루라인파크 해변열차 11/28 13:45 미포→청사포 · 1회권 1인 10,000원(5인 50,000원) · 하차 후 재탑승 불가 · 청사포 또는 다릿돌전망대 중 한 곳 하차',
+        skycapsule: '블루라인파크 스카이캡슐 11/28 10회차 13:00~13:30 입장 미포→청사포 · 2인+3인 2대 · 105,000원 · 예매완료(RS26022020029 · https://tket.me/9e5iXAl) · 13:30 전 미포 게이트 입장 필수 · 광안역→미포 대중교통 35~40분, 늦으면 택시 2대 15~20분',
         milchango: '밀창고 (부산 해운대구 우동1로 46 지하1층) · 매일 09:00~18:00 · 해리단길 베이커리카페 · 11/28 15:30~16:20'
       }
     };
