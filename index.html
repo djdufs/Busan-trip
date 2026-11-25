@@ -761,6 +761,15 @@
   .mg-turn{display:flex;align-items:center;gap:5px;background:#fff8ec;border:1px solid #f5d9ae;border-radius:11px;padding:9px 11px;font-size:12px;font-weight:800;color:#8a5300;margin-bottom:9px}
   .mg-turn b{font-size:13.5px;font-weight:900;color:#6d4100}
   .mg-turn span{margin-left:auto;font-size:10.5px;font-weight:800;color:#a96600;background:#fff;border:1px solid #f5d9ae;border-radius:8px;padding:2px 7px}
+  .mg-order{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:0 0 9px}
+  .mg-order em{font-style:normal;font-size:10px;color:var(--ink3);font-weight:800}
+  .mg-order .o{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:4px 8px 4px 5px;font-size:11.5px;font-weight:800;color:var(--ink2)}
+  .mg-order .o i{font-style:normal;font-size:9.5px;font-weight:900;color:#fff;background:#9aa9bc;border-radius:6px;padding:1px 4px;font-variant-numeric:tabular-nums}
+  .mg-order .o.done{opacity:.5}
+  .mg-order .o.done i{background:#c3ccdb}
+  .mg-order .o.now{background:#fff3d8;border-color:#f0c274;color:#6d4100;box-shadow:0 0 0 2px rgba(255,176,32,.18)}
+  .mg-order .o.now i{background:#e08c00}
+  .mg-rank li em.cd{max-width:52%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mg-deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px}
   .mgc{position:relative;aspect-ratio:3/4;perspective:700px;background:none;border:0;padding:0}
   .mgc-in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.9,.3,1)}
@@ -5221,7 +5230,7 @@
 
   function ntfRegister() {
     if (ntf.reg) return Promise.resolve(ntf.reg);
-    return navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function (reg) {
+    return navigator.serviceWorker.register('./sw.js?v=2026-11-26.1', { scope: './' }).then(function (reg) {
       ntf.reg = reg;
       return reg;
     });
@@ -6048,7 +6057,7 @@
 
   function cgSetupHTML() {
     let h = '<div class="mg-panel"><b>🃏 부산 복불복 카드</b><p>' +
-      '카드를 한 장씩 뒤집어요. <b>🦅 꽝 1장</b>을 뽑은 사람이 커피 당첨! 한 폰을 돌려가며 해도 되고, 순서대로 각자 폰에서 해도 돼요.</p></div>';
+      '카드를 한 장씩 뒤집어요. <b>🦅 꽝 1장</b>을 뽑은 사람이 커피 당첨! <b>뽑는 순서는 시작할 때마다 랜덤으로 섞여요.</b> 한 폰을 돌려가며 하면 모두 같은 순서로 진행돼요.</p></div>';
     h += '<h3 class="mg-h">참가 인원 <span class="cnt">' + cg.players.length + '명</span></h3>';
     h += '<div class="mgmates">' + AUTHORS.map(function (a) {
       return '<button type="button" class="mgmate' + (cg.players.indexOf(a) >= 0 ? ' on' : '') + '" data-mg="cmate" data-name="' + esc(a) + '">' + esc(a) + '</button>';
@@ -6060,7 +6069,19 @@
     h += '<div class="mg-input"><input id="mgPenInput" type="text" maxlength="24" value="' + esc(cg.penalty) +
       '" placeholder="직접 입력 (예: 아아 쏘기)" aria-label="내기 항목" autocomplete="off"></div>';
     h += '<button class="mgbtn gold" data-mg="cstart" type="button" style="width:100%">🃏 카드 섞고 시작</button>';
-    h += '<p class="mg-note">인원 수만큼 카드가 깔리고 그중 1장이 꽝이에요. 순서대로 한 장씩 뒤집으면 반드시 한 명이 걸려요.</p>';
+    h += '<p class="mg-note">인원 수만큼 카드가 깔리고 그중 1장이 꽝이에요. 순서대로 한 장씩 뒤집으면 반드시 한 명이 걸려요. 순서는 매 판 무작위로 새로 섞여요.</p>';
+    return h;
+  }
+
+  function cgOrderHTML() {
+    if (!cg.seats.length) return '';
+    let h = '<div class="mg-order" aria-label="뽑는 순서">';
+    cg.seats.forEach(function (n, i) {
+      const cls = i < cg.turn ? ' done' : (i === cg.turn ? ' now' : '');
+      h += (i ? '<em>›</em>' : '') + '<span class="o' + cls + '">' +
+        '<i>' + (i + 1) + '</i>' + esc(n) + '</span>';
+    });
+    h += '</div>';
     return h;
   }
 
@@ -6068,6 +6089,7 @@
     const who = cg.seats[cg.turn] || '';
     const left = cg.cards.filter(function (c) { return !c.open; }).length;
     let h = '<div class="mg-turn">🎯 <b>' + esc(who) + '</b> 차례 — 카드 1장 골라!<span>' + left + '장 남음</span></div>';
+    h += cgOrderHTML();
     h += '<div class="mg-deck">';
     cg.cards.forEach(function (c, i) {
       h += '<button type="button" class="mgc' + (c.open ? ' flip' : '') + (c.trap ? ' trap' : '') + '"' +
@@ -6078,12 +6100,19 @@
         '</span></button>';
     });
     h += '</div>';
-    h += '<p class="mg-note">내기: <b>' + esc(cg.penalty) + '</b> · 꽝 1장. 뒤집은 카드는 그 사람 몫이에요.</p>';
+    h += '<p class="mg-note">내기: <b>' + esc(cg.penalty) + '</b> · 꽝 1장. 뒤집은 카드는 그 사람 몫이에요. <b>' +
+      (cg.turn + 1) + '번째</b> 차례예요.</p>';
     return h;
   }
 
   function cgDoneHTML() {
     let h = '<div class="mg-lose">' + MG_TRAP.ic + ' ' + esc(MG_TRAP.tx) + '<b>' + esc(cg.loser) + '</b><span>내기: ' + esc(cg.penalty) + '</span></div>';
+    h += '<h3 class="mg-h">뽑은 순서 <span class="cnt">' + cg.seats.length + '명</span></h3>';
+    h += '<ol class="mg-rank">' + cg.seats.map(function (n, i) {
+      const c = cg.cards.filter(function (x) { return x.by === n; })[0];
+      return '<li' + (n === cg.loser ? ' class="lose"' : '') + '><span>' + (i + 1) + '</span><b>' + esc(n) + '</b><em class="cd">' +
+        (c ? c.ic + ' ' + esc(c.tx) : '—') + '</em></li>';
+    }).join('') + '</ol>';
     h += '<div class="mg-deck" style="margin-top:10px">';
     cg.cards.forEach(function (c, i) {
       h += '<div class="mgc flip' + (c.trap ? ' trap' : '') + '"><span class="mgc-in">' +
@@ -6095,7 +6124,7 @@
       '<button class="mgbtn gold" data-mg="cpost" type="button"' + (cg.posted ? ' disabled' : '') + '>' +
       (cg.posted ? '✓ 톡방에 박제됨' : '📢 톡방에 결과 박제') +
       '</button><button class="mgbtn ghost" data-mg="cagain" type="button">🔄 다시하기</button></div>';
-    h += '<p class="mg-note">다시하기는 같은 인원·내기로 카드를 새로 섞어요. · <button type="button" class="mg-link" data-mg="csetup">인원·내기 바꾸기</button></p>';
+    h += '<p class="mg-note">다시하기는 같은 인원·내기로 카드와 <b>뽑는 순서를 새로 섞어요</b>. · <button type="button" class="mg-link" data-mg="csetup">인원·내기 바꾸기</button></p>';
     return h;
   }
 
@@ -6111,7 +6140,7 @@
     if (input) cg.penalty = String(input.value || '').replace(/\s+/g, ' ').trim().slice(0, 24);
     const pen = cg.penalty || MG_PEN[0];
     cg.penalty = pen;
-    const names = cg.players.slice();
+    const names = cgShuffleSeats(cg.players.slice());
     if (names.length < 2) { toast('2명 이상 골라 주세요'); return; }
     const pool = mgShuffle(MG_VENUE.slice());
     const deck = [];
@@ -6128,6 +6157,16 @@
     cg.posted = false;
     cg.phase = 'play';
     mgPaintCards();
+  }
+
+  /* 뽑는 순서(턴 순서)를 매 판 Fisher-Yates로 새로 섞는다.
+     바로 앞 판과 같은 순서가 나오면(확률적으로) 다시 섞어, 매번 순서가 바뀌게 한다. */
+  function cgShuffleSeats(list) {
+    const prev = (cg.seats || []).join('|');
+    const out = mgShuffle(list.slice());
+    if (!prev || list.length < 2) return out;
+    for (let k = 0; k < 12 && out.join('|') === prev; k++) mgShuffle(out);
+    return out;
   }
 
   function cgFlip(i) {
@@ -6219,6 +6258,7 @@
     if (cg.posted || !cg.loser) return;
     const text = '☕ 커피내기 · 🃏 부산 복불복 (' + mgTemp() + ')\n' +
       '내기: ' + cg.penalty + ' · ' + cg.seats.length + '명\n' +
+      '뽑는 순서: ' + cg.seats.join(' → ') + '\n' +
       MG_TRAP.ic + ' ' + MG_TRAP.tx + ' → ' + cg.loser + ' 당첨';
     mgPostText(text, function () { cg.posted = true; mgPaintCards(); });
   }
