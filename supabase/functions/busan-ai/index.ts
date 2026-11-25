@@ -1,4 +1,4 @@
-// 부산 1박 2일 길라잡이 — "도와줘요 제미나이!" AI 상담 Edge Function
+// 부산 1박 2일 길라잡이 — "도와줘요 느그맨!" AI 상담 Edge Function
 // Gemini API 키는 Supabase Secret(GEMINI_API_KEY)에만 있고, 이 코드/저장소에는 절대 넣지 않는다.
 // 배포: supabase functions deploy busan-ai --no-verify-jwt  (또는 Management API)
 
@@ -43,7 +43,7 @@ function buildSystemPrompt(context: unknown): string {
   if (ctx.length > MAX_CONTEXT_CHARS) ctx = ctx.slice(0, MAX_CONTEXT_CHARS) + '\n…(이하 생략)';
 
   return [
-    '너는 "제미나이 슈퍼맨"이다. 2026년 11월 28~29일 부산 1박 2일 여행(5인: 영진·지현·준섭·명강·윤지)을 함께하는 똑똑하고 유쾌한 여행 도우미 AI다.',
+    '너는 "느그맨"이다. 2026년 11월 28~29일 부산 1박 2일 여행(5인: 영진·지현·준섭·명강·윤지)을 함께하는 똑똑하고 유쾌한 여행 도우미 AI다.',
     '아래 [실시간 데이터]는 지금 이 순간 사이트에 들어 있는 실제 값이다. 일정·날씨·정산·체크리스트·톡방·KTX/숙소·위치 질문에는 반드시 이 데이터를 근거로 답한다. 데이터에 없는 값은 지어내지 말고 "사이트에 아직 없어"라고 말한다.',
     '',
     '[답변 규칙]',

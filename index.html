@@ -584,7 +584,7 @@
   .ktxtbl .sv.err{color:#c33f24}
 
 
-  /* ---------- 🦸 제미나이 슈퍼맨 AI 상담 (우측 중앙 플로팅 · 톡방 FAB와 분리) ---------- */
+  /* ---------- 🦸 느그맨 AI 상담 (우측 중앙 플로팅 · 톡방 FAB와 분리) ---------- */
   .gemfab{position:fixed;right:8px;top:50%;transform:translateY(-50%);z-index:85;
     width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     background:radial-gradient(120% 120% at 32% 18%,#ffffff 0%,#eef4ff 46%,#dde8ff 100%);
@@ -902,7 +902,7 @@
   <button class="fab" id="fabSettle" type="button">💰 정산</button>
 </div>
 
-<!-- 🦸 제미나이 슈퍼맨 — 화면 우측 중앙 플로팅 AI 상담 -->
+<!-- 🦸 느그맨 — 화면 우측 중앙 플로팅 AI 상담 -->
 <div class="gem-bubble" id="gemBubble" role="status" aria-live="polite"></div>
 <button class="gemfab" id="gemFab" type="button" aria-label="도와줘요 느그맨 — AI 여행 상담 열기"></button>
 
@@ -4551,9 +4551,9 @@
     if (!document.hidden) refresh();
   });
 
-  /* ============ 🦸 제미나이슈퍼맨 AI 상담 (Supabase Edge Function busan-ai → Gemini) ============ */
+  /* ============ 🦸 느그맨 AI 상담 (Supabase Edge Function busan-ai → Gemini) ============ */
   const AI_FN = SUPA + '/functions/v1/busan-ai';
-  const AI_GREET = '안녕, 나는 제미나이슈퍼맨이야! 🦸\n지금 사이트에 들어 있는 일정·날씨(드론쇼)·정산·체크리스트·톡방·KTX 보드·내 위치를 실시간으로 보고 답해줄게. 아래 칩을 눌러도 되고, 아무거나 물어봐!';
+  const AI_GREET = '안녕, 나는 느그맨이야! 🦸\n지금 사이트에 들어 있는 일정·날씨(드론쇼)·정산·체크리스트·톡방·KTX 보드·내 위치를 실시간으로 보고 답해줄게. 아래 칩을 눌러도 되고, 아무거나 물어봐!';
   const AI_CHIPS = [
     { t: '💰 정산 얼마 보내야 해?', q: '지금 정산 내역 기준으로 각자 누구에게 얼마 보내야 하는지 정리해줘.' },
     { t: '📍 지금 다음 코스 안내해줘', q: '지금 시각 기준 다음 코스가 뭐고, 거기까지 어떻게 얼마나 걸려서 가는지 알려줘.' },
@@ -4789,7 +4789,7 @@
 
   function aiToggle() {
     if (ai.open) { closeSheets(); return; }
-    gemBubble('도와줘요 제미나이! 💫', 900);
+    gemBubble('도와줘요 느그맨! 💫', 900);
     clearTimeout(ai.animTimer);
     ai.animTimer = setTimeout(function () { aiOpen(); }, 420);
   }
@@ -4838,7 +4838,7 @@
     av.innerHTML = GEM_SVG;
     const bub = document.createElement('div');
     bub.className = 'ai-bub';
-    bub.innerHTML = '<span class="ai-typing">🦸 슈퍼맨이 계산 중<em></em><em></em><em></em></span>';
+    bub.innerHTML = '<span class="ai-typing">🦸 느그맨이 계산 중<em></em><em></em><em></em></span>';
     row.appendChild(av);
     row.appendChild(bub);
     L.appendChild(row);
@@ -4933,7 +4933,7 @@
         return;
       }
       if (res.status === 429) { fail('지금 질문이 너무 많아 — 잠깐 뒤에 다시 시도해줘 🙏'); return; }
-      fail('슈퍼맨이 잠깐 길을 잃었어… 다시 시도해줘!' + (j && j.error ? ' (' + j.error + ')' : ''));
+      fail('느그맨이 잠깐 길을 잃었어… 다시 시도해줘!' + (j && j.error ? ' (' + j.error + ')' : ''));
     }).catch(function (e) {
       const aborted = e && (e.name === 'AbortError');
       fail(aborted ? '응답이 너무 늦어서 멈췄어. 다시 시도해줘!' : '인터넷이 불안정한가 봐. 다시 시도해줘!');
@@ -4968,7 +4968,7 @@
     if (!hinted) {
       ai.hiTimer = setTimeout(function () {
         if (ai.open) return;
-        gemBubble('도와줘요 제미나이! 💫', 2600);
+        gemBubble('도와줘요 느그맨! 💫', 2600);
         try { sessionStorage.setItem('busanTrip.aiHint', '1'); } catch (e) {}
       }, 2600);
     }
