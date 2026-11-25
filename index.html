@@ -5412,7 +5412,7 @@
   const mg = {
     open:false, ws:null, joined:false, ref:0, joinRef:'0', heart:0, pingT:0, retry:0,
     mode:'react', phase:'lobby', players:{}, round:null, results:{}, nudge:null,
-    sigT:0, resT:0, last:null, posted:false
+    sigT:0, resT:0, last:null, posted:false, lobbySig:''
   };
 
   const cg = {
@@ -5443,6 +5443,7 @@
     mg.open = true;
     mg.phase = 'lobby'; mg.round = null; mg.results = {}; mg.nudge = null; mg.last = null; mg.posted = false;
     mg.players = {};
+    mg.lobbySig = '';
     mg.players[mgMe()] = { seen: Date.now(), ready: false };
     mgHistoryReset();
     mgConnect();
@@ -5556,8 +5557,7 @@
     cur.seen = Date.now();
     mg.players[me] = cur;
     mgSend('hello', { name: me, ready: !!cur.ready });
-    mgPaintLive();
-    mgPaintChips();
+    mgPaintRoster();
   }
 
   function mgRecv(ev, d) {
@@ -5569,15 +5569,12 @@
       cur.seen = Date.now();
       if (typeof d.ready === 'boolean') cur.ready = d.ready;
       mg.players[n] = cur;
-      mgPaintLive();
-      mgPaintChips();
-      if (mg.phase === 'lobby') mgPaintStage();
+      mgPaintRoster();
       return;
     }
     if (ev === 'bye') {
       delete mg.players[String(d.name || '')];
-      mgPaintLive(); mgPaintChips();
-      if (mg.phase === 'lobby') mgPaintStage();
+      mgPaintRoster();
       return;
     }
     if (ev === 'ready') {
@@ -5586,8 +5583,7 @@
       const cur = mg.players[n] || { seen: Date.now(), ready: false };
       cur.ready = !!d.on; cur.seen = Date.now();
       mg.players[n] = cur;
-      mgPaintChips();
-      if (mg.phase === 'lobby') mgPaintStage();
+      mgPaintRoster();
       return;
     }
     if (ev === 'start') { mgOnStart(d); return; }
@@ -5617,8 +5613,7 @@
     cur.seen = Date.now();
     mg.players[me] = cur;
     mgSend('ready', { name: me, on: cur.ready });
-    mgPaintChips();
-    mgPaintStage();
+    mgPaintRoster();
   }
 
   /* ---------- ① 게임 시작 / 반응속도 ---------- */
@@ -5875,6 +5870,18 @@
     if (n) n.innerHTML = '';
   }
 
+  function mgLobbySig() {
+    const list = mgRoster();
+    const ready = list.filter(function (p) { return mg.players[p] && mg.players[p].ready; });
+    return list.join(',') + '|' + ready.length;
+  }
+
+  function mgPaintRoster() {
+    mgPaintLive();
+    mgPaintChips();
+    if (mg.phase === 'lobby' && mgLobbySig() !== mg.lobbySig) mgPaintStage();
+  }
+
   function mgPaintRealtime() {
     $$('#mgMode button').forEach(function (b) {
       b.classList.toggle('on', b.getAttribute('data-mode') === mg.mode);
@@ -5912,7 +5919,7 @@
   function mgPaintStage() {
     const stage = document.getElementById('mgStage');
     if (!stage) return;
-    if (mg.phase === 'lobby') { stage.innerHTML = mgLobbyHTML(); return; }
+    if (mg.phase === 'lobby') { mg.lobbySig = mgLobbySig(); stage.innerHTML = mgLobbyHTML(); return; }
     if (mg.phase === 'armed' || mg.phase === 'signal') { mgPaintSignal(); return; }
     if (mg.phase === 'result' || mg.phase === 'nresult') { stage.innerHTML = mgResultHTML(); return; }
     if (mg.phase === 'nudge') { stage.innerHTML = mgNudgeHTML(); return; }
