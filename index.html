@@ -742,8 +742,8 @@
 
   <section class="hero">
     <div class="k">2026.11.28 SAT — 11.29 SUN</div>
-    <h1>부산 1박 2일 길라잡이</h1>
-    <p>지금 어디 있어야 하는지, 다음까지 얼마나 걸리는지 한 화면에.</p>
+    <h1>느그여행 in Busan</h1>
+    <p>실시간 위치 기반 코스를 안내하는 여행가이드 Web프로젝트</p>
     <div class="chips">
       <span>👥 5인</span><span>🏨 한화리조트 해운대</span><span>🚄 서울 07:50 출발</span>
     </div>
@@ -871,7 +871,7 @@
     <span class="mc-l">
       <span class="mc-k">🎫 KTX · 숙소 공유 보드</span>
       <span class="mc-v" id="tkRoom">호실 미입력</span>
-      <span class="mc-s" id="tkSub">5인 좌석·숙소 호실을 함께 채워요 — 눌러서 입력</span>
+      <span class="mc-s" id="tkSub">5인 좌석·숙소 호실을 입력합니다.</span>
     </span>
     <span class="mc-go">보드 열기 ›</span>
   </button>
@@ -892,7 +892,7 @@
   <p class="foot">
     <b>부산 1박 2일</b> · 2026.11.28–29 · 5인<br>
     지도 © OpenStreetMap contributors · 장소 정보 © Kakao Map<br>
-    실시간 시각은 기기 시계 기준(한국 시간)이에요.
+    실시간 시각은 기기 시계 기준(한국 시간).
   </p>
 </main>
 
@@ -904,20 +904,20 @@
 
 <!-- 🦸 제미나이 슈퍼맨 — 화면 우측 중앙 플로팅 AI 상담 -->
 <div class="gem-bubble" id="gemBubble" role="status" aria-live="polite"></div>
-<button class="gemfab" id="gemFab" type="button" aria-label="도와줘요 제미나이 — AI 여행 상담 열기"></button>
+<button class="gemfab" id="gemFab" type="button" aria-label="도와줘요 느그맨 — AI 여행 상담 열기"></button>
 
-<aside class="sheet aisheet" id="aiSheet" role="dialog" aria-modal="true" aria-label="도와줘요 제미나이 AI 상담" aria-hidden="true" inert>
+<aside class="sheet aisheet" id="aiSheet" role="dialog" aria-modal="true" aria-label="도와줘요 느그맨 AI 상담" aria-hidden="true" inert>
   <div class="sheet-in">
     <div class="grab"></div>
     <div class="sheet-head">
-      <h2><span class="ai-hero" id="aiHero"></span> 도와줘요 제미나이!</h2>
+      <h2><span class="ai-hero" id="aiHero"></span> 도와줘요 느그맨!</h2>
       <span class="ai-who">접속자 <b id="aiWho">미선택</b></span>
       <button class="xbtn" id="btnAiClose" aria-label="닫기">✕</button>
     </div>
     <div class="ai-chips" id="aiChips"></div>
     <div class="ai-list" id="aiList" aria-live="polite"></div>
     <div class="ai-in">
-      <textarea id="aiText" rows="1" maxlength="500" placeholder="뭐든 물어봐 (Enter 전송)" aria-label="제미나이에게 질문하기"></textarea>
+      <textarea id="aiText" rows="1" maxlength="500" placeholder="뭐든 물어봐 (Enter 전송)" aria-label="느그맨에게 질문하기"></textarea>
       <button class="ai-send" id="aiSend" type="button">전송</button>
     </div>
   </div>
@@ -969,7 +969,7 @@
 
       <h3>🎒 챙길 것</h3>
       <p class="fine" style="font-size:12px;color:var(--ink2)">
-        신분증 · KTX 승차권 · 보조배터리 · 충전기 · 11월 부산 바닷바람용 겉옷 · 보드게임 · 편한 신발(168계단·데크길)
+        신분증 · KTX 승차권 · 보조배터리 · 충전기 · 11월 부산 바닷바람용 겉옷 · 보드게임 · 편한 신발
       </p>
     </div>
   </div>
@@ -1025,14 +1025,14 @@
             <b class="sttotal" id="stTotal">0원</b>
             <span class="stcap" id="stSub" style="display:block;text-align:left">0건 · 5인 평균 0원</span>
           </div>
-          <span class="stcap">최소 송금 횟수로<br>자동 매칭</span>
+          <span class="stcap">최소 송금 횟수로<br>자동 매칭 정산</span>
         </div>
         <table class="sttbl">
           <thead><tr><th>이름</th><th>결제</th><th>부담</th><th>차액</th></tr></thead>
           <tbody id="stTable"></tbody>
         </table>
         <div class="xfer">
-          <h4>💸 이렇게 보내면 끝</h4>
+          <h4>💸 최종 정산 금액</h4>
           <ul id="stXfer"></ul>
         </div>
         <button class="stcopy" id="btnStCopy" type="button">📋 카톡 복사용 정산 요약</button>
