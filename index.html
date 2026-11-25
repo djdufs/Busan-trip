@@ -680,6 +680,99 @@
   .ntf-list li{background:#f7f9fd;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
   .ntf-list b{color:var(--ink)}
   .ntf-note{margin:14px 0 0;font-size:11.5px;color:var(--ink3);line-height:1.6}
+
+  /* ---------- 🎮 커피내기 미니게임 ---------- */
+  .mgcard{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border-radius:var(--r);padding:12px 13px;margin-bottom:12px;color:#fff;border:1px solid #2b3f5e;background:linear-gradient(135deg,#22314a 0%,#16233a 55%,#3a2a16 100%);box-shadow:0 8px 22px rgba(14,26,43,.16)}
+  .mgcard .mgc-l{flex:1 1 auto;min-width:0}
+  .mgcard .mgc-k{display:block;font-size:10.5px;font-weight:800;color:#ffcf7a;letter-spacing:.4px}
+  .mgcard .mgc-v{display:block;font-size:16px;font-weight:850;letter-spacing:-.4px;line-height:1.25;margin-top:1px}
+  .mgcard .mgc-s{display:block;font-size:10.5px;font-weight:700;color:#9fb2ca;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mgcard .mgc-go{flex:0 0 auto;font-size:11px;font-weight:850;color:#3a2400;background:#ffb020;border-radius:9px;padding:7px 10px}
+
+  .gamesheet .sheet-in{flex:1 1 auto;min-height:0}
+  .mg-who{font-size:10.5px;color:var(--ink3);font-weight:700;margin-left:auto;margin-right:8px;white-space:nowrap}
+  .mg-chatbtn{width:28px;height:28px;border-radius:9px;background:#eef4ff;border:1px solid #d7e1fb;color:#1e42a8;font-size:13px;display:flex;align-items:center;justify-content:center;margin-right:6px}
+  .mg-tabs{display:flex;gap:6px;padding:9px 14px 10px;border-bottom:1px solid var(--line)}
+  .mg-tabs button{flex:1 1 0;font-size:11.5px;font-weight:800;padding:8px 4px;border-radius:10px;background:#f2f5fa;color:var(--ink2);border:1px solid var(--line);white-space:nowrap}
+  .mg-tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .mg-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 14px calc(22px + env(safe-area-inset-bottom))}
+  .mg-pane{display:none}
+  .mg-pane.on{display:block}
+  .mg-seg{display:flex;gap:6px;margin-bottom:9px}
+  .mg-seg button{flex:1 1 0;font-size:12px;font-weight:800;padding:9px 4px;border-radius:11px;background:#fff;border:1px solid var(--line);color:var(--ink2)}
+  .mg-seg button.on{background:#eef4ff;border-color:#c9d9fb;color:#1e42a8}
+  .mg-seg button:disabled{opacity:.55}
+  .mg-live{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;color:#0b7a4d;background:#f2fbf6;border:1px solid #c7edd8;border-radius:10px;padding:7px 9px;margin-bottom:9px}
+  .mg-live .dot{width:6px;height:6px}
+  .mg-live.off{background:#f7f9fd;border-color:var(--line);color:var(--ink3)}
+  .mg-live.off .dot{background:#c3cede;box-shadow:none}
+  .mg-live b{margin-left:auto;font-weight:850;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+  .mg-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+  .mg-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;padding:5px 9px;border-radius:999px;background:#f2f5fa;color:var(--ink2);border:1px solid var(--line)}
+  .mg-chip.me{background:#eef4ff;border-color:#c9d9fb;color:#1e42a8}
+  .mg-chip.ready{background:var(--okb);border-color:#c7edd8;color:#0b7a4d}
+  .mg-panel{background:#f8fafd;border:1px solid var(--line);border-radius:13px;padding:11px 12px;margin-bottom:10px}
+  .mg-panel b{display:block;font-size:12.5px;font-weight:850;letter-spacing:-.2px}
+  .mg-panel p{margin:4px 0 0;font-size:11px;color:var(--ink2);line-height:1.55;font-weight:600}
+  .mg-panel p b{display:inline;font-size:inherit;color:var(--ink)}
+  .mg-h{font-size:12.5px;font-weight:850;margin:14px 0 7px;letter-spacing:-.2px;display:flex;align-items:center;gap:6px}
+  .mg-h .cnt{margin-left:auto;font-size:11px;color:var(--ink3);font-weight:700}
+  .mg-sig{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:100%;min-height:154px;border-radius:16px;border:2px solid;padding:18px 12px;text-align:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+  .mg-sig b{font-size:22px;font-weight:900;letter-spacing:-.5px}
+  .mg-sig small{font-size:11.5px;font-weight:750;opacity:.9}
+  .mg-sig.wait{background:#3a1d18;border-color:#7a2f22;color:#ffb4a4}
+  .mg-sig.go{background:#0f9d63;border-color:#0b7a4d;color:#fff;animation:mgpop .32s ease}
+  .mg-sig.go b{font-size:30px}
+  .mg-sig.mine{cursor:default}
+  @keyframes mgpop{0%{transform:scale(.95)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
+  .mg-sigmeta{margin-top:8px;font-size:11px;font-weight:700;color:var(--ink2);line-height:1.6;text-align:center}
+  .mg-rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+  .mg-rank li{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;font-weight:750}
+  .mg-rank li span{flex:0 0 24px;text-align:center;font-size:13px}
+  .mg-rank li b{flex:1 1 auto;min-width:0;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mg-rank li em{font-style:normal;font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:800}
+  .mg-rank li.lose{background:#ffece7;border-color:#f6c3b7;color:#a8391f}
+  .mg-rank li.lose em{color:#a8391f}
+  .mg-lose{margin-top:10px;background:#ffece7;border:1px solid #f6c3b7;border-radius:12px;padding:12px;text-align:center;color:#a8391f;font-size:12.5px;font-weight:800;line-height:1.4}
+  .mg-lose b{display:block;font-size:18px;margin-top:3px;letter-spacing:-.4px}
+  .mg-lose span{display:block;font-size:11px;font-weight:700;margin-top:3px;opacity:.9}
+  .mg-row{display:flex;gap:7px}
+  .mgbtn{flex:1 1 0;border-radius:12px;padding:12px 8px;font-size:12.5px;font-weight:850;background:var(--navy);color:#fff}
+  .mgbtn.ghost{background:#fff;color:var(--ink2);border:1px solid var(--line)}
+  .mgbtn.gold{background:#ffb020;color:#3a2400}
+  .mgbtn:disabled{opacity:.55}
+  .mg-note{font-size:10.5px;color:var(--ink3);line-height:1.6;margin:10px 0 0;font-weight:650}
+  .mg-link{font-size:10.5px;font-weight:800;color:#1e42a8;text-decoration:underline;padding:0}
+  .mg-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(62px,1fr));gap:7px;margin-bottom:10px}
+  .mg-nums button{aspect-ratio:1;border-radius:13px;background:#fff;border:1px solid var(--line);font-size:19px;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+  .mg-nums button:disabled{opacity:1}
+  .mg-nums button.now{border-color:#ffb020;box-shadow:0 0 0 3px rgba(255,176,32,.18);background:#fff8ec}
+  .mg-nums button.taken{background:#eef2f8;color:var(--ink3);border-color:var(--line)}
+  .mg-nums button b{font-size:15px;font-weight:900;color:var(--ink2)}
+  .mg-nums button span{font-size:10px;font-weight:800;color:var(--ink3)}
+  .mgmates{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px}
+  .mgmate{font-size:11.5px;font-weight:800;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink3)}
+  .mgmate.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .mg-pres{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+  .mg-pres button{font-size:11px;font-weight:800;padding:6px 9px;border-radius:9px;background:#f2f5fa;border:1px solid var(--line);color:var(--ink2)}
+  .mg-pres button.on{background:#eef4ff;border-color:#c9d9fb;color:#1e42a8}
+  .mg-input{display:flex;gap:6px;margin-bottom:10px}
+  .mg-input input{flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:inherit;font-size:12.5px;background:#fff;color:var(--ink)}
+  .mg-turn{display:flex;align-items:center;gap:5px;background:#fff8ec;border:1px solid #f5d9ae;border-radius:11px;padding:9px 11px;font-size:12px;font-weight:800;color:#8a5300;margin-bottom:9px}
+  .mg-turn b{font-size:13.5px;font-weight:900;color:#6d4100}
+  .mg-turn span{margin-left:auto;font-size:10.5px;font-weight:800;color:#a96600;background:#fff;border:1px solid #f5d9ae;border-radius:8px;padding:2px 7px}
+  .mg-deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px}
+  .mgc{position:relative;aspect-ratio:3/4;perspective:700px;background:none;border:0;padding:0}
+  .mgc-in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.9,.3,1)}
+  .mgc.flip .mgc-in{transform:rotateY(180deg)}
+  .mgc-face,.mgc-back{position:absolute;inset:0;border-radius:13px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px;text-align:center;overflow:hidden}
+  .mgc-face{background:linear-gradient(155deg,#1d3153,#0e1a2b);border:1px solid #2c4364;color:#ffd58a;font-size:22px}
+  .mgc-face span{font-size:9px;font-weight:800;letter-spacing:1px;color:#8fa6c2}
+  .mgc-back{transform:rotateY(180deg);background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .mgc-back i{font-style:normal;font-size:22px;line-height:1}
+  .mgc-back span{font-size:9.5px;font-weight:800;line-height:1.3;color:var(--ink2)}
+  .mgc.trap .mgc-back{background:#ffece7;border-color:#f6c3b7;color:#a8391f}
+  .mgc.trap .mgc-back span{color:#a8391f}
 </style>
 </head>
 <body>
@@ -877,6 +970,15 @@
     <span class="mc-go">보드 열기 ›</span>
   </button>
 
+  <button class="mgcard" id="btnGame" type="button">
+    <span class="mgc-l">
+      <span class="mgc-k">🎮 커피내기 미니게임</span>
+      <span class="mgc-v">오늘 커피 쏠 사람 뽑기</span>
+      <span class="mgc-s">⚡ 반응속도·눈치게임(실시간) · 🃏 부산 복불복 카드</span>
+    </span>
+    <span class="mgc-go">열기 ›</span>
+  </button>
+
   <div class="tabs" id="tabs">
     <button type="button" class="d1 on" data-day="0">DAY 1<span class="d">11.28 토 · 10개 코스</span></button>
     <button type="button" class="d2" data-day="1">DAY 2<span class="d">11.29 일 · 6개 코스</span></button>
@@ -899,6 +1001,7 @@
 
 <div class="fabbar">
   <button class="fab chat" id="fabChat" type="button">💬 톡방 <b class="fbadge" id="chatBadge" hidden>0</b></button>
+  <button class="fab game" id="fabGame" type="button">🎮 게임</button>
   <button class="fab bag" id="fabInfo" type="button">🎒 준비물</button>
   <button class="fab" id="fabSettle" type="button">💰 정산</button>
 </div>
@@ -937,6 +1040,7 @@
       <button class="album-link" id="btnAlbum2" type="button">📷 공유 사진첩 <span id="albCount2">0장</span> <em>모아보기 ›</em></button>
       <button class="album-link" id="btnChat2" type="button">💬 5인 톡방 <span id="chatCount2">0개</span> <em>열기 ›</em></button>
       <button class="album-link" id="btnSettle2" type="button">💰 여행 정산 <span id="stCount2">0건</span> <em>정산하기 ›</em></button>
+      <button class="album-link" id="btnGame2" type="button">🎮 커피내기 미니게임 <span>2종</span> <em>열기 ›</em></button>
 
       <h3>✅ 필수 사전 예약 <span class="cnt" id="checkCnt">0 / 0</span></h3>
       <ul class="check" id="checklist"></ul>
@@ -997,6 +1101,7 @@
     <div class="sheet-head">
       <h2>💬 5인 톡방</h2>
       <span class="chat-who">작성자 <b data-who>영진</b></span>
+      <button class="mg-chatbtn" id="btnChatGame" type="button" aria-label="커피내기 미니게임">🎮</button>
       <button class="xbtn" id="btnChatClose" aria-label="닫기">✕</button>
     </div>
     <div class="chat-state" id="chatState"><span class="dot"></span><span id="chatSync">불러오는 중…</span></div>
@@ -1139,6 +1244,36 @@
       </div>
       <p class="fine">호차는 숫자만(예: 7), 좌석은 12A처럼 적어 주세요. 입력하면 45초 안에 5명 화면에 함께 반영돼요. 비워 두면 표시되지 않아요.</p>
       <p class="fine" style="margin-top:6px">가장 정확한 방법은 <b>코레일톡 승차권 화면</b>을 열어 호차·좌석을 확인하고 그대로 적는 거예요.</p>
+    </div>
+  </div>
+</aside>
+
+
+<aside class="sheet gamesheet" id="gameSheet" role="dialog" aria-modal="true" aria-label="커피내기 미니게임" aria-hidden="true" inert>
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h2>🎮 커피내기 미니게임</h2>
+      <span class="mg-who">접속자 <b data-who>미선택</b></span>
+      <button class="xbtn" id="btnGameClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="mg-tabs" id="mgTabs">
+      <button type="button" class="on" data-pane="rt">⚡ 반응속도 · 눈치게임</button>
+      <button type="button" data-pane="card">🃏 복불복 카드</button>
+    </div>
+    <div class="mg-body" id="mgBody">
+      <div class="mg-pane on" id="mgPaneRt">
+        <div class="mg-seg" id="mgMode">
+          <button type="button" class="on" data-mg="mode" data-mode="react">⚡ 반응속도</button>
+          <button type="button" data-mg="mode" data-mode="nudge">👀 눈치게임</button>
+        </div>
+        <div class="mg-live off" id="mgLive"><span class="dot"></span><span>실시간 연결 대기</span><b>OFF</b></div>
+        <div class="mg-chips" id="mgChips"></div>
+        <div id="mgStage"></div>
+      </div>
+      <div class="mg-pane" id="mgPaneCard">
+        <div id="mgCardStage"></div>
+      </div>
     </div>
   </div>
 </aside>
@@ -1390,6 +1525,7 @@
     chatSheet: $('#chatSheet'), chatList: $('#chatList'), chatText: $('#chatText'), chatSend: $('#chatSend'),
     notifySheet: $('#notifySheet'), btnNotify: $('#btnNotify'),
     aiSheet: $('#aiSheet'),
+    gameSheet: $('#gameSheet'),
     chatFile: $('#chatFile'), chatFileBtn: $('#chatFileBtn'), chatPrev: $('#chatPrev'), chatPrevImg: $('#chatPrevImg'),
     chatPrevX: $('#chatPrevX'), chatProg: $('#chatProg'), chatSync: $('#chatSync'), chatState: $('#chatState'),
     whoModal: $('#whoModal'), whoLine: $('#whoLine'), whoState: $('#whoState'), whoHint: $('#whoHint'),
@@ -2209,11 +2345,12 @@
 
   /* ============ sheet ============ */
   function showSheet(node) {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet, el.gameSheet].forEach(function (n) {
       if (!n) return;
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
     if (node !== el.chatSheet && chat.open) chatTeardown();
+    if (node !== el.gameSheet && mg.open) mgTeardown();
     if (node !== el.aiSheet && ai.open) aiOnClosed();
     node.classList.add('on');
     node.removeAttribute('aria-hidden');
@@ -2222,11 +2359,12 @@
     document.body.style.overflow = 'hidden';
   }
   function closeSheets() {
-    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet].forEach(function (n) {
+    [el.sheet, el.albumSheet, el.settleSheet, el.boardSheet, el.chatSheet, el.aiSheet, el.notifySheet, el.gameSheet].forEach(function (n) {
       if (!n) return;
       n.classList.remove('on'); n.setAttribute('aria-hidden', 'true'); n.setAttribute('inert', '');
     });
     if (chat.open) chatTeardown();
+    if (mg.open) mgTeardown();
     if (ai.open) aiOnClosed();
     el.backdrop.classList.remove('on');
     document.body.style.overflow = '';
@@ -5250,6 +5388,874 @@
     });
   }
 
+
+  /* ============================================================
+     🎮 커피내기 미니게임
+       ① ⚡ 실시간 반응속도 / 눈치게임 — Supabase Realtime Broadcast
+       ② 🃏 부산 복불복 카드 뽑기 — 한 폰 돌려가며
+     ============================================================ */
+  const MG_TOPIC = 'realtime:busan-minigame';
+  const MG_PING_MS = 3000;
+  const MG_TTL_MS = 12000;
+  const MG_PEN = ['아아 쏘기', '디저트 쏘기', '커피 5잔 쏘기', '편의점 쏘기', '택시비 쏘기'];
+  const MG_VENUE = [
+    { ic:'🌉', tx:'광안대교 야경' }, { ic:'🍲', tx:'돼지국밥 완그릇' },
+    { ic:'🌊', tx:'해운대 파도' }, { ic:'🌺', tx:'동백꽃 산책' },
+    { ic:'🚡', tx:'스카이캡슐' }, { ic:'🎆', tx:'광안리 드론쇼' },
+    { ic:'🐟', tx:'밀락더마켓' }, { ic:'🚋', tx:'해변열차' },
+    { ic:'🍢', tx:'부산 어묵' }, { ic:'🦑', tx:'자갈치 시장' },
+    { ic:'🎨', tx:'흰여울마을' }, { ic:'☕', tx:'모모스커피' },
+    { ic:'🏖️', tx:'광안리 오션뷰' }, { ic:'🍜', tx:'밀면 한 그릇' }
+  ];
+  const MG_TRAP = { ic:'🦅', tx:'갈매기한테 새우깡 뺏김!' };
+
+  const mg = {
+    open:false, ws:null, joined:false, ref:0, joinRef:'0', heart:0, pingT:0, retry:0,
+    mode:'react', phase:'lobby', players:{}, round:null, results:{}, nudge:null,
+    sigT:0, resT:0, last:null, posted:false
+  };
+
+  const cg = {
+    players: AUTHORS.slice(), penalty: MG_PEN[0], phase:'setup',
+    seats:[], cards:[], turn:0, loser:'', posted:false
+  };
+
+  /* ---------- 공통 ---------- */
+  function mgMe() { return share.author || '익명'; }
+
+  function mgTemp() {
+    const p = stampParts(Date.now());
+    return p.m + '/' + p.d + ' ' + pad(p.hh) + ':' + pad(p.mm);
+  }
+
+  function mgShuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  /* ---------- 열기 / 닫기 ---------- */
+  function mgOpen() {
+    if (!needWho(mgOpen)) return;
+    showSheet(el.gameSheet);
+    mg.open = true;
+    mg.phase = 'lobby'; mg.round = null; mg.results = {}; mg.nudge = null; mg.last = null; mg.posted = false;
+    mg.players = {};
+    mg.players[mgMe()] = { seen: Date.now(), ready: false };
+    mgHistoryReset();
+    mgConnect();
+    mgPaintAll();
+  }
+
+  function mgTeardown() {
+    if (!mg.open) return;
+    const me = mgMe();
+    delete mg.players[me];
+    mgSend('bye', { name: me });
+    mg.open = false;
+    if (mg.pingT) { clearInterval(mg.pingT); mg.pingT = 0; }
+    if (mg.heart) { clearInterval(mg.heart); mg.heart = 0; }
+    if (mg.sigT) { clearTimeout(mg.sigT); mg.sigT = 0; }
+    if (mg.resT) { clearTimeout(mg.resT); mg.resT = 0; }
+    if (mg.retry) { clearTimeout(mg.retry); mg.retry = 0; }
+    const ws = mg.ws;
+    mg.ws = null; mg.joined = false;
+    if (ws) { try { ws.close(); } catch (e) {} }
+    mg.phase = 'lobby'; mg.round = null; mg.results = {}; mg.nudge = null; mg.last = null;
+  }
+
+  /* ---------- 실시간 채널 ---------- */
+  function mgConnect() {
+    if (!window.WebSocket) return;
+    if (mg.ws) {
+      if (mg.ws.readyState === 1 && !mg.joined) mgJoin();
+      return;
+    }
+    let ws;
+    try {
+      ws = new WebSocket('wss://rxsxbmbpetdwbcehsnts.supabase.co/realtime/v1/websocket?apikey=' +
+        encodeURIComponent(SUPA_KEY) + '&vsn=1.0.0');
+    } catch (e) { return; }
+    mg.ws = ws;
+    mg.joined = false;
+    ws.onopen = function () { mgJoin(); };
+    ws.onmessage = function (ev) { mgFrame(ev.data); };
+    ws.onerror = function () {};
+    ws.onclose = function () {
+      if (mg.ws !== ws) return;
+      mg.ws = null; mg.joined = false;
+      if (mg.heart) { clearInterval(mg.heart); mg.heart = 0; }
+      if (mg.pingT) { clearInterval(mg.pingT); mg.pingT = 0; }
+      mgPaintLive();
+      if (mg.open) mg.retry = setTimeout(function () { mg.retry = 0; if (mg.open) mgConnect(); }, 5000);
+    };
+  }
+
+  function mgJoin() {
+    if (!mg.ws) return;
+    mg.ref += 1;
+    mg.joinRef = String(mg.ref);
+    try {
+      mg.ws.send(JSON.stringify({
+        topic: MG_TOPIC, event: 'phx_join', ref: mg.joinRef, join_ref: mg.joinRef,
+        payload: {
+          config: { broadcast: { self: true, ack: true }, presence: { key: '' }, postgres_changes: [] },
+          access_token: SUPA_KEY
+        }
+      }));
+    } catch (e) {}
+  }
+
+  function mgSend(ev, data) {
+    if (!mg.ws || mg.ws.readyState !== 1 || !mg.joined) return false;
+    mg.ref += 1;
+    try {
+      mg.ws.send(JSON.stringify({
+        topic: MG_TOPIC, event: 'broadcast', ref: String(mg.ref), join_ref: mg.joinRef,
+        payload: { type: 'broadcast', event: ev, payload: data || {} }
+      }));
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function mgHeartbeat() {
+    if (!mg.ws || mg.ws.readyState !== 1) return;
+    mg.ref += 1;
+    try { mg.ws.send(JSON.stringify({ topic: 'phoenix', event: 'heartbeat', payload: {}, ref: String(mg.ref) })); } catch (e) {}
+  }
+
+  function mgFrame(raw) {
+    let m;
+    try { m = JSON.parse(raw); } catch (e) { return; }
+    if (!m) return;
+    if (m.event === 'phx_reply') {
+      const p = m.payload || {};
+      if (p.status === 'ok' && p.response && Object.prototype.hasOwnProperty.call(p.response, 'postgres_changes')) {
+        mg.joined = true;
+        if (!mg.heart) mg.heart = setInterval(mgHeartbeat, 25000);
+        mgPing();
+        if (mg.pingT) clearInterval(mg.pingT);
+        mg.pingT = setInterval(mgPing, MG_PING_MS);
+        mgPaintLive();
+        mgPaintChips();
+      }
+      return;
+    }
+    if (m.event === 'broadcast') {
+      const p = m.payload || {};
+      mgRecv(String(p.event || ''), p.payload || {});
+    }
+  }
+
+  function mgPing() {
+    if (!mg.open) return;
+    const me = mgMe();
+    const cur = mg.players[me] || { seen: 0, ready: false };
+    cur.seen = Date.now();
+    mg.players[me] = cur;
+    mgSend('hello', { name: me, ready: !!cur.ready });
+    mgPaintLive();
+    mgPaintChips();
+  }
+
+  function mgRecv(ev, d) {
+    const me = mgMe();
+    if (ev === 'hello') {
+      const n = String(d.name || '').slice(0, 12);
+      if (!n || n === me) return;
+      const cur = mg.players[n] || { seen: 0, ready: false };
+      cur.seen = Date.now();
+      if (typeof d.ready === 'boolean') cur.ready = d.ready;
+      mg.players[n] = cur;
+      mgPaintLive();
+      mgPaintChips();
+      return;
+    }
+    if (ev === 'bye') { delete mg.players[String(d.name || '')]; mgPaintLive(); mgPaintChips(); return; }
+    if (ev === 'ready') {
+      const n = String(d.name || '');
+      if (!n || n === me) return;
+      const cur = mg.players[n] || { seen: Date.now(), ready: false };
+      cur.ready = !!d.on; cur.seen = Date.now();
+      mg.players[n] = cur;
+      mgPaintChips();
+      if (mg.phase === 'lobby') mgPaintStage();
+      return;
+    }
+    if (ev === 'start') { mgOnStart(d); return; }
+    if (ev === 'press') { mgOnPress(d); return; }
+    if (ev === 'num') { mgOnNum(d); return; }
+    if (ev === 'reset') { mgLobby(); return; }
+  }
+
+  /* ---------- 참가자 ---------- */
+  function mgRoster() {
+    const now = Date.now(), me = mgMe();
+    const list = [];
+    if (mg.open) list.push(me);
+    Object.keys(mg.players).forEach(function (n) {
+      if (n === me) return;
+      const p = mg.players[n] || {};
+      if (now - (p.seen || 0) > MG_TTL_MS) return;
+      list.push(n);
+    });
+    return list.slice(0, 12);
+  }
+
+  function mgToggleReady() {
+    const me = mgMe();
+    const cur = mg.players[me] || { seen: Date.now(), ready: false };
+    cur.ready = !cur.ready;
+    cur.seen = Date.now();
+    mg.players[me] = cur;
+    mgSend('ready', { name: me, on: cur.ready });
+    mgPaintChips();
+    mgPaintStage();
+  }
+
+  /* ---------- ① 게임 시작 / 반응속도 ---------- */
+  function mgStart() {
+    const me = mgMe();
+    const players = mgRoster();
+    if (players.length < 2 && !confirm('지금은 혼자예요. 연습 모드로 시작할까요?\n(2명 이상 각자 폰으로 열면 실시간 대결이 돼요)')) return;
+    if (mg.mode === 'nudge') {
+      mg.nudge = { players: players, expect: 1, took: {}, byName: {}, order: [], losers: [], reason: '', over: false, collision: {}, by: me };
+      mg.phase = 'nudge';
+      mg.posted = false;
+      mgSend('start', { mode: 'nudge', players: players, by: me });
+      mgPaintRealtime();
+      return;
+    }
+    const goAt = Date.now() + 1800 + Math.floor(Math.random() * 2600);
+    mg.round = { mode: 'react', goAt: goAt, players: players, by: me };
+    mg.results = {};
+    mg.phase = 'armed';
+    mg.posted = false;
+    mgSend('start', { mode: 'react', goAt: goAt, players: players, by: me });
+    mgPaintRealtime();
+    mgArmSignal();
+  }
+
+  function mgOnStart(d) {
+    const me = mgMe();
+    if (String(d.by || '') === me) return;
+    const mode = d.mode === 'nudge' ? 'nudge' : 'react';
+    mg.mode = mode;
+    mg.posted = false;
+    const players = (Array.isArray(d.players) ? d.players : []).map(String).slice(0, 12);
+    if (mode === 'nudge') {
+      mg.nudge = { players: players, expect: 1, took: {}, byName: {}, order: [], losers: [], reason: '', over: false, collision: {}, by: String(d.by || '') };
+      mg.phase = 'nudge';
+      mgPaintRealtime();
+    } else {
+      mg.round = { mode: 'react', goAt: +d.goAt || (Date.now() + 3000), players: players, by: String(d.by || '') };
+      mg.results = {};
+      mg.phase = 'armed';
+      mgPaintRealtime();
+      mgArmSignal();
+    }
+    toast('🎮 ' + (String(d.by || '누군가')) + ' 님이 게임을 시작했어요!');
+  }
+
+  function mgArmSignal() {
+    if (mg.sigT) { clearTimeout(mg.sigT); mg.sigT = 0; }
+    if (!mg.round) return;
+    const left = mg.round.goAt - Date.now();
+    if (left <= 0) { mgSignal(); return; }
+    mg.sigT = setTimeout(mgSignal, left);
+  }
+
+  function mgSignal() {
+    if (!mg.round || mg.phase !== 'armed') return;
+    mg.sigT = 0;
+    mg.phase = 'signal';
+    mgPaintRealtime();
+    if (mg.resT) clearTimeout(mg.resT);
+    mg.resT = setTimeout(function () {
+      mg.resT = 0;
+      if (mg.phase === 'signal' || mg.phase === 'armed') mgFinishRound();
+    }, 6000);
+  }
+
+  function mgPress() {
+    if (mg.phase !== 'armed' && mg.phase !== 'signal') return;
+    if (!mg.round) return;
+    const me = mgMe();
+    if (mg.round.players.indexOf(me) < 0) return;
+    if (mg.results[me]) return;
+    if (mg.phase === 'armed') {
+      mg.results[me] = { bad: true, ms: null };
+      mgSend('press', { name: me, bad: true });
+    } else {
+      const ms = Math.max(1, Date.now() - mg.round.goAt);
+      mg.results[me] = { bad: false, ms: ms };
+      mgSend('press', { name: me, ms: ms });
+    }
+    mgPaintRealtime();
+    mgCheckRound();
+  }
+
+  function mgOnPress(d) {
+    if (!mg.round || (mg.phase !== 'armed' && mg.phase !== 'signal')) return;
+    const name = String(d.name || '');
+    if (!name || name === mgMe()) return;
+    if (mg.round.players.indexOf(name) < 0) return;
+    if (mg.results[name]) return;
+    if (d.bad) mg.results[name] = { bad: true, ms: null };
+    else if (typeof d.ms === 'number') mg.results[name] = { bad: false, ms: Math.max(1, Math.round(d.ms)) };
+    else return;
+    mgPaintRealtime();
+    mgCheckRound();
+  }
+
+  function mgCheckRound() {
+    if (!mg.round || (mg.phase !== 'armed' && mg.phase !== 'signal')) return;
+    const all = mg.round.players.every(function (n) { return !!mg.results[n]; });
+    if (all) mgFinishRound();
+  }
+
+  function mgFinishRound() {
+    if (!mg.round) return;
+    if (mg.sigT) { clearTimeout(mg.sigT); mg.sigT = 0; }
+    if (mg.resT) { clearTimeout(mg.resT); mg.resT = 0; }
+    const rows = mg.round.players.map(function (n) {
+      const r = mg.results[n] || null;
+      const bad = !!(r && r.bad);
+      const ms = (r && !bad && typeof r.ms === 'number') ? r.ms : null;
+      return { name: n, ms: ms, bad: bad };
+    });
+    rows.forEach(function (r) {
+      r.v = r.bad ? Number.MAX_SAFE_INTEGER + 1 : (r.ms == null ? Number.MAX_SAFE_INTEGER : r.ms);
+    });
+    rows.sort(function (a, b) { return a.v - b.v; });
+    const bad = rows.filter(function (r) { return r.bad; });
+    let losers = [], reason = '';
+    if (bad.length) {
+      losers = bad.map(function (r) { return r.name; });
+      reason = '신호 전 부정출발';
+    } else {
+      const last = rows[rows.length - 1];
+      if (last) {
+        losers = [last.name];
+        reason = last.ms == null ? '끝까지 안 눌렀어요' : last.ms + 'ms — 제일 늦음';
+      }
+    }
+    let rank = 0;
+    rows.forEach(function (r) {
+      r.lose = losers.indexOf(r.name) >= 0;
+      if (r.bad) { r.label = '부정출발'; r.medal = r.lose ? '☕' : '❌'; }
+      else if (r.ms == null) { r.label = '미응답'; r.medal = r.lose ? '☕' : '—'; }
+      else {
+        rank += 1;
+        r.label = r.ms + 'ms';
+        r.medal = (r.lose ? '☕' : (['🥇', '🥈', '🥉'][rank - 1] || rank + '위'));
+      }
+    });
+    const stamp = mgTemp();
+    mg.phase = 'result';
+    mg.posted = false;
+    mg.last = {
+      stamp: stamp,
+      title: '⚡ 반응속도 결과',
+      rows: rows.map(function (r) { return { name: r.name, label: r.label, medal: r.medal, lose: r.lose }; }),
+      losers: losers,
+      reason: reason,
+      text: '☕ 커피내기 · ⚡ 반응속도 (' + stamp + ')\n' +
+        rows.map(function (r) { return r.name + ' ' + r.label; }).join(' · ') +
+        (losers.length ? '\n☕ 커피 당첨: ' + losers.join(', ') + ' (' + reason + ')' : '')
+    };
+    mgPaintRealtime();
+  }
+
+  /* ---------- ① 눈치게임 ---------- */
+  function mgNudgeTap(n) {
+    const nd = mg.nudge;
+    if (mg.phase !== 'nudge' || !nd || nd.over) return;
+    const me = mgMe();
+    if (nd.byName[me]) { toast('이미 숫자를 외쳤어요'); return; }
+    if (n !== nd.expect) { toast(nd.expect + '번 차례예요'); return; }
+    mgNudgeApply(me, n, true);
+  }
+
+  function mgNudgeApply(name, n, mine) {
+    const nd = mg.nudge;
+    if (mg.phase !== 'nudge' || !nd || nd.over || !name) return;
+    if (nd.byName[name]) return;
+    if (nd.took[n]) {
+      nd.over = true;
+      nd.reason = n + '번 동시 눌림';
+      const set = [nd.took[n], name];
+      if (nd.collision[n]) nd.collision[n].forEach(function (x) { if (set.indexOf(x) < 0) set.push(x); });
+      nd.collision[n] = set.slice();
+      nd.losers = set.slice();
+      if (mine) mgSend('num', { name: name, n: n });
+      mgNudgeFinish();
+      return;
+    }
+    if (n !== nd.expect) return;
+    nd.took[n] = name;
+    nd.byName[name] = n;
+    nd.order.push({ n: n, name: name });
+    nd.expect = n + 1;
+    if (mine) mgSend('num', { name: name, n: n });
+    const left = nd.players.filter(function (p) { return !nd.byName[p]; });
+    if (left.length <= 1) {
+      nd.over = true;
+      nd.losers = left.length ? [left[0]] : [];
+      nd.reason = left.length ? '마지막까지 못 외침' : '';
+      mgNudgeFinish();
+      return;
+    }
+    mgPaintRealtime();
+  }
+
+  function mgOnNum(d) {
+    if (mg.phase !== 'nudge') return;
+    const name = String(d.name || '');
+    if (!name || name === mgMe()) return;
+    mgNudgeApply(name, +d.n, false);
+  }
+
+  function mgNudgeFinish() {
+    const nd = mg.nudge;
+    if (!nd) return;
+    const stamp = mgTemp();
+    const rows = nd.order.map(function (o, i) {
+      return { name: o.name, label: o.n + '번', medal: (['🥇', '🥈', '🥉'][i] || (i + 1) + '위'), lose: false };
+    });
+    nd.losers.forEach(function (n) {
+      if (rows.some(function (r) { return r.name === n; })) return;
+      rows.push({ name: n, label: nd.reason || '못 외침', medal: '☕', lose: true });
+    });
+    rows.forEach(function (r) { if (nd.losers.indexOf(r.name) >= 0) r.lose = true; });
+    mg.phase = 'nresult';
+    mg.posted = false;
+    mg.last = {
+      stamp: stamp,
+      title: '👀 눈치게임 결과',
+      rows: rows,
+      losers: nd.losers.slice(0, 3),
+      reason: nd.reason || '',
+      text: '☕ 커피내기 · 👀 눈치게임 (' + stamp + ')\n' +
+        (nd.order.length ? nd.order.map(function (o) { return o.name + ' ' + o.n + '번'; }).join(' → ') + '\n' : '') +
+        (nd.losers.length ? '☕ 커피 당첨: ' + nd.losers.join(', ') + (nd.reason ? ' (' + nd.reason + ')' : '') : '무승부')
+    };
+    mgPaintRealtime();
+  }
+
+  function mgLobby() {
+    mg.phase = 'lobby'; mg.round = null; mg.results = {}; mg.nudge = null; mg.last = null; mg.posted = false;
+    if (mg.sigT) { clearTimeout(mg.sigT); mg.sigT = 0; }
+    if (mg.resT) { clearTimeout(mg.resT); mg.resT = 0; }
+    mgPaintRealtime();
+  }
+
+  /* ---------- 그리기 (실시간) ---------- */
+  function mgPaintAll() {
+    mgHistoryReset();
+    $$('#mgTabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-pane') === 'rt'); });
+    $$('.mg-pane').forEach(function (p) { p.classList.toggle('on', p.id === 'mgPaneRt'); });
+    mgPaintRealtime();
+    mgPaintCards();
+  }
+
+  function mgHistoryReset() {
+    const n = document.getElementById('mgStage');
+    if (n) n.innerHTML = '';
+  }
+
+  function mgPaintRealtime() {
+    $$('#mgMode button').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-mode') === mg.mode);
+      b.disabled = mg.phase !== 'lobby';
+    });
+    mgPaintLive();
+    mgPaintChips();
+    mgPaintStage();
+  }
+
+  function mgPaintLive() {
+    const n = document.getElementById('mgLive');
+    if (!n) return;
+    const on = !!(mg.ws && mg.ws.readyState === 1 && mg.joined);
+    const cnt = mgRoster().length;
+    n.className = 'mg-live' + (on ? '' : ' off');
+    n.innerHTML = '<span class="dot"></span><span>' +
+      (on ? '실시간 연결됨 · ' + cnt + '명' : (mg.ws ? '채널 연결 중…' : '실시간 연결 대기')) +
+      '</span><b>' + (on ? 'LIVE' : 'OFF') + '</b>';
+  }
+
+  function mgPaintChips() {
+    const n = document.getElementById('mgChips');
+    if (!n) return;
+    const me = mgMe();
+    const list = mgRoster();
+    if (!list.length) { n.innerHTML = '<span class="mg-chip">아직 아무도 없어요</span>'; return; }
+    n.innerHTML = list.map(function (p) {
+      const m = mg.players[p] || {};
+      return '<span class="mg-chip' + (p === me ? ' me' : '') + (m.ready ? ' ready' : '') + '">' +
+        (m.ready ? '✓ ' : '') + esc(p) + (p === me ? ' · 나' : '') + '</span>';
+    }).join('');
+  }
+
+  function mgPaintStage() {
+    const stage = document.getElementById('mgStage');
+    if (!stage) return;
+    if (mg.phase === 'lobby') { stage.innerHTML = mgLobbyHTML(); return; }
+    if (mg.phase === 'armed' || mg.phase === 'signal') { mgPaintSignal(); return; }
+    if (mg.phase === 'result' || mg.phase === 'nresult') { stage.innerHTML = mgResultHTML(); return; }
+    if (mg.phase === 'nudge') { stage.innerHTML = mgNudgeHTML(); return; }
+  }
+
+  function mgLobbyHTML() {
+    const players = mgRoster();
+    const me = mgMe();
+    const ready = players.filter(function (p) { return mg.players[p] && mg.players[p].ready; });
+    const mine = !!(mg.players[me] && mg.players[me].ready);
+    const react = mg.mode === 'react';
+    let h = '<div class="mg-panel"><b>' + (react ? '⚡ 반응속도 모드' : '👀 눈치게임 모드') + '</b><p>' +
+      (react
+        ? '초록 신호가 뜨면 각자 폰을 눌러요. <b>제일 늦은 사람</b>(또는 신호 전에 누른 사람)이 커피 당첨!'
+        : '1번부터 차례대로 숫자를 외쳐요. <b>같은 숫자를 동시에</b> 누르거나 <b>마지막까지 못 외친 사람</b>이 커피 당첨!') +
+      '</p></div>';
+    h += '<div class="mg-row" style="margin-bottom:8px"><button class="mgbtn ' + (mine ? 'ghost' : 'gold') + '" data-mg="ready" type="button">' +
+      (mine ? '✓ 준비 완료 (취소)' : '✋ 준비') + '</button></div>';
+    h += '<button class="mgbtn" data-mg="start" type="button" style="width:100%">▶ 게임 시작 (방장)</button>';
+    h += '<p class="mg-note">' + players.length + '명 접속 · 준비 ' + ready.length + '명. ' +
+      (players.length < 2
+        ? '혼자면 연습 모드로 돌아가요 — 2명 이상 각자 폰에서 이 화면을 열면 실시간 대결이 돼요.'
+        : '같은 와이파이가 아니어도 돼요. 각자 폰에서 이 화면을 열어 두면 자동으로 모여요.') +
+      '</p>';
+    return h;
+  }
+
+  function mgPaintSignal() {
+    const stage = document.getElementById('mgStage');
+    if (!stage) return;
+    const me = mgMe();
+    const players = (mg.round && mg.round.players) ? mg.round.players : [];
+    const mine = mg.results[me];
+    let sig = document.getElementById('mgSig');
+    if (!sig) {
+      stage.innerHTML = '<div class="mg-sig" id="mgSig"></div><div class="mg-sigmeta" id="mgSigMeta"></div>';
+      sig = document.getElementById('mgSig');
+    }
+    const on = mg.phase === 'signal';
+    sig.className = 'mg-sig ' + (on ? 'go' : 'wait') + (mine ? ' mine' : '');
+    if (mine) sig.removeAttribute('data-mg');
+    else sig.setAttribute('data-mg', 'press');
+    if (mine) {
+      sig.innerHTML = on
+        ? '<b>' + (mine.bad ? '부정출발' : mine.ms + 'ms') + '</b><small>다른 사람 기다리는 중…</small>'
+        : '<b>부정출발!</b><small>신호 전에 눌렀어요 — 커피 후보</small>';
+    } else {
+      sig.innerHTML = on
+        ? '<b>지금 눌러!</b><small>손가락 준비</small>'
+        : '<b>손 떼고 기다려…</b><small>초록불이 뜨면 눌러!</small>';
+    }
+    const meta = document.getElementById('mgSigMeta');
+    if (meta) {
+      const done = players.filter(function (p) { return !!mg.results[p]; });
+      const wait = players.filter(function (p) { return !mg.results[p]; });
+      meta.innerHTML = done.length + ' / ' + players.length + '명 눌렀어요' +
+        (wait.length ? '<br>기다리는 중: ' + wait.map(esc).join(', ') : '<br>곧 결과가 나와요…');
+    }
+  }
+
+  function mgResultHTML() {
+    const L = mg.last;
+    if (!L) return '';
+    let h = '<div class="mg-panel"><b>' + esc(L.title) + '</b><p>' + esc(L.stamp) + ' · ' + L.rows.length + '명</p></div>';
+    h += '<ol class="mg-rank">';
+    L.rows.forEach(function (r) {
+      h += '<li' + (r.lose ? ' class="lose"' : '') + '><span>' + r.medal + '</span><b>' + esc(r.name) + '</b><em>' + esc(r.label) + '</em></li>';
+    });
+    h += '</ol>';
+    if (L.losers.length) {
+      h += '<div class="mg-lose">☕ 커피 당첨<b>' + esc(L.losers.join(', ')) + '</b>' +
+        (L.reason ? '<span>' + esc(L.reason) + '</span>' : '') + '</div>';
+    }
+    h += '<div class="mg-row" style="margin-top:10px">' +
+      '<button class="mgbtn gold" data-mg="post" type="button"' + (mg.posted ? ' disabled' : '') + '>' +
+      (mg.posted ? '✓ 톡방에 박제됨' : '📢 톡방에 결과 박제') +
+      '</button><button class="mgbtn ghost" data-mg="reset" type="button">🔄 다시하기</button></div>' +
+      '<p class="mg-note">박제하면 5인 톡방에 이 결과가 그대로 올라가요.</p>';
+    return h;
+  }
+
+  function mgNudgeHTML() {
+    const nd = mg.nudge;
+    if (!nd) return '';
+    const me = mgMe();
+    const total = nd.players.length;
+    const mine = nd.byName[me];
+    const left = nd.players.filter(function (p) { return !nd.byName[p]; });
+    let h = '<div class="mg-panel"><b>👀 눈치게임 — ' + nd.expect + '번 차례</b><p>' +
+      '1번부터 차례대로 눌러요. 같은 숫자를 동시에 누르거나 마지막까지 못 누른 사람이 커피!</p></div>';
+    h += '<div class="mg-nums">';
+    for (let i = 1; i <= total; i++) {
+      const who = nd.took[i];
+      const isNow = i === nd.expect;
+      const can = !who && isNow && !mine;
+      h += '<button type="button"' + (who ? ' class="taken"' : (isNow ? ' class="now"' : '')) +
+        (can ? ' data-mg="num" data-n="' + i + '"' : ' disabled') + '>' +
+        (who ? '<b>' + i + '</b><span>' + esc(who) + '</span>' : String(i)) + '</button>';
+    }
+    h += '</div>';
+    if (nd.order.length) {
+      h += '<ol class="mg-rank">' + nd.order.map(function (o, i) {
+        return '<li><span>' + (i + 1) + '</span><b>' + esc(o.name) + '</b><em>' + o.n + '번</em></li>';
+      }).join('') + '</ol>';
+    }
+    h += '<p class="mg-note">' + (mine
+      ? esc(mine) + '번 외침 · 남은 사람: ' + left.map(esc).join(', ')
+      : (canNowText(nd, left))) + '</p>';
+    h += '<div class="mg-row" style="margin-top:8px"><button class="mgbtn ghost" data-mg="reset" type="button">그만하기</button></div>';
+    return h;
+  }
+
+  function canNowText(nd, left) {
+    if (left.length <= 1) return '정리 중…';
+    return '내 차례예요 — ' + nd.expect + '번을 눌러요!';
+  }
+
+  /* ---------- ② 복불복 카드 ---------- */
+  function mgPaintCards() {
+    const n = document.getElementById('mgCardStage');
+    if (!n) return;
+    if (cg.phase === 'setup') { n.innerHTML = cgSetupHTML(); return; }
+    if (cg.phase === 'play') { n.innerHTML = cgPlayHTML(); return; }
+    n.innerHTML = cgDoneHTML();
+  }
+
+  function cgSetupHTML() {
+    let h = '<div class="mg-panel"><b>🃏 부산 복불복 카드</b><p>' +
+      '카드를 한 장씩 뒤집어요. <b>🦅 꽝 1장</b>을 뽑은 사람이 커피 당첨! 한 폰을 돌려가며 해도 되고, 순서대로 각자 폰에서 해도 돼요.</p></div>';
+    h += '<h3 class="mg-h">참가 인원 <span class="cnt">' + cg.players.length + '명</span></h3>';
+    h += '<div class="mgmates">' + AUTHORS.map(function (a) {
+      return '<button type="button" class="mgmate' + (cg.players.indexOf(a) >= 0 ? ' on' : '') + '" data-mg="cmate" data-name="' + esc(a) + '">' + esc(a) + '</button>';
+    }).join('') + '</div>';
+    h += '<h3 class="mg-h">내기 항목</h3>';
+    h += '<div class="mg-pres">' + MG_PEN.map(function (p) {
+      return '<button type="button" class="' + (cg.penalty === p ? 'on' : '') + '" data-mg="cpen" data-pen="' + esc(p) + '">' + esc(p) + '</button>';
+    }).join('') + '</div>';
+    h += '<div class="mg-input"><input id="mgPenInput" type="text" maxlength="24" value="' + esc(cg.penalty) +
+      '" placeholder="직접 입력 (예: 아아 쏘기)" aria-label="내기 항목" autocomplete="off"></div>';
+    h += '<button class="mgbtn gold" data-mg="cstart" type="button" style="width:100%">🃏 카드 섞고 시작</button>';
+    h += '<p class="mg-note">인원 수만큼 카드가 깔리고 그중 1장이 꽝이에요. 순서대로 한 장씩 뒤집으면 반드시 한 명이 걸려요.</p>';
+    return h;
+  }
+
+  function cgPlayHTML() {
+    const who = cg.seats[cg.turn] || '';
+    const left = cg.cards.filter(function (c) { return !c.open; }).length;
+    let h = '<div class="mg-turn">🎯 <b>' + esc(who) + '</b> 차례 — 카드 1장 골라!<span>' + left + '장 남음</span></div>';
+    h += '<div class="mg-deck">';
+    cg.cards.forEach(function (c, i) {
+      h += '<button type="button" class="mgc' + (c.open ? ' flip' : '') + (c.trap ? ' trap' : '') + '"' +
+        (c.open ? ' disabled' : ' data-mg="cflip" data-i="' + i + '"') + ' aria-label="카드 ' + (i + 1) + '">' +
+        '<span class="mgc-in">' +
+        '<span class="mgc-face">🌊<span>BUSAN</span></span>' +
+        '<span class="mgc-back"><i>' + c.ic + '</i><span>' + esc(c.tx) + '</span></span>' +
+        '</span></button>';
+    });
+    h += '</div>';
+    h += '<p class="mg-note">내기: <b>' + esc(cg.penalty) + '</b> · 꽝 1장. 뒤집은 카드는 그 사람 몫이에요.</p>';
+    return h;
+  }
+
+  function cgDoneHTML() {
+    let h = '<div class="mg-lose">' + MG_TRAP.ic + ' ' + esc(MG_TRAP.tx) + '<b>' + esc(cg.loser) + '</b><span>내기: ' + esc(cg.penalty) + '</span></div>';
+    h += '<div class="mg-deck" style="margin-top:10px">';
+    cg.cards.forEach(function (c, i) {
+      h += '<div class="mgc flip' + (c.trap ? ' trap' : '') + '"><span class="mgc-in">' +
+        '<span class="mgc-face">🌊<span>BUSAN</span></span>' +
+        '<span class="mgc-back"><i>' + c.ic + '</i><span>' + esc(c.tx) + '</span></span></span></div>';
+    });
+    h += '</div>';
+    h += '<div class="mg-row" style="margin-top:10px">' +
+      '<button class="mgbtn gold" data-mg="cpost" type="button"' + (cg.posted ? ' disabled' : '') + '>' +
+      (cg.posted ? '✓ 톡방에 박제됨' : '📢 톡방에 결과 박제') +
+      '</button><button class="mgbtn ghost" data-mg="cagain" type="button">🔄 다시하기</button></div>';
+    h += '<p class="mg-note">다시하기는 같은 인원·내기로 카드를 새로 섞어요. · <button type="button" class="mg-link" data-mg="csetup">인원·내기 바꾸기</button></p>';
+    return h;
+  }
+
+  function cgToggle(name) {
+    const has = cg.players.indexOf(name) >= 0;
+    if (has && cg.players.length <= 2) { toast('2명 이상 있어야 해요'); return; }
+    cg.players = AUTHORS.filter(function (a) { return a === name ? !has : cg.players.indexOf(a) >= 0; });
+    mgPaintCards();
+  }
+
+  function cgStart() {
+    const input = document.getElementById('mgPenInput');
+    if (input) cg.penalty = String(input.value || '').replace(/\s+/g, ' ').trim().slice(0, 24);
+    const pen = cg.penalty || MG_PEN[0];
+    cg.penalty = pen;
+    const names = cg.players.slice();
+    if (names.length < 2) { toast('2명 이상 골라 주세요'); return; }
+    const pool = mgShuffle(MG_VENUE.slice());
+    const deck = [];
+    for (let i = 0; i < names.length; i++) {
+      const v = pool[i % pool.length];
+      deck.push({ ic: v.ic, tx: v.tx, trap: false, open: false });
+    }
+    const ti = Math.floor(Math.random() * deck.length);
+    deck[ti] = { ic: MG_TRAP.ic, tx: MG_TRAP.tx, trap: true, open: false };
+    cg.cards = mgShuffle(deck);
+    cg.seats = names;
+    cg.turn = 0;
+    cg.loser = '';
+    cg.posted = false;
+    cg.phase = 'play';
+    mgPaintCards();
+  }
+
+  function cgFlip(i) {
+    if (cg.phase !== 'play') return;
+    const c = cg.cards[i];
+    if (!c || c.open) return;
+    const who = cg.seats[cg.turn];
+    if (!who) return;
+    c.open = true;
+    c.by = who;
+    if (c.trap) {
+      cg.cards.forEach(function (x) { x.open = true; });
+      cg.loser = who;
+      cg.phase = 'done';
+      cg.posted = false;
+      mgPaintCards();
+      return;
+    }
+    cg.turn += 1;
+    mgPaintCards();
+  }
+
+  function cgReset() {
+    cg.phase = 'setup'; cg.cards = []; cg.turn = 0; cg.loser = ''; cg.posted = false;
+    mgPaintCards();
+  }
+
+  /* ---------- 톡방 박제 ---------- */
+  function postNote(text) {
+    const payload = { spot_id: CHAT_SPOT, author: share.author || '익명', memo: text, image_url: null };
+    return fetch(SUPA + '/rest/v1/trip_notes', {
+      method: 'POST',
+      headers: supHeaders({ 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      if (!r.ok) {
+        return r.text().then(function (t) {
+          let m = '';
+          try { m = (JSON.parse(t).message || ''); } catch (e) { m = String(t).slice(0, 100); }
+          throw new Error('박제 실패 (' + r.status + ')' + (m ? ' · ' + m : ''));
+        });
+      }
+      return r.json();
+    }).then(function (rows) {
+      const row = (Array.isArray(rows) && rows[0]) ? rows[0] : {
+        id: 'tmp' + Date.now(), spot_id: CHAT_SPOT, author: payload.author,
+        memo: payload.memo, image_url: null, created_at: new Date().toISOString()
+      };
+      row.spot_id = CHAT_SPOT;
+      row.author = row.author || payload.author;
+      row.memo = (row.memo === undefined ? payload.memo : row.memo);
+      if (!share.notes.some(function (x) { return String(x.id) === String(row.id); })) {
+        share.notes = [row].concat(share.notes);
+      }
+      if (el.chatList) { chat.sig = null; paintChat(); }
+      paintSync();
+      updateAlbumCount();
+      if (chat.open) markChatRead();
+      broadcastChat(row);
+      ntfBroadcast({
+        title: '🎮 커피내기',
+        body: String(text).replace(/\s+/g, ' ').slice(0, 80),
+        url: '/Busan-trip/#chat',
+        tag: 'busan-minigame',
+        exclude_author: row.author
+      });
+      return row;
+    });
+  }
+
+  function mgPostText(text, done) {
+    if (!share.author) { needWho(function () { mgPostText(text, done); }); return; }
+    if (!state.online) { toast('오프라인 상태예요 — 연결 후 다시 시도해 주세요'); return; }
+    toast('톡방에 올리는 중…');
+    postNote(text).then(function () {
+      toast('톡방에 박제했어요 📢');
+      if (typeof done === 'function') done();
+    }).catch(function (e) {
+      toast(String((e && e.message) || e) || '박제하지 못했어요');
+    });
+  }
+
+  function mgPost() {
+    if (mg.posted || !mg.last) return;
+    mgPostText(mg.last.text, function () { mg.posted = true; mgPaintStage(); });
+  }
+
+  function cgPost() {
+    if (cg.posted || !cg.loser) return;
+    const text = '☕ 커피내기 · 🃏 부산 복불복 (' + mgTemp() + ')\n' +
+      '내기: ' + cg.penalty + ' · ' + cg.seats.length + '명\n' +
+      MG_TRAP.ic + ' ' + MG_TRAP.tx + ' → ' + cg.loser + ' 당첨';
+    mgPostText(text, function () { cg.posted = true; mgPaintCards(); });
+  }
+
+  /* ---------- 이벤트 ---------- */
+  function mgClick(e) {
+    const b = e.target.closest('[data-mg]');
+    if (!b || b.disabled) return;
+    const act = b.getAttribute('data-mg');
+    if (act === 'mode') { if (mg.phase !== 'lobby') return; mg.mode = b.getAttribute('data-mode') === 'nudge' ? 'nudge' : 'react'; mgPaintRealtime(); return; }
+    if (act === 'ready') { mgToggleReady(); return; }
+    if (act === 'start') { mgStart(); return; }
+    if (act === 'press') { mgPress(); return; }
+    if (act === 'reset') { mgSend('reset', { by: mgMe() }); mgLobby(); return; }
+    if (act === 'post') { mgPost(); return; }
+    if (act === 'num') { mgNudgeTap(+b.getAttribute('data-n')); return; }
+    if (act === 'cmate') { cgToggle(b.getAttribute('data-name')); return; }
+    if (act === 'cpen') { cg.penalty = b.getAttribute('data-pen'); mgPaintCards(); return; }
+    if (act === 'cstart') { cgStart(); return; }
+    if (act === 'cflip') { cgFlip(+b.getAttribute('data-i')); return; }
+    if (act === 'cagain') { cgStart(); return; }
+    if (act === 'csetup') { cgReset(); return; }
+    if (act === 'cpost') { cgPost(); return; }
+  }
+
+  function bindGame() {
+    ['btnGame', 'btnGame2', 'btnChatGame', 'fabGame'].forEach(function (id) {
+      const b = document.getElementById(id);
+      if (b) b.addEventListener('click', mgOpen);
+    });
+    const x = document.getElementById('btnGameClose');
+    if (x) x.addEventListener('click', function () { closeSheets(); });
+
+    const tabs = document.getElementById('mgTabs');
+    if (tabs) tabs.addEventListener('click', function (e) {
+      const b = e.target.closest('button[data-pane]');
+      if (!b) return;
+      const pane = b.getAttribute('data-pane');
+      $$('#mgTabs button').forEach(function (n) { n.classList.toggle('on', n === b); });
+      $$('.mg-pane').forEach(function (n) { n.classList.toggle('on', n.id === (pane === 'card' ? 'mgPaneCard' : 'mgPaneRt')); });
+      if (pane === 'card') mgPaintCards();
+    });
+
+    const body = document.getElementById('mgBody');
+    if (body) {
+      body.addEventListener('click', mgClick);
+      body.addEventListener('input', function (e) {
+        const t = e.target;
+        if (t && t.id === 'mgPenInput') cg.penalty = String(t.value || '');
+      });
+    }
+  }
+
   /* ============ boot ============ */
   function boot() {
     loadAuthor();
@@ -5278,6 +6284,7 @@
     bindWeather();
     bindAi();
     bindNotify();
+    bindGame();
     setInterval(refresh, 1000);
 
     /* 알림 클릭으로 들어온 경우 해당 화면 열기 (#chat / #settle) */
