@@ -5571,9 +5571,15 @@
       mg.players[n] = cur;
       mgPaintLive();
       mgPaintChips();
+      if (mg.phase === 'lobby') mgPaintStage();
       return;
     }
-    if (ev === 'bye') { delete mg.players[String(d.name || '')]; mgPaintLive(); mgPaintChips(); return; }
+    if (ev === 'bye') {
+      delete mg.players[String(d.name || '')];
+      mgPaintLive(); mgPaintChips();
+      if (mg.phase === 'lobby') mgPaintStage();
+      return;
+    }
     if (ev === 'ready') {
       const n = String(d.name || '');
       if (!n || n === me) return;
@@ -5676,7 +5682,7 @@
     mg.resT = setTimeout(function () {
       mg.resT = 0;
       if (mg.phase === 'signal' || mg.phase === 'armed') mgFinishRound();
-    }, 6000);
+    }, 8000);
   }
 
   function mgPress() {
@@ -5735,6 +5741,9 @@
     if (bad.length) {
       losers = bad.map(function (r) { return r.name; });
       reason = '신호 전 부정출발';
+    } else if (rows.length && rows.every(function (r) { return r.ms == null; })) {
+      losers = rows.map(function (r) { return r.name; });
+      reason = '아무도 안 눌렀어요';
     } else {
       const last = rows[rows.length - 1];
       if (last) {
