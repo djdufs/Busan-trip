@@ -5,7 +5,7 @@
 'use strict';
 
 /* 캐시/배포 버전 — index.html의 등록 쿼리(?v=)와 함께 올린다 */
-var SW_VERSION = '2026-11-27.1';
+var SW_VERSION = '2026-11-27.2';
 
 var SCOPE_URL = new URL('/Busan-trip/', self.location.origin).href;
 var DEFAULT_ICON = '/Busan-trip/icons/icon-192.png';
