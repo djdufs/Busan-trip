@@ -3539,6 +3539,7 @@
   };
 
   function won(n) { return Math.round(+n || 0).toLocaleString('ko-KR') + '원'; }
+  function wonNum(n) { return Math.round(+n || 0).toLocaleString('ko-KR'); }
   function wonSigned(n) {
     const v = Math.round(+n || 0);
     return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toLocaleString('ko-KR') + '원';
@@ -3892,7 +3893,7 @@
         '<div class="trm">' +
           '<div class="trn"><b>' + esc(x.name) + (me ? ' <i style="font-style:normal;font-size:9px;color:#2b4bb0">나</i>' : '') + '</b>' +
             '<span class="tchip ' + x.title.tone + '">' + x.title.ic + ' ' + esc(x.title.nm) + '</span></div>' +
-          '<span class="trs">결제 ' + won(x.paid) + ' · 부담 ' + won(x.share) + '</span>' +
+          '<span class="trs">결제 ' + wonNum(x.paid) + ' · 부담 ' + wonNum(x.share) + '</span>' +
           (x.paid > 0 ? '<span class="tbar"><i style="width:' + bar + '%"></i></span>' : '') +
         '</div>' +
         '<span class="tra ' + cls + '">' + (x.bal === 0 ? '0원' : wonSigned(x.bal)) + '</span>' +
