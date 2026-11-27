@@ -19,6 +19,10 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<!-- 🏛️ 공문서 테마용 명조체 (원본 디자인에서는 쓰지 않음) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap">
 <style>
   :root{
     --bg:#eef1f7; --card:#fff; --ink:#0e1a2b; --ink2:#4a5a70; --ink3:#7d8ca1;
@@ -821,9 +825,361 @@
   .mgc-back span{font-size:9.5px;font-weight:800;line-height:1.3;color:var(--ink2)}
   .mgc.trap .mgc-back{background:#ffece7;border-color:#f6c3b7;color:#a8391f}
   .mgc.trap .mgc-back span{color:#a8391f}
+
+  /* ==========================================================================
+     🏛️ 문서 테마 스위치 (헤더 하단 고정 바) — 두 테마 공통 뼈대
+     ========================================================================== */
+  .themebar{display:flex;align-items:center;justify-content:flex-end;gap:8px;
+    height:30px;margin:0 -12px;padding:0 12px;background:#101c2e;border-top:1px solid #21324a}
+  .tb-k{font-size:9.5px;font-weight:800;letter-spacing:.8px;color:#7d93ae;white-space:nowrap}
+  .tb-btn{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 10px;border-radius:999px;
+    background:#1d2d44;border:1px solid #2b3c55;color:#e3ecf7;font-size:11px;font-weight:800;white-space:nowrap}
+  .tb-btn:active{background:#26374f}
+
+  /* 공문서 모드에서만 보이는 결재 헤더 */
+  .doc-head{display:none}
+
+  /* ==========================================================================
+     🏛️ 공문서 테마 — body[data-theme="official"] (기본값)
+     원본 디자인은 body[data-theme="original"]로 이 블록이 통째로 빠진다.
+     ========================================================================== */
+  body[data-theme="official"]{
+    --bg:#e5e7eb; --card:#fcfcf9; --ink:#111111; --ink2:#2e2e2e; --ink3:#5a5a5a;
+    --line:#111111; --line2:#111111;
+    --d1:#b91c1c; --d1b:#f3e3e1; --d1t:#8f1a1a;
+    --d2:#1f2937; --d2b:#e7e7e2; --d2t:#1f2937;
+    --ok:#1f4d2e; --okb:#e9ece5;
+    --warn:#7c2d12; --warnb:#f5eae3;
+    --info:#1f2937; --infob:#eeeee9;
+    --navy:#111111; --navy2:#1c1c1c; --navyline:#111111;
+    --r:0px; --sh:0 0 0 rgba(0,0,0,0);
+    --hdr-h:150px;
+    background-color:#e5e7eb;
+    background-image:repeating-linear-gradient(0deg,rgba(17,17,17,.026) 0 1px,transparent 1px 26px);
+    color:var(--ink);
+    font-family:"Noto Serif KR","Nanum Myeongjo","Apple SD Gothic Neo","Malgun Gothic",serif;
+    -webkit-font-smoothing:auto;
+  }
+  /* 직각 모서리 — 원형으로 남겨야 하는 요소만 되돌린다 */
+  body[data-theme="official"] *{border-radius:0 !important}
+  body[data-theme="official"] .dot,
+  body[data-theme="official"] .pin,
+  body[data-theme="official"] .map-legend i,
+  body[data-theme="official"] .switch input,
+  body[data-theme="official"] .switch input::after,
+  body[data-theme="official"] .gemfab,
+  body[data-theme="official"] .gemfab::after{border-radius:50% !important}
+  body[data-theme="official"] :where(button,input,textarea,select){font-family:inherit}
+
+  /* ---------- 헤더 ---------- */
+  body[data-theme="official"] .hdr{background:#fcfcf9;color:#111;box-shadow:none;border-bottom:2px solid #111}
+  body[data-theme="official"] .live b{color:#111}
+  body[data-theme="official"] .live .clk{color:#555}
+  body[data-theme="official"] .hdr .dot{width:7px;height:7px;border:0;flex:0 0 auto;
+    background:#b91c1c;box-shadow:0 0 0 3px rgba(185,28,28,.14)}
+  body[data-theme="official"] .seg{background:#fcfcf9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .seg.on{background:#111;border-color:#111;color:#fcfcf9}
+  body[data-theme="official"] .ibtn{background:#fcfcf9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .ibtn:active{background:#e9e8e1}
+  body[data-theme="official"] .ibtn.on{background:#b91c1c;border-color:#b91c1c;color:#fff;box-shadow:none}
+  body[data-theme="official"] .npill{background:#111;color:#fcfcf9;letter-spacing:1.6px}
+  body[data-theme="official"] .npill.done{background:#fcfcf9;color:#111;border:1px solid #111}
+  body[data-theme="official"] .ntext b{color:#111}
+  body[data-theme="official"] .ntext span{color:#444}
+  body[data-theme="official"] .badge{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .badge.ok{background:#e9ece5;color:#1f4d2e}
+  body[data-theme="official"] .badge.warn{background:#f7e7de;color:#8f2f10}
+  body[data-theme="official"] .badge.info{background:#eeeee9;color:#111}
+  body[data-theme="official"] .nextline{color:#333}
+  body[data-theme="official"] .nlab{color:#111;border:1px solid #111;letter-spacing:1px}
+  body[data-theme="official"] .prog{background:#d8d8d0}
+  body[data-theme="official"] .prog i{background:#b91c1c}
+  body[data-theme="official"] .themebar{background:#f1f0e9;border-top:1px solid #111}
+  body[data-theme="official"] .tb-k{color:#5a5a5a;letter-spacing:1.6px}
+  body[data-theme="official"] .tb-btn{background:#fcfcf9;border:1px solid #111;color:#111}
+
+  /* ---------- 결재 헤더 ---------- */
+  body[data-theme="official"] .doc-head{display:block;background:#fcfcf9;border:2px solid #111;
+    padding:12px 12px 11px;margin-bottom:12px;color:#111;box-shadow:none}
+  .doc-class{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11px;font-weight:800;
+    padding-bottom:8px;border-bottom:1px solid #111;margin-bottom:10px}
+  .doc-class-k{font-size:9px;font-weight:900;letter-spacing:1.4px;border:1px solid #111;padding:1px 5px}
+  .doc-stamp{margin-left:auto;background:#fcfcf9;transform:rotate(-6deg);color:#b91c1c;border:2px solid #b91c1c;
+    padding:2px 7px;font-size:10px;font-weight:900;letter-spacing:2px;outline:1px solid #b91c1c;outline-offset:-5px}
+  .doc-org{text-align:center;font-size:13px;font-weight:900;letter-spacing:2px;line-height:1.5;color:#111}
+  .doc-title{text-align:center;font-size:16px;font-weight:900;letter-spacing:-.5px;margin:3px 0 8px;line-height:1.4;color:#111}
+  .doc-meta{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:10px;
+    font-weight:700;color:#333;border-top:1px solid #111;padding-top:7px;margin-bottom:8px;line-height:1.4}
+  .doc-meta span{min-width:0}
+  .doc-approve{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px}
+  .doc-approve th,.doc-approve td{border:1px solid #111;text-align:center;padding:4px 2px;word-break:keep-all}
+  .doc-approve th{background:#f1f0e9;font-size:9.5px;font-weight:800;letter-spacing:3px;padding:3px 2px}
+  .doc-approve td{height:40px;vertical-align:middle;line-height:1.25}
+  .doc-name{font-size:10px;font-weight:800;letter-spacing:-.2px}
+  .doc-seal{display:inline-block;width:17px;height:17px;line-height:15px;margin-left:3px;vertical-align:-4px;
+    border:1.5px solid #b91c1c;color:#b91c1c;font-size:9.5px;font-weight:900;transform:rotate(-8deg)}
+  .doc-foot{margin-top:9px;text-align:center;font-size:10px;font-weight:700;color:#444;letter-spacing:1.5px}
+
+  /* ---------- 카드·시트·패널 공통 종이 면 ---------- */
+  body[data-theme="official"] .card-box,
+  body[data-theme="official"] .body,
+  body[data-theme="official"] .sharebar,
+  body[data-theme="official"] .wxcard,
+  body[data-theme="official"] .moneycard,
+  body[data-theme="official"] .simpanel,
+  body[data-theme="official"] .bcard,
+  body[data-theme="official"] .stform,
+  body[data-theme="official"] .shr-form,
+  body[data-theme="official"] .stdash,
+  body[data-theme="official"] .memo,
+  body[data-theme="official"] .trow,
+  body[data-theme="official"] .strow,
+  body[data-theme="official"] .xfer li,
+  body[data-theme="official"] .wx-cell,
+  body[data-theme="official"] .check li,
+  body[data-theme="official"] .ntf-list li,
+  body[data-theme="official"] .mg-rank li,
+  body[data-theme="official"] .mg-panel,
+  body[data-theme="official"] .mg-seg button,
+  body[data-theme="official"] .mg-nums button,
+  body[data-theme="official"] .mgmate,
+  body[data-theme="official"] .mg-chip,
+  body[data-theme="official"] .mg-live,
+  body[data-theme="official"] .mg-turn,
+  body[data-theme="official"] .mg-order .o,
+  body[data-theme="official"] .mg-lose,
+  body[data-theme="official"] .mg-sig,
+  body[data-theme="official"] .ai-bub,
+  body[data-theme="official"] .msg .bub,
+  body[data-theme="official"] .ktxtbl,
+  body[data-theme="official"] .sttbl,
+  body[data-theme="official"] .tbl,
+  body[data-theme="official"] .sheet,
+  body[data-theme="official"] .mbox,
+  body[data-theme="official"] .hint,
+  body[data-theme="official"] .wholine,
+  body[data-theme="official"] .album-link,
+  body[data-theme="official"] .tcard,
+  body[data-theme="official"] .ai-chips,
+  body[data-theme="official"] .chat-state,
+  body[data-theme="official"] .wx-days span,
+  body[data-theme="official"] .tabs,
+  body[data-theme="official"] .ntf-card,
+  body[data-theme="official"] .ntf-ios,
+  body[data-theme="official"] .wx-tip,
+  body[data-theme="official"] .wx-inline,
+  body[data-theme="official"] .loc-nearest,
+  body[data-theme="official"] .shr-empty,
+  body[data-theme="official"] .ck-empty,
+  body[data-theme="official"] .stempty,
+  body[data-theme="official"] .map-legend{
+    background:var(--card); background-image:none; box-shadow:none; border:1px solid #111; color:var(--ink);
+  }
+  body[data-theme="official"] .sheet{border-bottom:0}
+  body[data-theme="official"] .card-box,body[data-theme="official"] .sharebar,
+  body[data-theme="official"] .wxcard,body[data-theme="official"] .moneycard,
+  body[data-theme="official"] .simpanel,body[data-theme="official"] .tcard,
+  body[data-theme="official"] .doc-head{border-width:1px}
+
+  /* ---------- 히어로 ---------- */
+  body[data-theme="official"] .hero{background:#fcfcf9;color:#111;border:1px solid #111;box-shadow:none;overflow:hidden}
+  body[data-theme="official"] .hero::before,body[data-theme="official"] .hero::after{display:none}
+  body[data-theme="official"] .hero .k{color:#b91c1c;letter-spacing:2.4px}
+  body[data-theme="official"] .hero h1{font-weight:900;letter-spacing:-.8px}
+  body[data-theme="official"] .hero p{color:#333}
+  body[data-theme="official"] .hero .chips span{background:#f1f0e9;border:1px solid #111;color:#111}
+
+  /* ---------- DAY 탭 ---------- */
+  body[data-theme="official"] .tabs{background:#e9e8e1;padding:3px;gap:0}
+  body[data-theme="official"] .tabs button{color:#444;border-right:1px solid #111}
+  body[data-theme="official"] .tabs button:last-child{border-right:0}
+  body[data-theme="official"] .tabs button .d{opacity:1;color:#5a5a5a}
+  body[data-theme="official"] .tabs button.on{background:#fcfcf9;color:#111;box-shadow:none}
+  body[data-theme="official"] .tabs button.on.d1{color:#b91c1c}
+  body[data-theme="official"] .tabs button.on.d2{color:#111}
+
+  /* ---------- 타임라인 ---------- */
+  body[data-theme="official"] .tl-head h2{font-weight:900}
+  body[data-theme="official"] .rail::before{background:#111;width:1px}
+  body[data-theme="official"] .rail .dot{background:#fcfcf9;border:1px solid #111;color:#111;box-shadow:none}
+  body[data-theme="official"] .body{border:1px solid #111}
+  body[data-theme="official"] .time{color:#5a5a5a}
+  body[data-theme="official"] .tag{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .st{background:#f1f0e9;border:1px solid #111;color:#333}
+  body[data-theme="official"] .st.now{background:#b91c1c;border-color:#b91c1c;color:#fff}
+  body[data-theme="official"] .st.next{background:#111;border-color:#111;color:#fcfcf9}
+  body[data-theme="official"] .st.done{background:#e9ece5;border-color:#111;color:#1f4d2e}
+  body[data-theme="official"] .card.now .body{border:2px solid #b91c1c;background:#fcfcf9;box-shadow:none}
+  body[data-theme="official"] .card.next .body{border:2px solid #111;box-shadow:none}
+  body[data-theme="official"] .card.done .body{background:#f4f3ed;border:1px solid #9a9a90}
+  body[data-theme="official"] .card.now .dot{background:#b91c1c;border-color:#b91c1c;color:#fff;box-shadow:none}
+  body[data-theme="official"] .card.done .dot{background:#f4f3ed;border-color:#9a9a90;color:#666}
+  body[data-theme="official"] .note{background:#f1f0e9;border-left:3px solid #111;color:#2e2e2e}
+  body[data-theme="official"] .note.req{background:#f7e7de;border-left-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .tkt{background:#111;color:#fcfcf9;box-shadow:none}
+  body[data-theme="official"] .acts a{background:#fcfcf9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .acts .n{background:#111;color:#fcfcf9}
+  body[data-theme="official"] .meta a{color:#8f1a1a;border-bottom:1px solid rgba(143,26,26,.4)}
+  body[data-theme="official"] .meta .dist{color:#111}
+  body[data-theme="official"] .hint button{background:#111;color:#fcfcf9;border:1px solid #111;box-shadow:none}
+  body[data-theme="official"] .album-link span,body[data-theme="official"] .album-link em{color:#444}
+  body[data-theme="official"] .check .ck-act button{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .wcust button{background:#111;color:#fcfcf9;border:1px solid #111}
+  body[data-theme="official"] .strow .del{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .shn,body[data-theme="official"] .sbref{background:#f1f0e9;border:1px solid #111;color:#333}
+  body[data-theme="official"] .check .txt span,body[data-theme="official"] .memo-top{color:#5a5a5a}
+  body[data-theme="official"] .check input{box-shadow:none}
+  body[data-theme="official"] .foot{color:#5a5a5a}
+  body[data-theme="official"] .foot b{color:#333}
+
+  /* ---------- 지도 ---------- */
+  body[data-theme="official"] #map{background:#e2e1d9;border-top:1px solid #111}
+  body[data-theme="official"] .leaflet-tile-pane{filter:grayscale(1) contrast(.92) brightness(1.02)}
+  body[data-theme="official"] .leaflet-control-zoom a{background:#fcfcf9;color:#111;border-color:#111}
+
+  /* ---------- 버튼·칩·입력 ---------- */
+  body[data-theme="official"] input[type=text],
+  body[data-theme="official"] input[type=email],
+  body[data-theme="official"] input[type=search],
+  body[data-theme="official"] textarea,
+  body[data-theme="official"] select{background:#fffdf6;border:1px solid #111;color:#111;box-shadow:none}
+  body[data-theme="official"] .btn-geo,
+  body[data-theme="official"] .shr-send,
+  body[data-theme="official"] .stsend,
+  body[data-theme="official"] .bsave,
+  body[data-theme="official"] .ai-send,
+  body[data-theme="official"] .stcopy,
+  body[data-theme="official"] .mgbtn,
+  body[data-theme="official"] .chat-in .cs,
+  body[data-theme="official"] .ntf-main,
+  body[data-theme="official"] .play,
+  body[data-theme="official"] .presets button.on{background:#111;color:#fcfcf9;border:1px solid #111;box-shadow:none}
+  body[data-theme="official"] .ntf-main.on{background:#1f4d2e;border-color:#1f4d2e}
+  body[data-theme="official"] .mgbtn.ghost{background:#fcfcf9;color:#111}
+  body[data-theme="official"] .mgbtn.gold{background:#f1f0e9;color:#111;border:1px solid #111}
+  body[data-theme="official"] .cadd,
+  body[data-theme="official"] .albtn,
+  body[data-theme="official"] .wx-tog,
+  body[data-theme="official"] .moneycard .mc-go,
+  body[data-theme="official"] .aichip,
+  body[data-theme="official"] .wx-foot a,
+  body[data-theme="official"] .ntf-ghost,
+  body[data-theme="official"] .tpost,
+  body[data-theme="official"] .mg-pres button,
+  body[data-theme="official"] .mg-tabs button{background:#f1f0e9;color:#111;border:1px solid #111;box-shadow:none}
+  body[data-theme="official"] .mg-tabs button.on,
+  body[data-theme="official"] .mg-pres button.on{background:#111;color:#fcfcf9;border-color:#111}
+  body[data-theme="official"] .mg-seg button.on{background:#e9e8e1;border-color:#111;color:#111}
+  body[data-theme="official"] .chipb{background:#fcfcf9;color:#333;border:1px solid #111}
+  body[data-theme="official"] .chipb.on{background:#111;color:#fcfcf9;border-color:#111}
+  body[data-theme="official"] .chipb.on.pay{background:#b91c1c;border-color:#b91c1c;color:#fff}
+  body[data-theme="official"] .achip{background:#fcfcf9;color:#333;border:1px solid #111}
+  body[data-theme="official"] .achip.on,body[data-theme="official"] .wchips button.on{background:#111;color:#fcfcf9;border-color:#111}
+  body[data-theme="official"] .wchips button{background:#fcfcf9;color:#333;border:1px solid #111}
+  body[data-theme="official"] .vpresets button,body[data-theme="official"] .presets button{background:#f1f0e9;color:#111;border:1px solid #111}
+  body[data-theme="official"] .xbtn{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .grab{background:#111}
+  body[data-theme="official"] .sheet-head{border-bottom:2px solid #111}
+  body[data-theme="official"] .backdrop{background:rgba(17,17,17,.55)}
+  body[data-theme="official"] #simSlider::-webkit-slider-runnable-track{background:#d8d8d0}
+  body[data-theme="official"] #simSlider::-webkit-slider-thumb{background:#111;border:3px solid #fcfcf9;box-shadow:none}
+
+  /* ---------- 표 ---------- */
+  body[data-theme="official"] .sttbl thead th,
+  body[data-theme="official"] .ktxtbl thead th,
+  body[data-theme="official"] .tbl thead th{background:#f1f0e9;color:#111}
+  body[data-theme="official"] .tbl .tot td{background:#f1f0e9}
+  body[data-theme="official"] .ktxtbl th:first-child,body[data-theme="official"] .ktxtbl td:first-child{border-left:0}
+
+  /* ---------- 톡방·느그맨 ---------- */
+  body[data-theme="official"] .chat-list{background:#ecebe4}
+  body[data-theme="official"] .chat-in{background:#fcfcf9;border-top:2px solid #111}
+  body[data-theme="official"] .msg.me .bub{background:#111;border-color:#111;color:#fcfcf9}
+  body[data-theme="official"] .msg .who{color:#333}
+  body[data-theme="official"] .ai-list{background:#ecebe4}
+  body[data-theme="official"] .ai-in{background:#fcfcf9;border-top:2px solid #111}
+  body[data-theme="official"] .ai-row.me .ai-bub{background:#111;border-color:#111;color:#fcfcf9}
+  body[data-theme="official"] .ai-row.err .ai-bub{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .gemfab{background:#fcfcf9;border:1px solid #111;box-shadow:0 4px 0 rgba(17,17,17,.12)}
+  body[data-theme="official"] .gemfab svg{filter:grayscale(1)}
+  body[data-theme="official"] .gemfab::after{border-color:rgba(17,17,17,.25)}
+  body[data-theme="official"] .gem-bubble{background:#fcfcf9;border:1px solid #111;color:#111;box-shadow:none}
+  body[data-theme="official"] .gem-bubble::after{background:#fcfcf9;border-right:1px solid #111;border-top:1px solid #111}
+
+  /* ---------- 정산·칭호판 ---------- */
+  body[data-theme="official"] .tv.k,body[data-theme="official"] .tv.f{background:#f4f3ed;border:1px solid #111}
+  body[data-theme="official"] .tvl,body[data-theme="official"] .tv.f .tvl{color:#8f1a1a}
+  body[data-theme="official"] .tstamp{color:#b91c1c}
+  body[data-theme="official"] .tchip{background:#f1f0e9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .trow.top .trk{color:#b91c1c}
+  body[data-theme="official"] .tra.plus{color:#1f4d2e}
+  body[data-theme="official"] .tra.minus{color:#b91c1c}
+  body[data-theme="official"] .tbar{background:#ddd9cd}
+  body[data-theme="official"] .tbar i{background:#b91c1c}
+  body[data-theme="official"] .tnote{color:#666}
+  body[data-theme="official"] .sttbl .plus{color:#1f4d2e}
+  body[data-theme="official"] .sttbl .minus,body[data-theme="official"] .xfer li .amt{color:#b91c1c}
+  body[data-theme="official"] .check li.on{background:#e9ece5;border-color:#111}
+  body[data-theme="official"] .check input{background:#fffdf6;border:2px solid #111}
+  body[data-theme="official"] .check input:checked{background:#111;border-color:#111}
+  body[data-theme="official"] .check li.on .txt b{color:#1f4d2e;text-decoration-color:rgba(31,77,46,.45)}
+  body[data-theme="official"] .check-req,
+  body[data-theme="official"] .check .txt .by{background:#f1f0e9;color:#8f1a1a;border:1px solid #111}
+
+  /* ---------- 미니게임 ---------- */
+  body[data-theme="official"] .mgcard{background:#fcfcf9;color:#111;border:1px solid #111;box-shadow:none}
+  body[data-theme="official"] .mgcard .mgc-k{color:#b91c1c}
+  body[data-theme="official"] .mgcard .mgc-s{color:#555}
+  body[data-theme="official"] .mgcard .mgc-go{background:#111;color:#fcfcf9;border:1px solid #111}
+  body[data-theme="official"] .mg-sig.wait{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .mg-sig.go{background:#111;border-color:#111;color:#fcfcf9}
+  body[data-theme="official"] .mg-nums button.now{background:#f7e7de;border-color:#b91c1c;box-shadow:none}
+  body[data-theme="official"] .mg-nums button.taken{background:#ecebe4;color:#666}
+  body[data-theme="official"] .mg-order .o.now{background:#f7e7de;border-color:#b91c1c;color:#8f2f10;box-shadow:none}
+  body[data-theme="official"] .mg-order .o.now i{background:#b91c1c}
+  body[data-theme="official"] .mg-turn{background:#f1f0e9;border:1px solid #111;color:#333}
+  body[data-theme="official"] .mg-turn b{color:#111}
+  body[data-theme="official"] .mg-turn span{background:#fcfcf9;border:1px solid #111;color:#333}
+  body[data-theme="official"] .mg-live{color:#1f4d2e;background:#e9ece5;border:1px solid #111}
+  body[data-theme="official"] .mg-live.off{background:#f1f0e9;color:#5a5a5a}
+  body[data-theme="official"] .mg-rank li.lose{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .mg-lose{background:#f7e7de;border:1px solid #b91c1c;color:#8f2f10}
+  body[data-theme="official"] .mgc-face{background:#141414;border:1px solid #111;color:#f6ecd2}
+  body[data-theme="official"] .mgc-face span{color:#c9c2b4}
+  body[data-theme="official"] .mgc-back{background:#fcfcf9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .mgc.trap .mgc-back{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .mgc.trap .mgc-back span{color:#8f2f10}
+
+  /* ---------- 알림·날씨 ---------- */
+  body[data-theme="official"] .ntf-card.on{background:#e9ece5;border-color:#111}
+  body[data-theme="official"] .ntf-card.warn{background:#f7e7de;border-color:#b91c1c}
+  body[data-theme="official"] .ntf-ios{background:#f7f0e6;border:1px solid #111;color:#7a3a12}
+  body[data-theme="official"] .wx-tip{background:#f1f0e9;border:1px solid #111;color:#2e2e2e}
+  body[data-theme="official"] .wx-tip.warn{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .wx-inline{background:#f1f0e9;border:1px solid #111;color:#2e2e2e}
+  body[data-theme="official"] .wx-inline.warn{background:#f7e7de;border-color:#b91c1c;color:#8f2f10}
+  body[data-theme="official"] .wx-mini{color:#333}
+  body[data-theme="official"] .wx-days span{color:#333}
+
+  /* ---------- 플로팅 ---------- */
+  body[data-theme="official"] .fab{background:#111;color:#fcfcf9;box-shadow:0 4px 0 rgba(17,17,17,.14)}
+  body[data-theme="official"] .fab.chat{background:#b91c1c}
+  body[data-theme="official"] .fab.bag{background:#fcfcf9;color:#111;border:1px solid #111}
+  body[data-theme="official"] .toast{background:#111;color:#fcfcf9}
 </style>
 </head>
 <body>
+<script>
+/* 테마 즉시 적용(깜빡임 방지) — 기본은 공문서(official), 마지막 선택은 localStorage에 남긴다 */
+(function () {
+  try {
+    var t = localStorage.getItem('busan-theme-v1');
+    document.body.dataset.theme = (t === 'original') ? 'original' : 'official';
+  } catch (e) {
+    document.body.dataset.theme = 'official';
+  }
+})();
+</script>
 
 <header class="hdr" id="hdr">
   <div class="hdr-in">
@@ -854,10 +1210,44 @@
       <span class="nlab">NEXT</span><span id="nextText">—</span>
     </button>
     <div class="prog"><i id="hdrProg"></i></div>
+
+    <div class="themebar">
+      <span class="tb-k">문서 테마</span>
+      <button class="tb-btn" id="btnTheme" type="button" aria-pressed="true">✨ 원본 디자인</button>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
+
+  <!-- 🏛️ 공문서 모드에서만 보이는 결재 헤더 (원본 모드에서는 display:none) -->
+  <section class="doc-head" id="docHead" aria-label="공문서 결재 헤더">
+    <div class="doc-class">
+      <span class="doc-class-k">분류</span>
+      <b>대외비(5인 팟 전용)</b>
+      <span class="doc-stamp">원본대조필</span>
+    </div>
+    <div class="doc-org">대 한 민 국 · 느 그 여 행 사</div>
+    <h2 class="doc-title">부산광역시 1박 2일 원정 계획</h2>
+    <div class="doc-meta">
+      <span>문서번호 제2026-1128호</span>
+      <span>시행 2026. 11. 28.(토) 07:00</span>
+    </div>
+    <table class="doc-approve">
+      <thead>
+        <tr><th>기안</th><th>검토</th><th>협조</th><th>승인</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="doc-name">권영진</span><span class="doc-seal">印</span></td>
+          <td><span class="doc-name">김지현</span><span class="doc-seal">印</span></td>
+          <td><span class="doc-name">송준섭</span></td>
+          <td><span class="doc-name">허명강·김윤지</span><span class="doc-seal">決</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="doc-foot">위 계획을 승인하고 시행함</div>
+  </section>
 
   <section class="simpanel" id="simPanel" hidden>
     <div class="simrow">
@@ -5451,7 +5841,7 @@
 
   function ntfRegister() {
     if (ntf.reg) return Promise.resolve(ntf.reg);
-    return navigator.serviceWorker.register('./sw.js?v=2026-11-27.4', { scope: './' }).then(function (reg) {
+    return navigator.serviceWorker.register('./sw.js?v=2026-11-27.5', { scope: './' }).then(function (reg) {
       ntf.reg = reg;
       return reg;
     });
@@ -6533,8 +6923,47 @@
     }
   }
 
+  /* ============ 🏛️ 문서 테마 (official ↔ original) ============ */
+  const THEME_KEY = 'busan-theme-v1';
+
+  function readTheme() {
+    return document.body.getAttribute('data-theme') === 'original' ? 'original' : 'official';
+  }
+
+  function applyTheme(theme, save) {
+    const t = theme === 'original' ? 'original' : 'official';
+    document.body.dataset.theme = t;
+
+    const btn = document.getElementById('btnTheme');
+    if (btn) {
+      const on = t === 'official';
+      btn.textContent = on ? '✨ 원본 디자인' : '🏛️ 공문서 모드';
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? '문서 테마: 공문서 모드 — 누르면 원본 디자인으로 전환' : '문서 테마: 원본 디자인 — 누르면 공문서 모드로 전환');
+      btn.setAttribute('title', btn.getAttribute('aria-label'));
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'official' ? '#e5e7eb' : '#0e1a2b');
+    if (save) { try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+    /* 테마가 바뀌면 지도 타일 회색조·글꼴이 바뀌므로 컨테이너 크기를 다시 계산 */
+    setTimeout(function () {
+      try { if (mapMod.map && mapMod.map.invalidateSize) mapMod.map.invalidateSize(); } catch (e) {}
+    }, 80);
+  }
+
+  function bindTheme() {
+    const btn = document.getElementById('btnTheme');
+    if (btn) btn.addEventListener('click', function () {
+      const next = readTheme() === 'official' ? 'original' : 'official';
+      applyTheme(next, true);
+      toast(next === 'official' ? '🏛️ 공문서 모드로 전환' : '✨ 원본 디자인으로 전환');
+    });
+    applyTheme(readTheme(), false);
+  }
+
   /* ============ boot ============ */
   function boot() {
+    bindTheme();
     loadAuthor();
     bindWho();
     if (!initMap()) ensureMap();
