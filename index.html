@@ -1029,8 +1029,8 @@
   </button>
 
   <div class="tabs" id="tabs">
-    <button type="button" class="d1 on" data-day="0">DAY 1<span class="d">11.28 토 · 10개 코스</span></button>
-    <button type="button" class="d2" data-day="1">DAY 2<span class="d">11.29 일 · 6개 코스</span></button>
+    <button type="button" class="d1 on" data-day="0">DAY 1<span class="d" data-sub="0">11.28 토 · 11개 코스</span></button>
+    <button type="button" class="d2" data-day="1">DAY 2<span class="d" data-sub="1">11.29 일 · 5개 코스</span></button>
   </div>
 
   <section class="tl" id="timeline">
@@ -1897,6 +1897,8 @@
       const done = (v.phase === 'during' || v.phase === 'after')
         ? list.filter(s => v.phase === 'after' || v.axis >= s.axisE).length : 0;
       doneCount[d] = done + '/' + list.length;
+      const sub = document.querySelectorAll('#tabs .d[data-sub]')[d];
+      if (sub) sub.textContent = (d === 0 ? '11.28 토 · ' : '11.29 일 · ') + list.length + '개 코스';
     });
     if (el.tlCnt) el.tlCnt.textContent = doneCount[state.view.day] + ' 완료';
 
