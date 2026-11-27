@@ -207,7 +207,7 @@
   .rail{position:relative;display:flex;justify-content:center}
   .rail::before{content:"";position:absolute;top:0;bottom:-10px;left:50%;width:2px;margin-left:-1px;background:#dfe5ef}
   .card:last-child .rail::before{bottom:14px}
-  .dot{
+  .rail .dot{
     position:relative;z-index:1;width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid #d3dbe8;
     color:#7b8ca3;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:12px;flex:0 0 auto;
     font-variant-numeric:tabular-nums;transition:all .25s;
@@ -829,15 +829,43 @@
   /* ==========================================================================
      🏛️ 문서 테마 스위치 (헤더 하단 고정 바) — 두 테마 공통 뼈대
      ========================================================================== */
-  .themebar{display:flex;align-items:center;justify-content:flex-end;gap:8px;
+  .themebar{display:flex;align-items:center;justify-content:space-between;gap:8px;
     height:30px;margin:0 -12px;padding:0 12px;background:#101c2e;border-top:1px solid #21324a}
   .tb-k{font-size:9.5px;font-weight:800;letter-spacing:.8px;color:#7d93ae;white-space:nowrap}
-  .tb-btn{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 10px;border-radius:999px;
-    background:#1d2d44;border:1px solid #2b3c55;color:#e3ecf7;font-size:11px;font-weight:800;white-space:nowrap}
+  .tb-seg{display:inline-flex;align-items:center;gap:2px;padding:2px;border-radius:999px;
+    background:#0a1524;border:1px solid #22344c}
+  .tb-btn{display:inline-flex;align-items:center;justify-content:center;gap:3px;height:20px;padding:0 8px;border-radius:999px;
+    background:transparent;border:1px solid transparent;color:#a9b9cd;font-size:10.5px;font-weight:800;white-space:nowrap;
+    transition:background .15s,color .15s,border-color .15s}
   .tb-btn:active{background:#26374f}
+  .tb-btn.on{background:#fff;border-color:#fff;color:#0e1a2b}
 
   /* 공문서 모드에서만 보이는 결재 헤더 */
   .doc-head{display:none}
+
+  /* ==========================================================================
+     📗 엑셀 모드 전용 상단 리본 (excel 테마에서만 display:block)
+     ========================================================================== */
+  .xl-ribbon{display:none}
+  body[data-theme="excel"] .xl-ribbon{display:block;margin-bottom:10px;border:1px solid #b9b9b9;background:#fff}
+  .xl-title{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#217346;color:#fff;min-width:0}
+  .xl-file{flex:1 1 auto;min-width:0;font-size:12px;font-weight:800;letter-spacing:-.2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .xl-save{flex:0 0 auto;font-size:9.5px;font-weight:800;padding:2px 6px;white-space:nowrap;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.48)}
+  .xl-tools{display:flex;align-items:center;gap:5px;padding:6px 8px;background:#fafafa;border-bottom:1px solid #d4d4d4;
+    overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .xl-tools::-webkit-scrollbar{display:none}
+  .xl-font{flex:0 0 auto;font-size:10.5px;font-weight:600;color:#333;padding:3px 6px;border:1px solid #d4d4d4;background:#fff;white-space:nowrap}
+  .xl-font b{font-weight:800}
+  .xl-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#333;padding:3px 7px;border:1px solid #d4d4d4;background:#fff;white-space:nowrap}
+  .xl-b{font-family:Georgia,"Times New Roman",serif;font-size:11.5px;font-weight:900}
+  .xl-fx{display:flex;align-items:center;gap:6px;padding:5px 8px;background:#fff;min-width:0}
+  .xl-cell{flex:0 0 auto;min-width:32px;text-align:center;font-size:10.5px;font-weight:800;color:#185c38;
+    border:1px solid #217346;background:#eef8f2;padding:2px 4px}
+  .xl-fxlab{flex:0 0 auto;font-family:Georgia,serif;font-style:italic;font-size:11px;font-weight:700;color:#6b6b6b;
+    border-right:1px solid #d4d4d4;padding-right:6px;line-height:1}
+  .xl-formula{flex:1 1 auto;min-width:0;font-size:10.5px;font-weight:600;color:#1f1f1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
   /* ==========================================================================
      🏛️ 공문서 테마 — body[data-theme="official"] (기본값)
@@ -896,7 +924,10 @@
   body[data-theme="official"] .prog i{background:#b91c1c}
   body[data-theme="official"] .themebar{background:#f1f0e9;border-top:1px solid #111}
   body[data-theme="official"] .tb-k{color:#5a5a5a;letter-spacing:1.6px}
-  body[data-theme="official"] .tb-btn{background:#fcfcf9;border:1px solid #111;color:#111}
+  body[data-theme="official"] .tb-seg{background:#f1f0e9;border:1px solid #111;border-radius:0;padding:1px;gap:0}
+  body[data-theme="official"] .tb-btn{background:transparent;border:1px solid transparent;border-right:1px solid #111;color:#111;border-radius:0}
+  body[data-theme="official"] .tb-btn:last-child{border-right:0}
+  body[data-theme="official"] .tb-btn.on{background:#111;border-color:#111;color:#fcfcf9}
 
   /* ---------- 결재 헤더 ---------- */
   body[data-theme="official"] .doc-head{display:block;background:#fcfcf9;border:2px solid #111;
@@ -1166,15 +1197,282 @@
   body[data-theme="official"] .fab.chat{background:#b91c1c}
   body[data-theme="official"] .fab.bag{background:#fcfcf9;color:#111;border:1px solid #111}
   body[data-theme="official"] .toast{background:#111;color:#fcfcf9}
+
+  /* ==========================================================================
+     📗 엑셀 테마 — body[data-theme="excel"] (세 번째 테마)
+     스프레드시트 시트: 흰 셀 + #d4d4d4 격자선, 연초록 헤더 행 #d9ead3,
+     액센트 #217346, 모서리 0, 맑은 고딕 + tabular-nums.
+     ========================================================================== */
+  body[data-theme="excel"]{
+    --bg:#f3f3f3; --card:#ffffff; --ink:#1f1f1f; --ink2:#3d3d3d; --ink3:#6f6f6f;
+    --line:#d4d4d4; --line2:#ececec;
+    --d1:#217346; --d1b:#eef8f2; --d1t:#185c38;
+    --d2:#4f7d18; --d2b:#f2f7e8; --d2t:#3d6112;
+    --ok:#217346; --okb:#eef8f2;
+    --warn:#9a5b00; --warnb:#fff4e0;
+    --info:#1c6b52; --infob:#eef8f2;
+    --navy:#217346; --navy2:#1a5c38; --navyline:#8fc0a5;
+    --r:0px; --sh:none;
+    font-family:"Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",Roboto,sans-serif;
+    font-variant-numeric:tabular-nums;
+    background-color:#f3f3f3;
+    background-image:linear-gradient(to right,#e9e9e9 1px,transparent 1px),
+      linear-gradient(to bottom,#e9e9e9 1px,transparent 1px);
+    background-size:32px 22px;
+  }
+  body[data-theme="excel"] *{border-radius:0 !important}
+  body[data-theme="excel"] :where(.hdr .dot,.pin,.map-legend i,.switch input,.switch input::after,.gemfab,.gemfab::after){border-radius:50% !important}
+  body[data-theme="excel"] :where(button,input,textarea,select){font-family:inherit;font-variant-numeric:tabular-nums}
+
+  /* ---------- 고정 헤더 (흰 시트 머리 + 초록 상태선) ---------- */
+  body[data-theme="excel"] .hdr{background:#fff;color:#1f1f1f;border-top:3px solid #217346;
+    border-bottom:1px solid #b9b9b9;box-shadow:0 2px 6px rgba(31,31,31,.07)}
+  body[data-theme="excel"] .live b{color:#1f1f1f}
+  body[data-theme="excel"] .live .clk{color:#6f6f6f}
+  body[data-theme="excel"] .dot{width:7px;height:7px;border:0;background:#217346;box-shadow:0 0 0 3px rgba(33,115,70,.16)}
+  body[data-theme="excel"] .sim-on .dot{background:#c77700;box-shadow:0 0 0 3px rgba(199,119,0,.18)}
+  body[data-theme="excel"] .seg{background:#fff;border:1px solid #217346;color:#185c38}
+  body[data-theme="excel"] .seg.on{background:#217346;border-color:#217346;color:#fff}
+  body[data-theme="excel"] .ibtn{background:#fff;border:1px solid #b9b9b9;color:#333}
+  body[data-theme="excel"] .ibtn:active{background:#eef8f2}
+  body[data-theme="excel"] .ibtn.on{background:#217346;border-color:#217346;color:#fff;box-shadow:none}
+  body[data-theme="excel"] .npill{background:#217346;color:#fff;letter-spacing:1.2px}
+  body[data-theme="excel"] .npill.done{background:#fff;color:#185c38;border:1px solid #217346}
+  body[data-theme="excel"] .ntext b{color:#1f1f1f}
+  body[data-theme="excel"] .ntext span{color:#555}
+  body[data-theme="excel"] .badge{background:#f1f1f1;color:#4a4a4a;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .badge.ok{background:#eef8f2;color:#185c38;border-color:#b3d0a7}
+  body[data-theme="excel"] .badge.warn{background:#fff4e0;color:#8a5300;border-color:#e5c48a}
+  body[data-theme="excel"] .badge.info{background:#eef8f2;color:#1c6b52;border-color:#b3d0a7}
+  body[data-theme="excel"] .badge.off{background:#f1f1f1;color:#6f6f6f;border-color:#d4d4d4}
+  body[data-theme="excel"] .nextline{color:#333}
+  body[data-theme="excel"] .nlab{color:#185c38;border:1px solid #217346;letter-spacing:1px}
+  body[data-theme="excel"] .prog{background:#e2e8e4}
+  body[data-theme="excel"] .prog i{background:#217346}
+  body[data-theme="excel"] .themebar{background:#f3f3f3;border-top:1px solid #d4d4d4}
+  body[data-theme="excel"] .tb-k{color:#666;letter-spacing:1px}
+  body[data-theme="excel"] .tb-seg{background:#fff;border:1px solid #d4d4d4;border-radius:0;padding:1px;gap:0}
+  body[data-theme="excel"] .tb-btn{color:#555;border:1px solid transparent;border-right:1px solid #e2e2e2}
+  body[data-theme="excel"] .tb-btn:last-child{border-right:0}
+  body[data-theme="excel"] .tb-btn.on{background:#217346;border-color:#217346;color:#fff}
+
+  /* ---------- 카드·패널 = 시트 셀 ---------- */
+  body[data-theme="excel"] :is(.card-box,.sharebar,.wxcard,.moneycard,.simpanel,.bcard,.stform,.shr-form,.stdash,.tcard,.mg-panel,.sheet,.loc-nearest,.wx-tip,.wx-inline,.wx-cell,.ntf-card,.ntf-ios,.map-legend,.shr-empty,.ck-empty,.stempty,.chat-state,.album-link,.mbox,.wholine,.fullcard){
+    background:#fff;background-image:none;box-shadow:none;border:1px solid #d4d4d4;color:var(--ink)
+  }
+  body[data-theme="excel"] .sheet{border-bottom:0;border-top:2px solid #217346;box-shadow:0 -6px 24px rgba(31,31,31,.18)}
+  body[data-theme="excel"] .grab{width:44px;height:3px;background:#d4d4d4}
+  body[data-theme="excel"] .backdrop{background:rgba(31,31,31,.45)}
+  body[data-theme="excel"] .sheet-head{background:#d9ead3;border-bottom:1px solid #b3d0a7}
+  body[data-theme="excel"] .sheet-body h3{color:#185c38;font-weight:800}
+  body[data-theme="excel"] .xbtn{background:#f1f1f1;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .toast{background:#1f1f1f;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+
+  /* 헤더 행(연초록) */
+  body[data-theme="excel"] .cb-head{background:#d9ead3;border-bottom:1px solid #b3d0a7;padding:9px 12px}
+  body[data-theme="excel"] .cb-head .sub{color:#4a6b52}
+  body[data-theme="excel"] .wx-head{background:#d9ead3;border-bottom:1px solid #b3d0a7;margin:-11px -12px 8px;padding:8px 12px}
+  body[data-theme="excel"] .wx-head .sub,body[data-theme="excel"] .wx-mini{color:#4a6b52}
+  body[data-theme="excel"] .sharebar .sbrow{background:#d9ead3;border-bottom:1px solid #b3d0a7;margin:-10px -12px 8px;padding:8px 12px}
+  body[data-theme="excel"] .sbrow b{color:#185c38}
+  body[data-theme="excel"] .sbref{background:#fff;border:1px solid #b3d0a7;color:#185c38}
+  body[data-theme="excel"] .albtn{background:#fff;border:1px solid #217346;color:#185c38}
+  body[data-theme="excel"] .wholine{background:#f1f1f1}
+  body[data-theme="excel"] .wl-k{color:#185c38}
+
+  /* ---------- 히어로 ---------- */
+  body[data-theme="excel"] .hero{background:#fff;background-image:none;color:#1f1f1f;
+    border:1px solid #d4d4d4;border-top:3px solid #217346;box-shadow:none;padding:14px 14px 13px}
+  body[data-theme="excel"] .hero::before,body[data-theme="excel"] .hero::after{display:none}
+  body[data-theme="excel"] .hero .k{color:#217346;letter-spacing:1.6px}
+  body[data-theme="excel"] .hero h1{color:#1f1f1f;font-weight:800}
+  body[data-theme="excel"] .hero p{color:#4a4a4a}
+  body[data-theme="excel"] .hero .chips span{background:#d9ead3;border:1px solid #b3d0a7;color:#185c38}
+
+  /* ---------- DAY 탭 = 워크시트 탭 ---------- */
+  body[data-theme="excel"] .tabs{background:#e9e9e9;border:1px solid #d4d4d4;padding:0;gap:0}
+  body[data-theme="excel"] .tabs button{border-right:1px solid #d4d4d4;color:#555;background:transparent}
+  body[data-theme="excel"] .tabs button:last-child{border-right:0}
+  body[data-theme="excel"] .tabs button .d{color:#6f6f6f;opacity:1}
+  body[data-theme="excel"] .tabs button.on{background:#fff;color:#1f1f1f;box-shadow:inset 0 -3px 0 #217346}
+  body[data-theme="excel"] .tabs button.on.d1{color:#217346}
+  body[data-theme="excel"] .tabs button.on.d2{color:#4f7d18}
+
+  /* ---------- 타임라인 = 시트 행 ---------- */
+  body[data-theme="excel"] .tl-head h2{color:#1f1f1f;font-weight:800}
+  body[data-theme="excel"] .tl-head{margin:4px 2px 8px;padding-bottom:6px;border-bottom:1px solid #d4d4d4}
+  body[data-theme="excel"] .rail::before{background:#d4d4d4;width:1px}
+  body[data-theme="excel"] .rail .dot{width:26px;height:22px;background:#fff;border:1px solid #b9b9b9;color:#4a4a4a;
+    font-weight:800;box-shadow:none;margin-top:14px}
+  body[data-theme="excel"] .body{background:#fff;border:1px solid #d4d4d4;box-shadow:none}
+  body[data-theme="excel"] .card .top{background:#eef8f2;border-bottom:1px solid #d4d4d4;margin:-11px -12px 8px;padding:6px 12px}
+  body[data-theme="excel"] .time{color:#333;font-weight:800}
+  body[data-theme="excel"] .tag{background:#fff;border:1px solid #b3d0a7;color:#185c38}
+  body[data-theme="excel"] .st{background:#f1f1f1;border:1px solid #d4d4d4;color:#5a5a5a}
+  body[data-theme="excel"] .st.now{background:#217346;border-color:#217346;color:#fff}
+  body[data-theme="excel"] .st.next{background:#eef8f2;border-color:#217346;color:#185c38}
+  body[data-theme="excel"] .st.done{background:#f1f1f1;border-color:#d4d4d4;color:#7a7a7a}
+  body[data-theme="excel"] .card.now .body{border:2px solid #217346;background:#fbfefc;box-shadow:0 0 0 3px rgba(33,115,70,.12)}
+  body[data-theme="excel"] .card.now .top{margin:-12px -12px 8px;padding:6px 11px}
+  body[data-theme="excel"] .card.next .body{border:1px solid #7fae92;box-shadow:none}
+  body[data-theme="excel"] .card.done .body{background:#fafafa;border-color:#e2e2e2}
+  body[data-theme="excel"] .card.done h3{color:#4a4a4a}
+  body[data-theme="excel"] .card.now .dot{background:#217346;border-color:#217346;color:#fff;box-shadow:0 0 0 3px rgba(33,115,70,.18)}
+  body[data-theme="excel"] .card.next .dot{border-color:#217346;color:#185c38}
+  body[data-theme="excel"] .card.done .dot{background:#f1f1f1;border-color:#d4d4d4;color:#8a8a8a}
+  body[data-theme="excel"] .note{background:#f6f6f6;border-left:3px solid #b3d0a7;color:#3d3d3d}
+  body[data-theme="excel"] .note.req{background:#fff4e0;border-left-color:#c77700;color:#8a5300}
+  body[data-theme="excel"] .tkt{background:#217346;color:#fff;box-shadow:none}
+  body[data-theme="excel"] .acts a{border:1px solid #d4d4d4}
+  body[data-theme="excel"] .acts .k{background:#fee500;color:#3a1d1d;border-color:#e5ce00}
+  body[data-theme="excel"] .acts .n{background:#03c75a;color:#fff;border-color:#03c75a}
+  body[data-theme="excel"] .acts .x{background:#f1f1f1;color:#4a4a4a;border-color:#d4d4d4}
+  body[data-theme="excel"] .meta a{color:#1a5c38;border-bottom:1px solid rgba(33,115,70,.4)}
+  body[data-theme="excel"] .meta .dist{color:#3d6112}
+  body[data-theme="excel"] .meta .dist.nearest{color:#185c38}
+  body[data-theme="excel"] .hint{background:#fff4e0;border:1px solid #e5c48a;color:#7a4a00}
+  body[data-theme="excel"] .hint button{background:#217346;color:#fff;border:1px solid #217346;box-shadow:none}
+  body[data-theme="excel"] .foot{color:#7a7a7a}
+  body[data-theme="excel"] .foot b{color:#4a4a4a}
+
+  /* ---------- 지도 ---------- */
+  body[data-theme="excel"] #map{background:#ececec;border-top:1px solid #d4d4d4}
+  body[data-theme="excel"] .leaflet-tile-pane{filter:saturate(.55) contrast(.98)}
+  body[data-theme="excel"] .leaflet-control-zoom a{background:#fff;color:#185c38;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .map-legend{background:#fff;border:1px solid #d4d4d4}
+
+  /* ---------- 버튼·칩·입력 ---------- */
+  body[data-theme="excel"] :is(input[type=text],input[type=email],input[type=search],input[type=number],textarea,select){
+    background:#fff;border:1px solid #b9b9b9;color:#1f1f1f;box-shadow:none
+  }
+  body[data-theme="excel"] :is(input,textarea,select):focus{border-color:#217346;box-shadow:0 0 0 2px rgba(33,115,70,.16);outline:none}
+  body[data-theme="excel"] :is(.btn-geo,.shr-send,.stsend,.bsave,.ai-send,.stcopy,.ntf-main,.play,.chat-in .cs,.mgbtn){background:#217346;color:#fff;border:1px solid #217346;box-shadow:none}
+  body[data-theme="excel"] :is(.cadd,.wx-foot a,.ntf-ghost,.tpost,.mg-pres button,.mg-tabs button,.vpresets button,.presets button,.chipb,.achip,.wchips button,.mg-seg button,.wcust button,.strow .del,.check .ck-act button,.acinput button){
+    background:#f1f1f1;color:#333;border:1px solid #d4d4d4;box-shadow:none
+  }
+  body[data-theme="excel"] :is(.mg-tabs button.on,.mg-pres button.on,.presets button.on,.vpresets button.on,.chipb.on,.achip.on,.wchips button.on,.mg-seg button.on,.mgmate.on){
+    background:#217346;color:#fff;border-color:#217346
+  }
+  body[data-theme="excel"] :is(.mc-go,.wx-tog,.aichip){background:#eef8f2;color:#185c38;border:1px solid #217346}
+  body[data-theme="excel"] :is(.play.playing){background:#fff4e0;color:#8a5300;border:1px solid #e5c48a}
+  body[data-theme="excel"] :is(.ntf-main.on){background:#185c38;border-color:#185c38}
+  body[data-theme="excel"] :is(.chipb.on.pay){background:#185c38;border-color:#185c38;color:#fff}
+  body[data-theme="excel"] :is(.mgbtn.ghost){background:#fff;color:#185c38;border:1px solid #217346}
+  body[data-theme="excel"] :is(.mgbtn.gold){background:#d9ead3;color:#185c38;border:1px solid #217346}
+  body[data-theme="excel"] .shn,body[data-theme="excel"] .sbref{background:#f1f1f1;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .mb-ok,body[data-theme="excel"] .mbtns .b-ok{background:#217346;color:#fff}
+  body[data-theme="excel"] #simSlider::-webkit-slider-runnable-track{background:#e2e8e4}
+  body[data-theme="excel"] #simSlider::-webkit-slider-thumb{background:#217346;border:3px solid #fff;box-shadow:none}
+  body[data-theme="excel"] #simSlider::-moz-range-thumb{background:#217346;border:3px solid #fff}
+
+  /* ---------- 표 ---------- */
+  body[data-theme="excel"] :is(.sttbl,.ktxtbl,.tbl){border-color:#d4d4d4}
+  body[data-theme="excel"] :is(.sttbl,.ktxtbl,.tbl) :is(th,td){border-color:#d4d4d4}
+  body[data-theme="excel"] :is(.sttbl,.ktxtbl,.tbl) thead th{background:#d9ead3;color:#185c38;font-weight:800}
+  body[data-theme="excel"] .tbl .tot td{background:#f1f1f1}
+
+  /* ---------- 정산·칭호판 ---------- */
+  body[data-theme="excel"] .stdash{background:#f6f6f6;border:1px solid #d4d4d4}
+  body[data-theme="excel"] :is(.tv.k,.tv.f){background:#f6f6f6;border:1px solid #d4d4d4}
+  body[data-theme="excel"] :is(.tvl,.tv.f .tvl){color:#185c38}
+  body[data-theme="excel"] .tstamp{color:#217346}
+  body[data-theme="excel"] .tchip{background:#eef8f2;border:1px solid #b3d0a7;color:#185c38}
+  body[data-theme="excel"] .trow{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .trow.top .trk{color:#217346}
+  body[data-theme="excel"] .tra.plus{color:#185c38}
+  body[data-theme="excel"] .tra.minus{color:#a33a1a}
+  body[data-theme="excel"] .tbar{background:#e2e8e4}
+  body[data-theme="excel"] .tbar i{background:#217346}
+  body[data-theme="excel"] .tnote{color:#6f6f6f}
+  body[data-theme="excel"] .sttbl .plus{color:#185c38}
+  body[data-theme="excel"] :is(.sttbl .minus,.xfer li .amt){color:#a33a1a}
+  body[data-theme="excel"] .xfer li{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .strow{background:#fff;border:1px solid #d4d4d4}
+
+  /* ---------- 체크리스트 ---------- */
+  body[data-theme="excel"] .check li{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .check li.on{background:#eef8f2;border-color:#b3d0a7}
+  body[data-theme="excel"] .check input{background:#fff;border:1px solid #b9b9b9;box-shadow:none}
+  body[data-theme="excel"] .check input:checked{background:#217346;border-color:#217346}
+  body[data-theme="excel"] .check li.on .txt b{color:#185c38;text-decoration-color:rgba(33,115,70,.45)}
+  body[data-theme="excel"] .check-req,body[data-theme="excel"] .check .txt .by{background:#f1f1f1;color:#8a5300;border:1px solid #d4d4d4}
+
+  /* ---------- 톡방·느그맨 ---------- */
+  body[data-theme="excel"] .chat-list{background:#f6f6f6}
+  body[data-theme="excel"] .msg .bub{background:#fff;border:1px solid #d4d4d4;color:#1f1f1f;box-shadow:none}
+  body[data-theme="excel"] .msg.me .bub{background:#217346;border-color:#217346;color:#fff}
+  body[data-theme="excel"] .msg .who{color:#555}
+  body[data-theme="excel"] .chat-in{background:#fff;border-top:1px solid #d4d4d4}
+  body[data-theme="excel"] .chat-in textarea{background:#fff;border:1px solid #b9b9b9}
+  body[data-theme="excel"] .chat-in .cf{background:#f1f1f1;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .chat-prev button{background:#217346;color:#fff}
+  body[data-theme="excel"] .chat-prog{background:#e6e6e6}
+  body[data-theme="excel"] .chat-prog i{background:#217346}
+  body[data-theme="excel"] .ai-list{background:#f6f6f6}
+  body[data-theme="excel"] .ai-bub{background:#fff;border:1px solid #d4d4d4;color:#1f1f1f;box-shadow:none}
+  body[data-theme="excel"] .ai-row.me .ai-bub{background:#217346;border-color:#217346;color:#fff}
+  body[data-theme="excel"] .ai-row.err .ai-bub{background:#fff4e0;border-color:#c77700;color:#8a5300}
+  body[data-theme="excel"] .ai-in{background:#fff;border-top:1px solid #d4d4d4}
+  body[data-theme="excel"] .gemfab{background:#fff;border:1px solid #b3d0a7;box-shadow:0 4px 12px rgba(33,115,70,.18)}
+  body[data-theme="excel"] .gemfab::after{border-color:rgba(33,115,70,.3)}
+  body[data-theme="excel"] .gem-bubble{background:#fff;border:1px solid #b3d0a7;color:#185c38;box-shadow:none}
+  body[data-theme="excel"] .gem-bubble::after{background:#fff;border-right:1px solid #b3d0a7;border-top:1px solid #b3d0a7}
+
+  /* ---------- 미니게임 ---------- */
+  body[data-theme="excel"] .mgcard{background:#fff;border:1px solid #d4d4d4;color:#1f1f1f;box-shadow:none}
+  body[data-theme="excel"] .mgcard .mgc-k{color:#217346}
+  body[data-theme="excel"] .mgcard .mgc-v{color:#1f1f1f}
+  body[data-theme="excel"] .mgcard .mgc-s{color:#6f6f6f}
+  body[data-theme="excel"] .mgcard .mgc-go{background:#217346;color:#fff;border:1px solid #217346}
+  body[data-theme="excel"] .mg-sig{background:#f1f1f1;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .mg-sig.go{background:#217346;border-color:#217346;color:#fff}
+  body[data-theme="excel"] .mg-sig.wait{background:#fff4e0;border-color:#c77700;color:#8a5300}
+  body[data-theme="excel"] .mg-nums button{background:#fff;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .mg-nums button.now{background:#eef8f2;border-color:#217346;color:#185c38;box-shadow:none}
+  body[data-theme="excel"] .mg-nums button.taken{background:#f1f1f1;color:#8a8a8a}
+  body[data-theme="excel"] .mg-order .o{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .mg-order .o.now{background:#eef8f2;border-color:#217346;color:#185c38;box-shadow:none}
+  body[data-theme="excel"] .mg-order .o.now i{background:#217346}
+  body[data-theme="excel"] .mg-rank li{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .mg-rank li.lose{background:#fff4e0;border-color:#c77700;color:#8a5300}
+  body[data-theme="excel"] .mg-lose{background:#fff4e0;border:1px solid #c77700;color:#8a5300}
+  body[data-theme="excel"] .mg-turn{background:#d9ead3;border:1px solid #b3d0a7;color:#185c38}
+  body[data-theme="excel"] .mg-turn b{color:#185c38}
+  body[data-theme="excel"] .mg-turn span{background:#fff;border:1px solid #b3d0a7;color:#333}
+  body[data-theme="excel"] .mg-live{color:#185c38;background:#eef8f2;border:1px solid #b3d0a7}
+  body[data-theme="excel"] .mg-live.off{background:#f1f1f1;color:#6f6f6f;border-color:#d4d4d4}
+  body[data-theme="excel"] .mg-chip{background:#f1f1f1;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .mgc-face{background:#217346;border:1px solid #185c38;color:#fff}
+  body[data-theme="excel"] .mgc-face span{color:rgba(255,255,255,.82)}
+  body[data-theme="excel"] .mgc-back{background:#fff;border:1px solid #d4d4d4;color:#1f1f1f}
+  body[data-theme="excel"] .mgc.trap .mgc-back{background:#fff4e0;border-color:#c77700;color:#8a5300}
+  body[data-theme="excel"] .mgc.trap .mgc-back span{color:#8a5300}
+
+  /* ---------- 알림·날씨·플로팅 ---------- */
+  body[data-theme="excel"] .ntf-card.on{background:#eef8f2;border-color:#b3d0a7}
+  body[data-theme="excel"] .ntf-card.warn{background:#fff4e0;border-color:#e5c48a}
+  body[data-theme="excel"] .ntf-ios{background:#fff4e0;border:1px solid #e5c48a;color:#7a4a00}
+  body[data-theme="excel"] .wx-tip{background:#f6f6f6;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .wx-tip.warn{background:#fff4e0;border-color:#e5c48a;color:#8a5300}
+  body[data-theme="excel"] .wx-inline{background:#f6f6f6;border:1px solid #d4d4d4;color:#333}
+  body[data-theme="excel"] .wx-cell{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .wx-tog{background:#d9ead3;border:1px solid #b3d0a7;color:#185c38}
+  body[data-theme="excel"] .wx-mini{color:#4a6b52}
+  body[data-theme="excel"] .wx-days span{color:#555}
+  body[data-theme="excel"] .loc-nearest{background:#eef8f2;border:1px solid #b3d0a7}
+  body[data-theme="excel"] .lb img{background:#f1f1f1}
+  body[data-theme="excel"] .modal{background:rgba(31,31,31,.45)}
+  body[data-theme="excel"] .fab{background:#217346;color:#fff;box-shadow:0 4px 12px rgba(33,115,70,.26)}
+  body[data-theme="excel"] .fab.bag{background:#fff;color:#185c38;border:1px solid #217346;box-shadow:0 4px 12px rgba(31,31,31,.12)}
 </style>
 </head>
 <body>
 <script>
-/* 테마 즉시 적용(깜빡임 방지) — 기본은 공문서(official), 마지막 선택은 localStorage에 남긴다 */
+/* 테마 즉시 적용(깜빡임 방지) — official(공문서·기본) / excel(엑셀) / original(원본) */
 (function () {
   try {
     var t = localStorage.getItem('busan-theme-v1');
-    document.body.dataset.theme = (t === 'original') ? 'original' : 'official';
+    document.body.dataset.theme = (t === 'original' || t === 'excel') ? t : 'official';
   } catch (e) {
     document.body.dataset.theme = 'official';
   }
@@ -1212,13 +1510,37 @@
     <div class="prog"><i id="hdrProg"></i></div>
 
     <div class="themebar">
-      <span class="tb-k">문서 테마</span>
-      <button class="tb-btn" id="btnTheme" type="button" aria-pressed="true">✨ 원본 디자인</button>
+      <span class="tb-k">테마</span>
+      <div class="tb-seg" role="group" aria-label="문서 테마 선택">
+        <button class="tb-btn" type="button" data-theme="official" aria-pressed="true">🏛️ 공문서</button>
+        <button class="tb-btn" type="button" data-theme="excel" aria-pressed="false">📗 엑셀</button>
+        <button class="tb-btn" type="button" data-theme="original" aria-pressed="false">🎨 원본</button>
+      </div>
     </div>
   </div>
 </header>
 
 <main class="wrap">
+
+  <!-- 📗 엑셀 모드에서만 보이는 시트 리본 (다른 테마에서는 display:none) -->
+  <section class="xl-ribbon" id="xlRibbon" aria-label="엑셀 시트 리본" aria-hidden="true">
+    <div class="xl-title">
+      <span class="xl-file">📗 부산여행_최종_진짜최종_v3.xlsx</span>
+      <span class="xl-save">자동 저장 켜짐</span>
+    </div>
+    <div class="xl-tools">
+      <span class="xl-font">맑은 고딕 <b>11</b></span>
+      <span class="xl-chip xl-b">B</span>
+      <span class="xl-chip">₩ 통화</span>
+      <span class="xl-chip">Σ 자동합계</span>
+      <span class="xl-chip">필터</span>
+    </div>
+    <div class="xl-fx">
+      <span class="xl-cell">D9</span>
+      <span class="xl-fxlab">fx</span>
+      <span class="xl-formula">=SUM(DAY1:DAY2) // 느그여행사 실시간 원정표</span>
+    </div>
+  </section>
 
   <!-- 🏛️ 공문서 모드에서만 보이는 결재 헤더 (원본 모드에서는 display:none) -->
   <section class="doc-head" id="docHead" aria-label="공문서 결재 헤더">
@@ -5841,7 +6163,7 @@
 
   function ntfRegister() {
     if (ntf.reg) return Promise.resolve(ntf.reg);
-    return navigator.serviceWorker.register('./sw.js?v=2026-11-27.5', { scope: './' }).then(function (reg) {
+    return navigator.serviceWorker.register('./sw.js?v=2026-11-27.6', { scope: './' }).then(function (reg) {
       ntf.reg = reg;
       return reg;
     });
@@ -6923,40 +7245,48 @@
     }
   }
 
-  /* ============ 🏛️ 문서 테마 (official ↔ original) ============ */
+  /* ============ 🏛️📗🎨 문서 테마 (official / excel / original) ============ */
   const THEME_KEY = 'busan-theme-v1';
+  const THEMES = ['official', 'excel', 'original'];
+  const THEME_LABEL = { official: '공문서', excel: '엑셀', original: '원본' };
 
   function readTheme() {
-    return document.body.getAttribute('data-theme') === 'original' ? 'original' : 'official';
+    const t = document.body.getAttribute('data-theme');
+    return THEMES.indexOf(t) >= 0 ? t : 'official';
   }
 
   function applyTheme(theme, save) {
-    const t = theme === 'original' ? 'original' : 'official';
+    const t = THEMES.indexOf(theme) >= 0 ? theme : 'official';
     document.body.dataset.theme = t;
 
-    const btn = document.getElementById('btnTheme');
-    if (btn) {
-      const on = t === 'official';
-      btn.textContent = on ? '✨ 원본 디자인' : '🏛️ 공문서 모드';
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.setAttribute('aria-label', on ? '문서 테마: 공문서 모드 — 누르면 원본 디자인으로 전환' : '문서 테마: 원본 디자인 — 누르면 공문서 모드로 전환');
-      btn.setAttribute('title', btn.getAttribute('aria-label'));
-    }
+    $$('.tb-btn').forEach(function (b) {
+      const on = b.getAttribute('data-theme') === t;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', THEME_LABEL[b.getAttribute('data-theme')] + ' 테마' + (on ? ' (선택됨)' : '로 전환'));
+      b.setAttribute('title', b.getAttribute('aria-label'));
+    });
+    const rb = document.getElementById('xlRibbon');
+    if (rb) rb.setAttribute('aria-hidden', t === 'excel' ? 'false' : 'true');
+
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'official' ? '#e5e7eb' : '#0e1a2b');
+    if (meta) meta.setAttribute('content', t === 'official' ? '#e5e7eb' : (t === 'excel' ? '#f3f3f3' : '#0e1a2b'));
     if (save) { try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
-    /* 테마가 바뀌면 지도 타일 회색조·글꼴이 바뀌므로 컨테이너 크기를 다시 계산 */
+    /* 테마가 바뀌면 지도 타일 색·글꼴·높이가 바뀌므로 컨테이너 크기를 다시 계산 */
     setTimeout(function () {
       try { if (mapMod.map && mapMod.map.invalidateSize) mapMod.map.invalidateSize(); } catch (e) {}
     }, 80);
   }
 
   function bindTheme() {
-    const btn = document.getElementById('btnTheme');
-    if (btn) btn.addEventListener('click', function () {
-      const next = readTheme() === 'official' ? 'original' : 'official';
+    const seg = document.querySelector('.tb-seg');
+    if (seg) seg.addEventListener('click', function (e) {
+      const b = e.target.closest('.tb-btn');
+      if (!b) return;
+      const next = b.getAttribute('data-theme');
+      if (THEMES.indexOf(next) < 0 || next === readTheme()) return;
       applyTheme(next, true);
-      toast(next === 'official' ? '🏛️ 공문서 모드로 전환' : '✨ 원본 디자인으로 전환');
+      toast(next === 'official' ? '🏛️ 공문서 모드로 전환' : next === 'excel' ? '📗 엑셀 시트 모드로 전환' : '🎨 원본 디자인으로 전환');
     });
     applyTheme(readTheme(), false);
   }
