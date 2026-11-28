@@ -1464,6 +1464,120 @@
   body[data-theme="excel"] .modal{background:rgba(31,31,31,.45)}
   body[data-theme="excel"] .fab{background:#217346;color:#fff;box-shadow:0 4px 12px rgba(33,115,70,.26)}
   body[data-theme="excel"] .fab.bag{background:#fff;color:#185c38;border:1px solid #217346;box-shadow:0 4px 12px rgba(31,31,31,.12)}
+
+  /* ==========================================================================
+     🚅 KTX 실시간 지연 추적 (index.html 상단 스트립 · 라이브 카드 · 보드 시트 · 타임라인 배지)
+     색은 테마 변수(--card/--line/--ink/--warn…)만 써서 3테마 모두에서 무너지지 않게 한다.
+     ========================================================================== */
+  .ktxstrip{display:flex;align-items:center;gap:8px;width:100%;text-align:left;min-width:0;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 11px;margin-bottom:10px;
+    box-shadow:var(--sh);color:var(--ink)}
+  .ktxstrip.delay{border-color:var(--warn);background:var(--warnb)}
+  .ktxstrip.off{border-style:dashed;color:var(--ink2)}
+  .ktxstrip .ks-ic{flex:0 0 auto;font-size:15px;line-height:1}
+  .ktxstrip .ks-t{flex:1 1 auto;min-width:0;font-size:12px;font-weight:800;letter-spacing:-.2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ktxstrip .ks-t em{font-style:normal;font-weight:700;color:var(--ink2)}
+  .ktxstrip.delay .ks-t em{color:var(--warn)}
+  .ktxstrip .ks-go{flex:0 0 auto;font-size:10px;font-weight:800;color:var(--ink3);white-space:nowrap}
+
+  .ktxlive{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);
+    margin-bottom:12px;padding:11px 12px 12px;scroll-margin-top:calc(var(--hdr-h) + 12px)}
+  .kx-head{display:flex;align-items:center;gap:6px;margin-bottom:8px;min-width:0}
+  .kx-head h2{margin:0;font-size:13.5px;font-weight:850;letter-spacing:-.3px;white-space:nowrap}
+  .kx-head .kx-sub{flex:1 1 auto;min-width:0;font-size:10.5px;font-weight:700;color:var(--ink3);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .kx-ref{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 8px;border:1px solid var(--line);
+    background:transparent;color:var(--ink2);border-radius:8px}
+  .kx-ref:active{opacity:.6}
+
+  .kx-hero{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;padding:8px 10px;border-radius:10px;
+    background:var(--line2);border:1px solid var(--line);margin-bottom:9px}
+  .kx-hero.on-time{background:var(--okb);border-color:transparent}
+  .kx-hero.late{background:var(--warnb);border-color:transparent}
+  .kx-hero.away{background:var(--infob);border-color:transparent}
+  .kx-big{font-size:17px;font-weight:900;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+  .kx-hero.late .kx-big{color:var(--warn)}
+  .kx-hero.on-time .kx-big{color:var(--ok)}
+  .kx-hero.away .kx-big{color:var(--info)}
+  .kx-now{flex:1 1 auto;min-width:0;font-size:11.5px;font-weight:700;color:var(--ink2);line-height:1.35}
+
+  .kx-tr{display:flex;align-items:center;gap:7px;padding:6px 0;border-top:1px dashed var(--line);min-width:0}
+  .kx-tr:first-of-type{border-top:0}
+  .kx-tr .kx-code{flex:0 0 auto;font-size:11px;font-weight:900;letter-spacing:-.2px;color:var(--ink)}
+  .kx-tr .kx-dir{flex:0 0 auto;font-size:9.5px;font-weight:800;padding:1px 5px;border-radius:5px;
+    background:var(--line2);border:1px solid var(--line);color:var(--ink3)}
+  .kx-tr .kx-st{flex:1 1 auto;min-width:0;font-size:11px;font-weight:700;color:var(--ink2);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .kx-tr .kx-pill{flex:0 0 auto;font-size:10px;font-weight:900;padding:2px 7px;border-radius:999px;
+    background:var(--line2);color:var(--ink3);font-variant-numeric:tabular-nums}
+  .kx-tr .kx-pill.late{background:var(--warnb);color:var(--warn)}
+  .kx-tr .kx-pill.ok{background:var(--okb);color:var(--ok)}
+  .kx-tr .kx-pill.info{background:var(--infob);color:var(--info)}
+  .kx-tr.active .kx-code{color:var(--d1t)}
+
+  .kx-chain{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:7px}
+  .kx-ch{font-size:11.5px;color:var(--ink2);line-height:1.45}
+  .kx-ch b{display:block;font-size:11px;font-weight:900;color:var(--ink);margin-bottom:3px;letter-spacing:-.1px}
+  .kx-ch ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .kx-ch li{display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+  .kx-ch .kx-arw{color:var(--ink3);font-weight:800}
+  .kx-ch .kx-nm{font-weight:800;color:var(--ink)}
+  .kx-ch .kx-tm{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink)}
+  .kx-ch .kx-old{color:var(--ink3);text-decoration:line-through;font-variant-numeric:tabular-nums}
+  .kx-ch .kx-fixed{font-weight:800;color:var(--info)}
+  .kx-tag{display:inline-block;font-size:10px;font-weight:900;padding:1px 6px;border-radius:999px;
+    background:var(--line2);color:var(--ink2);border:1px solid var(--line)}
+  .kx-tag.ok{background:var(--okb);color:var(--ok);border-color:transparent}
+  .kx-tag.warn{background:var(--warnb);color:var(--warn);border-color:transparent}
+  .kx-tag.info{background:var(--infob);color:var(--info);border-color:transparent}
+  .kx-none{font-size:11px;font-weight:700;color:var(--ink3)}
+
+  .kx-toggle{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line);
+    font-size:11.5px;font-weight:800;color:var(--ink2);cursor:pointer}
+  .kx-toggle input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:34px;height:20px;border-radius:999px;
+    background:#ccd6e4;position:relative;transition:background .2s;cursor:pointer;margin:0}
+  .kx-toggle input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;
+    background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .kx-toggle input:checked{background:var(--info)}
+  .kx-toggle input:checked::after{transform:translateX(14px)}
+  .kx-toggle em{margin-left:2px;font-style:normal;font-size:10.5px;font-weight:900;color:var(--ink3)}
+  .kx-toggle.on em{color:var(--info)}
+
+  /* 타임라인 카드 안의 변경 표시 */
+  .time s.kx-old{color:var(--ink3);font-weight:700;text-decoration:line-through;margin-right:3px}
+  .time .kx-adj{font-style:normal;font-size:10px;font-weight:900;color:var(--warn);margin-left:4px;
+    padding:1px 4px;border-radius:4px;background:var(--warnb)}
+  .kx-fixchip{font-size:9.5px;font-weight:900;padding:2px 6px;border-radius:999px;background:var(--infob);color:var(--info)}
+  .wx-inline.kx-inline{width:100%;margin-top:8px}
+  .wx-inline.kx-inline b{font-variant-numeric:tabular-nums}
+  .wx-inline.kx-inline.late b{color:var(--warn)}
+  .kx-board{display:flex;flex-direction:column;gap:5px;margin:0 0 8px}
+  .kx-board .kxb{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--ink2);
+    background:var(--line2);border:1px solid var(--line);border-radius:9px;padding:6px 8px;min-width:0}
+  .kx-board .kxb b{font-weight:900;color:var(--ink);flex:0 0 auto}
+  .kx-board .kxb span{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .kx-board .kxb .kx-pill{flex:0 0 auto}
+  .kx-board .kxb.late{background:var(--warnb);border-color:transparent}
+
+  /* --- 테마별 다듬기 --- */
+  body[data-theme="official"] .ktxstrip,body[data-theme="official"] .ktxlive{box-shadow:none;border:1px solid #111}
+  body[data-theme="official"] .kx-toggle input,body[data-theme="official"] .kx-toggle input::after{border-radius:999px !important}
+  body[data-theme="excel"] .kx-toggle input,body[data-theme="excel"] .kx-toggle input::after{border-radius:999px !important}
+  body[data-theme="official"] .kx-head{border-bottom:1px solid #111;padding-bottom:5px}
+  body[data-theme="official"] .kx-head h2{font-family:inherit;letter-spacing:1px}
+  body[data-theme="official"] .kx-hero{background:#f1f0e9;border:1px solid #111}
+  body[data-theme="official"] .kx-hero.late{background:#f7e7de}
+  body[data-theme="official"] .kx-hero.on-time{background:#e9ece5}
+  body[data-theme="official"] .kx-hero.away{background:#eeeee9}
+  body[data-theme="excel"] .ktxstrip{border:1px solid #b9b9b9}
+  body[data-theme="excel"] .ktxlive{border:1px solid #b9b9b9;box-shadow:none;padding-top:0}
+  body[data-theme="excel"] .kx-head{background:#d9ead3;border:1px solid #b3d0a7;margin:0 -12px 9px;padding:5px 9px}
+  body[data-theme="excel"] .kx-head h2{color:#185c38}
+  body[data-theme="excel"] .kx-hero{background:#fff;border:1px solid #b3d0a7}
+  body[data-theme="excel"] .kx-hero.late{background:#fff4e0;border-color:#e5c48a}
+  body[data-theme="excel"] .kx-board .kxb{background:#fff;border:1px solid #d4d4d4}
+  body[data-theme="excel"] .kx-board .kxb.late{background:#fff4e0;border-color:#e5c48a}
 </style>
 </head>
 <body>
@@ -1571,6 +1685,13 @@
     <div class="doc-foot">위 계획을 승인하고 시행함</div>
   </section>
 
+  <!-- 🚅 KTX 실시간 지연 스트립 (상단 대시보드 바로 아래) -->
+  <button class="ktxstrip" id="ktxStrip" type="button" aria-live="polite">
+    <span class="ks-ic" id="ksIc" aria-hidden="true">🚅</span>
+    <span class="ks-t" id="ksTxt">KTX 실시간 불러오는 중…</span>
+    <span class="ks-go" id="ksGo">자세히 ›</span>
+  </button>
+
   <section class="simpanel" id="simPanel" hidden>
     <div class="simrow">
       <div>
@@ -1628,6 +1749,21 @@
       <a href="https://www.gwangallimdrone.co.kr/notice" target="_blank" rel="noopener">공식 공지 ↗</a>
     </div>
     </div>
+  </section>
+
+  <!-- 🚅 KTX 실시간 지연 추적 카드 -->
+  <section class="ktxlive" id="ktxLiveCard" aria-label="KTX 실시간 지연 추적">
+    <div class="kx-head">
+      <h2>🚅 KTX 실시간</h2>
+      <span class="kx-sub" id="kxSub">불러오는 중…</span>
+      <button class="kx-ref" id="kxRefresh" type="button" aria-label="KTX 실시간 새로고침">↻ 갱신</button>
+    </div>
+    <div id="kxBody"></div>
+    <label class="kx-toggle on" id="kxToggle" for="kxAuto">
+      <input type="checkbox" id="kxAuto" checked>
+      <span>실시간 지연 자동 반영</span>
+      <em id="kxAutoTxt">ON</em>
+    </label>
   </section>
 
   <div class="hint" id="hint" hidden>
@@ -2010,6 +2146,7 @@
       </div>
 
       <h3>🚄 KTX 좌석 <span class="cnt" id="ktxCnt">0 / 10</span></h3>
+      <div class="kx-board" id="kxBoardLive"></div>
       <div class="ktxblock">
         <div class="ktxhead"><b>11/28(토) 하행</b><span>서울 07:50 → 부산 10:26</span></div>
         <table class="ktxtbl" data-dir="down">
@@ -2456,8 +2593,9 @@
         '<div class="rail"><span class="dot">', s.no, '</span></div>',
         '<div class="body">',
           '<div class="top">',
-            '<span class="time">', s.s, '–', s.e, '</span>',
+            '<span class="time">', timeHtml(s), '</span>',
             '<span class="tag">', esc(s.tag), '</span>',
+            (s.no === 5 ? '<span class="kx-fixchip">예약 고정</span>' : ''),
             '<span class="st" data-st></span>',
           '</div>',
           '<h3>', esc(s.title), '</h3>',
@@ -2469,8 +2607,8 @@
           '</ul>',
           s.note ? '<p class="note' + (s.req ? ' req' : '') + '">' + (s.req ? '⏰ ' : '💡 ') + esc(s.note) + '</p>' : '',
           s.ticket ? '<a class="tkt" href="' + esc(s.ticket) + '" target="_blank" rel="noopener">🎫 스카이캡슐 모바일 티켓 열기</a>' : '',
-          s.no === 1 ? ktxBadgeHtml('down') : '',
-          s.no === 17 ? ktxBadgeHtml('up') : '',
+          s.no === 1 ? ktxBadgeHtml('down') + ktxLiveBadgeHtml('down') : '',
+          s.no === 16 ? ktxBadgeHtml('up') + ktxLiveBadgeHtml('up') : '',
           s.no === 9 ? wxBadgeHtml() : '',
           '<div class="acts">',
             '<a class="k" href="' + kakaoTo(s.place, s.lat, s.lng) + '" target="_blank" rel="noopener">카카오맵 길찾기</a>',
@@ -2495,6 +2633,7 @@
     focusDay(day);
     updateDistances();
     paintKtxBadges();
+    try { ktxPaint(); } catch (e) {}
     if (wx.data) paintWeather();
     refresh();
   }
@@ -5248,6 +5387,377 @@
     return '<div class="wx-inline" data-wx="show" hidden></div>';
   }
 
+  /* ==========================================================================
+     🚅 KTX 실시간 지연 추적·연쇄 일정 자동 조정
+     - 데이터: Supabase Edge Function `ktx-delay` (코레일 gis 기반 kr.junatiedot.fi/vivo.json 프록시)
+     - 자동 반영 ON: DAY1 유동 코스(2·3·4번)를 지연분만큼 밀고, 예약 고정 코스(5번 스카이캡슐)는 그대로 두고 여유를 계산
+     - 자동 반영 OFF: 원래 시간표 그대로
+     ========================================================================== */
+  const KTXL = {
+    api: 'https://rxsxbmbpetdwbcehsnts.supabase.co/functions/v1/ktx-delay',
+    autoKey: 'busan-ktx-auto-v1',
+    auto: true,
+    st: 'idle',          /* idle | loading | ok | error */
+    at: 0,
+    fecha: '', feedTime: '',
+    trains: {},
+    err: '',
+    timer: null,
+    seq: 0,
+    applied: { down: 0, up: 0 }
+  };
+
+  const KTX_PLAN = {
+    down: {
+      dir: 'down', code: '15', label: 'KTX 015', day: 0, dow: '11/28(토)',
+      fromTxt: '서울 07:50', toTxt: '부산 10:26', arrClock: '10:26', arrMin: 626,
+      fluid: [2, 3, 4], fixed: 5, fixedLabel: '스카이캡슐 13:00~13:30 입장 (예약 고정)'
+    },
+    up: {
+      dir: 'up', code: '46', label: 'KTX 046', day: 1, dow: '11/29(일)',
+      fromTxt: '부산 14:47', toTxt: '서울 17:28', arrClock: '17:28', arrMin: 1048,
+      fluid: [16], fixed: null, fixedLabel: ''
+    }
+  };
+  /* 광안역 → 미포 스카이캡슐 대중교통 35분(여유 계산용) · 13:30이 마지막 입장 */
+  const KTX_SKY_TRAVEL = 35;
+  const KTX_SKY_LAST = 810;
+
+  function ktxTrain(dir) {
+    const p = KTX_PLAN[dir];
+    const t = KTXL.trains[p.code];
+    return (t && typeof t.delayMin === 'number' && isFinite(t.delayMin)) ? t : null;
+  }
+  function ktxDelay(dir) { const t = ktxTrain(dir); return t ? t.delayMin : null; }
+  /* 실제로 시간표에 적용 중인 지연분 (OFF면 0) */
+  function ktxShift(dir) {
+    if (!KTXL.auto) return 0;
+    const d = ktxDelay(dir);
+    if (d == null || d <= 0) return 0;
+    return Math.round(d);
+  }
+  function ktxAdd(hm, d) { return fmtHM(mins(hm) + d); }
+  function ktxArrText(dir, d) {
+    const p = KTX_PLAN[dir];
+    return ktxAdd(p.arrClock, d || 0);
+  }
+
+  /* SPOTS 시각을 원래값(s0/e0) + 지연분으로 다시 계산한다 */
+  function ktxApply() {
+    const d1 = ktxShift('down'), d2 = ktxShift('up');
+    SPOTS.forEach(function (s) {
+      if (s.s0 == null) { s.s0 = s.s; s.e0 = s.e; }
+      let ds = 0, de = 0;
+      if (s.day === 0 && d1 && KTX_PLAN.down.fluid.indexOf(s.no) >= 0) { ds = d1; de = d1; }
+      if (s.day === 1 && d2 && s.no === 16) { de = d2; }
+      s.kxS = ds; s.kxE = de;
+      s.s = ktxAdd(s.s0, ds);
+      s.e = ktxAdd(s.e0, de);
+      s.axisS = s.day * 1440 + mins(s.s);
+      s.axisE = s.day * 1440 + mins(s.e);
+    });
+    const changed = (d1 !== KTXL.applied.down) || (d2 !== KTXL.applied.up);
+    KTXL.applied = { down: d1, up: d2 };
+    return changed;
+  }
+
+  function ktxActiveDir() {
+    const t = kst();
+    if (t.m === 11 && t.d === 29) return 'up';
+    if (t.m === 11 && t.d === 28) return 'down';
+    return realView().phase === 'after' ? 'up' : 'down';
+  }
+
+  /* 한 열차의 표시용 상태 */
+  function ktxState(dir) {
+    const p = KTX_PLAN[dir];
+    const t = ktxTrain(dir);
+    const base = { cls: '', big: '', txt: '', pill: '', pillCls: '' };
+    if (KTXL.st === 'error') {
+      return Object.assign(base, { cls: 'off', big: '연결 실패', txt: '실시간 정보를 못 받았어 · 원래 시간표로 안내 중', pill: '—', pillCls: '' });
+    }
+    if (KTXL.st === 'idle' || KTXL.st === 'loading') {
+      return Object.assign(base, { big: '확인 중…', txt: p.label + ' · ' + p.dow + ' ' + p.fromTxt + ' → ' + p.toTxt, pill: '…', pillCls: '' });
+    }
+    if (!t) {
+      return Object.assign(base, { cls: 'away', big: '운행 정보 대기', txt: p.label + ' · ' + p.dow + ' ' + p.fromTxt + ' 출발 · 당일이 되면 지연이 잡혀', pill: '대기', pillCls: 'info' });
+    }
+    const d = t.delayMin;
+    const arr = ktxArrText(dir, Math.max(0, d));
+    const v = currentView();
+    const arrived = v.phase === 'during' && v.day === p.day && v.axis != null && v.axis > (p.arrMin + Math.max(0, d) + 8);
+    if (d > 0) {
+      return Object.assign(base, {
+        cls: 'late',
+        big: arrived ? '+' + d + '분 지연 도착' : '+' + d + '분 지연',
+        txt: p.label + ' · ' + (t.station ? t.station + ' 통과 · ' : '') + p.toTxt + ' → 예상 ' + arr + (arrived ? ' (도착)' : ' 도착'),
+        pill: '+' + d + '분', pillCls: 'late'
+      });
+    }
+    if (d < 0) {
+      return Object.assign(base, {
+        cls: 'on-time',
+        big: Math.abs(d) + '분 빠름',
+        txt: p.label + ' · ' + (t.station ? t.station + ' 통과 · ' : '') + p.toTxt + ' → 예상 ' + arr,
+        pill: d + '분', pillCls: 'ok'
+      });
+    }
+    return Object.assign(base, {
+      cls: 'on-time',
+      big: arrived ? '정시 도착' : '정시 운행',
+      txt: p.label + ' · ' + (t.station ? t.station + ' 통과 · ' : '') + p.toTxt + ' 예정',
+      pill: '정시', pillCls: 'ok'
+    });
+  }
+
+  /* 연쇄 조정 요약 */
+  function ktxChainHtml() {
+    const d1 = ktxDelay('down'), d2 = ktxDelay('up');
+    const s1 = ktxShift('down'), s2 = ktxShift('up');
+    const out = [];
+
+    if (s1 > 0) {
+      const a2 = byNo[2], a3 = byNo[3], a4 = byNo[4];
+      const slack = KTX_SKY_LAST - (mins(a4.e) + KTX_SKY_TRAVEL);
+      const tagCls = slack >= 15 ? 'ok' : 'warn';
+      const tagTxt = slack >= 0
+        ? '스카이캡슐까지 여유 약 ' + slack + '분'
+        : '스카이캡슐 입장 불가 위험 ' + slack + '분';
+      const tip = slack < 10 ? '<span class="kx-tag warn">광안역→미포 택시 2대 15~20분 권장</span>' : '<span class="kx-tag info">대중교통 35분 유지 가능</span>';
+      out.push('<div class="kx-ch"><b>DAY 1 · 지연 ' + s1 + '분 연쇄 반영</b><ul>' +
+        [a2, a3, a4].map(function (s) {
+          return '<li><span class="kx-nm">' + s.no + '. ' + esc(s.place) + '</span>' +
+            '<span class="kx-old">' + s.s0 + '–' + s.e0 + '</span><span class="kx-arw">→</span>' +
+            '<span class="kx-tm">' + s.s + '–' + s.e + '</span></li>';
+        }).join('') +
+        '<li><span class="kx-fixed">⏰ ' + KTX_PLAN.down.fixedLabel + '</span></li></ul>' +
+        '<div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap"><span class="kx-tag ' + tagCls + '">' + tagTxt + '</span>' + tip + '</div></div>');
+    }
+
+    if (s2 > 0) {
+      out.push('<div class="kx-ch"><b>DAY 2 · 상행 ' + s2 + '분 지연 반영</b><ul>' +
+        '<li><span class="kx-nm">부산 출발</span><span class="kx-old">14:47</span><span class="kx-arw">→</span><span class="kx-tm">' + ktxAdd('14:47', s2) + '</span></li>' +
+        '<li><span class="kx-nm">서울역 도착</span><span class="kx-old">17:28</span><span class="kx-arw">→</span><span class="kx-tm">' + ktxAdd('17:28', s2) + '</span></li></ul></div>');
+    }
+
+    if (!out.length) {
+      if (!KTXL.auto && ((d1 != null && d1 > 0) || (d2 != null && d2 > 0))) {
+        out.push('<div class="kx-none">⚠️ 자동 반영 꺼짐 — 실시간 지연은 있지만 시간표는 <b>원래 시각</b>으로 안내 중이야.</div>');
+      } else if (KTXL.st === 'ok') {
+        out.push('<div class="kx-none">지연 반영할 코스가 없어 — 시간표 그대로 진행하면 돼.</div>');
+      }
+    }
+    return out.join('');
+  }
+
+  function ktxPaint() {
+    const dir = ktxActiveDir();
+    const cur = ktxState(dir);
+
+    /* 상단 스트립 */
+    const strip = $('#ktxStrip');
+    if (strip) {
+      const t = ktxTrain(dir);
+      strip.className = 'ktxstrip' + (cur.cls === 'late' ? ' delay' : '') + (KTXL.st === 'error' ? ' off' : '');
+      $('#ksIc').textContent = cur.cls === 'late' ? '🚅' : '🚅';
+      const d = t ? t.delayMin : null;
+      let line;
+      if (KTXL.st === 'ok' && t) {
+        line = '<b>' + KTX_PLAN[dir].label + '</b> ' + (d > 0 ? '+' + d + '분 지연' : d < 0 ? Math.abs(d) + '분 빠름' : '정시 운행') +
+          ' <em>' + (t.station ? '· ' + esc(t.station) + ' 통과 ' : '') + '· ' + esc(ktxArrText(dir, Math.max(0, d))) + ' 도착 예상</em>';
+      } else if (KTXL.st === 'error') {
+        line = '<b>KTX 실시간</b> <em>연결 실패 · 원래 시간표로 안내 중</em>';
+      } else if (KTXL.st === 'ok') {
+        line = '<b>' + KTX_PLAN[dir].label + '</b> <em>' + KTX_PLAN[dir].dow + ' · 운행 정보 대기</em>';
+      } else {
+        line = '<b>KTX 실시간</b> <em>불러오는 중…</em>';
+      }
+      $('#ksTxt').innerHTML = line;
+      $('#ksGo').textContent = KTXL.auto ? '자동 ON ›' : '자동 OFF ›';
+    }
+
+    /* 카드 본문 */
+    const body = $('#kxBody');
+    if (body) {
+      const rows = ['down', 'up'].map(function (d2name) {
+        const p = KTX_PLAN[d2name];
+        const s = ktxState(d2name);
+        const t = ktxTrain(d2name);
+        const sh = ktxShift(d2name);
+        const right = t ? (t.delayMin > 0 ? '+' + t.delayMin + '분' : t.delayMin < 0 ? t.delayMin + '분' : '정시') : (KTXL.st === 'ok' ? '정보 없음' : '…');
+        const pillCls = t ? (t.delayMin > 0 ? 'late' : 'ok') : 'info';
+        return '<div class="kx-tr' + (d2name === dir ? ' active' : '') + '">' +
+          '<span class="kx-code">' + p.label + '</span>' +
+          '<span class="kx-dir">' + p.dow + '</span>' +
+          '<span class="kx-st">' + esc(p.fromTxt + ' → ' + p.toTxt + (sh ? ' · ' + ktxAdd(p.arrClock, sh) + ' 도착 적용' : '')) + '</span>' +
+          '<span class="kx-pill ' + pillCls + '">' + right + '</span></div>';
+      }).join('');
+
+      body.innerHTML =
+        '<div class="kx-hero ' + cur.cls + '"><b class="kx-big">' + esc(cur.big) + '</b><span class="kx-now">' + esc(cur.txt) + '</span></div>' +
+        rows + '<div class="kx-chain">' + ktxChainHtml() + '</div>';
+    }
+
+    const sub = $('#kxSub');
+    if (sub) {
+      if (KTXL.st === 'ok' && KTXL.at) {
+        const p = stampParts(KTXL.at);
+        sub.textContent = '코레일 실시간 · ' + pad(p.hh) + ':' + pad(p.mm) + ' 갱신 · 60초마다 자동';
+      } else if (KTXL.st === 'error') {
+        sub.textContent = '연결 실패 · 잠시 뒤 다시 시도';
+      } else {
+        sub.textContent = '코레일 실시간 불러오는 중…';
+      }
+    }
+
+    const tg = $('#kxToggle');
+    if (tg) {
+      tg.classList.toggle('on', KTXL.auto);
+      const cb = $('#kxAuto');
+      if (cb) cb.checked = !!KTXL.auto;
+      const at = $('#kxAutoTxt');
+      if (at) at.textContent = KTXL.auto ? 'ON' : 'OFF';
+    }
+
+    /* 보드 시트 */
+    const bd = $('#kxBoardLive');
+    if (bd) {
+      bd.innerHTML = ['down', 'up'].map(function (d2name) {
+        const p = KTX_PLAN[d2name];
+        const t = ktxTrain(d2name);
+        const sh = ktxShift(d2name);
+        let txt;
+        if (KTXL.st === 'error') txt = '실시간 연결 실패';
+        else if (KTXL.st !== 'ok') txt = '불러오는 중…';
+        else if (!t) txt = '운행 정보 대기 (' + p.dow + ' 당일 표시)';
+        else txt = (t.station ? t.station + ' 통과 · ' : '') + '예상 ' + ktxAdd(p.arrClock, Math.max(0, t.delayMin)) + ' 도착';
+        const pill = t ? (t.delayMin > 0 ? '+' + t.delayMin + '분' : t.delayMin < 0 ? t.delayMin + '분' : '정시') : '—';
+        return '<div class="kxb' + (t && t.delayMin > 0 ? ' late' : '') + '"><b>' + p.label + '</b><span>' + esc(txt) + '</span><span class="kx-pill ' + (t && t.delayMin > 0 ? 'late' : 'ok') + '">' + esc(pill) + '</span></div>';
+      }).join('') +
+      (s1orNote()) ;
+    }
+
+    /* 타임라인 인라인 배지 */
+    $$('[data-ktxl-txt]').forEach(function (n) {
+      const d2name = n.getAttribute('data-ktxl-txt');
+      const t = ktxTrain(d2name);
+      let txt = '확인 중…', late = false;
+      if (KTXL.st === 'ok') {
+        if (!t) txt = KTX_PLAN[d2name].dow + ' 운행 시 표시';
+        else if (t.delayMin > 0) { txt = '+' + t.delayMin + '분 · 예상 ' + ktxArrText(d2name, t.delayMin) + ' 도착'; late = true; }
+        else txt = '정시 · ' + (t.station ? t.station + ' 통과' : '운행 중');
+      } else if (KTXL.st === 'error') txt = '연결 실패';
+      n.textContent = txt;
+      const btn = n.closest('.kx-inline');
+      if (btn) btn.classList.toggle('late', late);
+    });
+  }
+
+  function s1orNote() {
+    const s1 = ktxShift('down');
+    if (s1 > 0) return '<div class="kx-none" style="padding:2px 2px 0">유동 코스 2·3·4번 +' + s1 + '분 반영 · 5번 스카이캡슐은 예약 고정</div>';
+    if (!KTXL.auto) return '<div class="kx-none" style="padding:2px 2px 0">자동 반영 OFF · 원래 시간표 표시 중</div>';
+    return '';
+  }
+
+  function ktxLiveBadgeHtml(dir) {
+    return '<button type="button" class="wx-inline kx-inline" data-ktxl="' + dir + '">' +
+      '<span>🚅 ' + KTX_PLAN[dir].label + ' 실시간</span>' +
+      '<b data-ktxl-txt="' + dir + '">확인 중…</b></button>';
+  }
+
+  /* 카드 시각 표시 — 조정되면 원래 시각을 취소선으로 함께 */
+  function timeHtml(s) {
+    if (!s.kxS && !s.kxE) return s.s + '–' + s.e;
+    const dd = s.kxE || s.kxS;
+    const chip = '<em class="kx-adj">' + (dd > 0 ? '+' + dd : dd) + '분</em>';
+    if (s.kxE && !s.kxS) {
+      return s.s + '–<s class="kx-old">' + s.e0 + '</s>' + s.e + chip;
+    }
+    return '<s class="kx-old">' + s.s0 + '–' + s.e0 + '</s>' + s.s + '–' + s.e + chip;
+  }
+
+  function ktxApplyAndPaint() {
+    const changed = ktxApply();
+    if (changed) {
+      try { renderDay(state.view.day); } catch (e) {}
+    }
+    ktxPaint();
+  }
+
+  function ktxFetch() {
+    if (KTXL.st === 'loading') return Promise.resolve();
+    KTXL.st = 'loading';
+    const seq = ++KTXL.seq;
+    ktxPaint();
+    const ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    const tmo = ctrl ? setTimeout(function () { ctrl.abort(); }, 12000) : null;
+    return fetch(KTXL.api + '?trains=15,46', { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (seq !== KTXL.seq) return;
+        if (!j || j.ok !== true) throw new Error((j && j.error) || 'bad payload');
+        KTXL.trains = (j.trains && typeof j.trains === 'object') ? j.trains : {};
+        KTXL.fecha = j.fecha || '';
+        KTXL.feedTime = j.feedTime || '';
+        KTXL.at = Date.now();
+        KTXL.err = '';
+        KTXL.st = 'ok';
+        ktxApplyAndPaint();
+      })
+      .catch(function (e) {
+        if (seq !== KTXL.seq) return;
+        KTXL.st = 'error';
+        KTXL.err = String((e && e.message) || e || 'fetch failed');
+        ktxApplyAndPaint();
+      })
+      .then(function () { if (tmo) clearTimeout(tmo); });
+  }
+
+  function ktxSetAuto(on, quiet) {
+    KTXL.auto = !!on;
+    try { localStorage.setItem(KTXL.autoKey, KTXL.auto ? '1' : '0'); } catch (e) {}
+    ktxApplyAndPaint();
+    if (!quiet) toast(KTXL.auto ? '🚅 지연 자동 반영 ON — 실시간 시각으로 맞췄어' : '🚅 자동 반영 OFF — 원래 시간표로 돌렸어');
+  }
+
+  function bindKtxLive() {
+    try {
+      const v = localStorage.getItem(KTXL.autoKey);
+      if (v === '0') KTXL.auto = false;
+      else if (v === '1') KTXL.auto = true;
+    } catch (e) {}
+
+    ktxApply();
+    ktxPaint();
+
+    const cb = $('#kxAuto');
+    if (cb) cb.addEventListener('change', function () { ktxSetAuto(cb.checked); });
+    const rf = $('#kxRefresh');
+    if (rf) rf.addEventListener('click', function () { toast('실시간 KTX 다시 확인 중…'); ktxFetch(); });
+    const strip = $('#ktxStrip');
+    if (strip) strip.addEventListener('click', function () {
+      const card = $('#ktxLiveCard');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    /* 타임라인 배지 → 라이브 카드로 */
+    document.addEventListener('click', function (e) {
+      const b = e.target && e.target.closest ? e.target.closest('[data-ktxl]') : null;
+      if (!b) return;
+      const card = $('#ktxLiveCard');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    ktxFetch();
+    if (KTXL.timer) clearInterval(KTXL.timer);
+    KTXL.timer = setInterval(function () {
+      if (document.visibilityState === 'visible') ktxFetch();
+    }, 60000);
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible' && Date.now() - KTXL.at > 45000) ktxFetch();
+    });
+  }
+
   function bindBoard() {
     loadBoardCache();
     buildKtxRows();
@@ -5813,6 +6323,32 @@
       }
     }
 
+    /* KTX 실시간 지연 */
+    const ktxLive = {
+      source: '코레일 gis 기반 실시간 피드 (kr.junatiedot.fi/vivo.json → Supabase Edge Function ktx-delay 프록시)',
+      status: KTXL.st,                      // ok | loading | error
+      auto_adjust: !!KTXL.auto,
+      fetched_at: KTXL.at ? new Date(KTXL.at).toISOString() : null,
+      trains: ['down', 'up'].map(function (dir) {
+        const p = KTX_PLAN[dir];
+        const t = ktxTrain(dir);
+        return {
+          code: p.code, label: p.label, date: p.dow,
+          route: p.fromTxt + ' → ' + p.toTxt,
+          delay_min: t ? t.delayMin : null,
+          last_station: t ? t.station : null,
+          expected_arrival: t ? ktxArrText(dir, Math.max(0, t.delayMin)) : null,
+          applied_shift_min: ktxShift(dir)
+        };
+      }),
+      schedule_rule: 'DAY1 지연 시 유동 코스 2·3·4번만 지연분만큼 밀리고, 5번 스카이캡슐(13:00~13:30 입장·RS26022020029)은 예약 고정. DAY2 상행 지연 시 부산 출발·서울 도착 시각만 밀린다.',
+      skycapsule_slack_min: (function () {
+        const a4 = byNo[4];
+        return a4 ? KTX_SKY_LAST - (mins(a4.e) + KTX_SKY_TRAVEL) : null;
+      })(),
+      courses_already_adjusted: true
+    };
+
     return {
       site: '부산 1박 2일 길라잡이 (2026-11-28~29, 5인: 영진·지현·준섭·명강·윤지)',
       now_kst: t.y + '-' + pad(t.m) + '-' + pad(t.d) + ' (' + wd + ') ' + pad(t.hh) + ':' + pad(t.mm),
@@ -5829,6 +6365,7 @@
       course_notes: notes,
       chat_recent: chatRowsLast,
       board: boardInfo,
+      ktx_live: ktxLive,
       my_location: pos,
       place_facts: {
         resort: '한화리조트 해운대 (부산 해운대구 마린시티3로 52)',
@@ -6163,7 +6700,7 @@
 
   function ntfRegister() {
     if (ntf.reg) return Promise.resolve(ntf.reg);
-    return navigator.serviceWorker.register('./sw.js?v=2026-11-27.6', { scope: './' }).then(function (reg) {
+    return navigator.serviceWorker.register('./sw.js?v=2026-11-28.1', { scope: './' }).then(function (reg) {
       ntf.reg = reg;
       return reg;
     });
@@ -7318,6 +7855,7 @@
     bindSettle();
     bindBoard();
     bindWeather();
+    bindKtxLive();
     bindAi();
     bindNotify();
     bindGame();
